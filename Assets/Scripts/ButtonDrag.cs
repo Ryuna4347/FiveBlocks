@@ -4,14 +4,13 @@ using UnityEngine;
 
 public class ButtonDrag : MonoBehaviour
 {
-    public GameObject obj; //obj자체가 투명도 0.3~0.5정도로 되어있음(조절 x)
+    public GameObject previewObj; //previewObj자체가 투명도 0.3~0.5정도로 되어있음(조절 x)
     Camera mainCamera;
 
     // Start is called before the first frame update
     void Start()
     {
         mainCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
-        obj = GameObject.Find("CloneObj");
     }
 
     // Update is called once per frame
@@ -22,34 +21,40 @@ public class ButtonDrag : MonoBehaviour
 
     private void OnMouseDown()
     {
-        obj.transform.position = transform.position; //드래그 효과를 위해서 가져온다.
-        obj.GetComponent<SpriteRenderer>().sprite = gameObject.GetComponent<SpriteRenderer>().sprite;
+        previewObj.SetActive(true);
+        previewObj.transform.position = transform.position; //드래그 효과를 위해서 가져온다.
+        previewObj.GetComponent<SpriteRenderer>().sprite = gameObject.GetComponent<SpriteRenderer>().sprite;
     }
     private void OnMouseDrag()
     {
         Vector3 temp = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        temp.z = 0;
-        obj.SetActive(true);
-        obj.transform.position =  temp;
+        temp.z = -0.5f;
+        previewObj.SetActive(true);
+        previewObj.transform.position =  temp;
     }
     private void OnMouseUp()
     {
-        Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
-
         RaycastHit2D hitObj= Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
-        if (hitObj.transform != null)
+        
+        if (hitObj.transform!= null)
         {
-            if (hitObj.transform.tag.Equals("EmptyArea"))
+            if (hitObj.transform.gameObject.tag=="Block")
             {
-                Vector3 emptyPos = hitObj.transform.position;
-                emptyPos.z = 0; //EmptyArea가 겹쳐있기 위해서 뒤에 위치해 있기 때문에 z축을 조절해 줘야한다.
-                transform.position = emptyPos;
+                string blockType = hitObj.transform.gameObject.GetComponent<BlockInfo>().blockName.ToUpper(); //종류 비교를 위해 블럭정보 스크립트에서 이름을 획득
+                if (gameObject.name.ToUpper().Contains(blockType)) //동일한 종류(혹시 소문자/대문자 착각이 있을 수 있으므로 대문자로 변형해서 확인)
+                {
+                    //레벨이 같은지도 차후에 추가해야됨
+
+                    GameObject.Find("gameManager").LevelUp(gameObject,hitObj.transform.gameObject);
+
+                    GameObject.Find("gameManager").GetComponent<AppManager>().MoveUsedToEmpty(gameObject);
+                }
             }
-            obj.SetActive(false);
+            previewObj.SetActive(false);
         }
         else
-        { //놓을 수 있는 곳이 아닌 경우는 obj를 지움
-            obj.SetActive(false);
+        { //놓을 수 있는 곳이 아닌 경우는 previewObj를 지움
+            previewObj.SetActive(false);
         }
     }
 }
