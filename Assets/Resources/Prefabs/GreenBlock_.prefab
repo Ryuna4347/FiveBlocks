@@ -134,4 +134,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blockName: GreenBlock
-  blockImage: {fileID: 21300000, guid: f94ac6faddf8e9943b33e85b904cd046, type: 3}
+  blockImage:
+  - {fileID: 21300000, guid: f94ac6faddf8e9943b33e85b904cd046, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+  blockLevel: 0

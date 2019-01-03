@@ -33,21 +33,40 @@ public class AppManager : MonoBehaviour
         { //25칸이 다 차있다는 뜻이므로 블럭생성 불가
             return;
         }
+        int typeRandom = Random.Range(0, 2); //현재는 2가지 밖에 없어서. 차후에 5로 늘릴것
+        string BlockTypeString = "Block_";
+        switch (typeRandom)
+        {
+            case 0:
+                BlockTypeString = "Blue" + BlockTypeString;
+                break;
+            case 1:
+                BlockTypeString = "Green" + BlockTypeString;
+                break;
+            case 2:
+                BlockTypeString = "Red" + BlockTypeString;
+                break;
+            case 3:
+                BlockTypeString = "White" + BlockTypeString;
+                break;
+            case 4:
+                BlockTypeString = "Grey" + BlockTypeString;
+                break;
+            default:
+                break;
+        }
 
-        int random = Random.Range(0, waitBlocks.Count); //대기 유닛 중에 랜덤하게 한개
-
-        GameObject usingBlock = waitBlocks[random]; //차후에 블럭 종류에 대해서도 조건을 달아야한다. 현재는 1가지만 있으므로 그냥 꺼져있는 거 가져옴
-        usingBlock.SetActive(true);
-
+        GameObject properBlockObj = waitBlocks.Find(x => x.name.Contains(BlockTypeString) && x.activeSelf == false); //현재 active가 꺼져있고 색상이 맞는 유닛을 불러온다.
+        properBlockObj.SetActive(true);
 
         int randomPos = Random.Range(0, emptyArea.Count); //빈 곳 중에 랜덤하게 1곳
         Vector3 blockPos = emptyArea[randomPos].transform.position;
         blockPos.z = 0;
-        usingBlock.transform.position = blockPos;
+        properBlockObj.transform.position = blockPos;
 
 
-        waitBlocks.Remove(usingBlock);
-        usedBlocks.Add(usingBlock);
+        waitBlocks.Remove(properBlockObj);
+        usedBlocks.Add(properBlockObj);
         usedArea.Add(emptyArea[randomPos]);
         emptyArea.RemoveAt(randomPos);
     }
@@ -82,5 +101,53 @@ public class AppManager : MonoBehaviour
         emptyArea.Add(willBeEmpty);
         movingBlock.transform.position = new Vector3(-5, 0, 0);
         movingBlock.SetActive(false);
+    }
+
+    public void BlockLevelUp(GameObject obj_1, GameObject obj_2) //obj_2 위치에 다음 레벨을 생성
+    { //레벨업에 필요한 과정
+
+        string blockType = obj_2.GetComponent<BlockInfo>().blockName.ToUpper(); //종류 비교를 위해 블럭정보 스크립트에서 이름을 획득
+        
+        if (obj_1.name.ToUpper().Contains(blockType)) //동일한 종류(혹시 소문자/대문자 착각이 있을 수 있으므로 대문자로 변형해서 확인)
+        {
+            if (obj_1.GetComponent<BlockInfo>().blockLevel == obj_2.GetComponent<BlockInfo>().blockLevel)
+            {//동일레벨, 동일종류일 시 레벨업
+
+                int typeRandom = Random.Range(0, 2);  //현재는 2가지 밖에 없어서. 차후에 5로 늘릴것
+                string BlockTypeString = "Block_";
+                switch (typeRandom)
+                {
+                    case 0:
+                        BlockTypeString = "Blue" + BlockTypeString;
+                        break;
+                    case 1:
+                        BlockTypeString = "Green" + BlockTypeString;
+                        break;
+                    case 2:
+                        BlockTypeString = "Red" + BlockTypeString;
+                        break;
+                    case 3:
+                        BlockTypeString = "White" + BlockTypeString;
+                        break;
+                    case 4:
+                        BlockTypeString = "Grey" + BlockTypeString;
+                        break;
+                    default:
+                        break;
+                }
+
+                GameObject properBlockObj = waitBlocks.Find(x => x.name.Contains(BlockTypeString) && x.activeSelf == false); //현재 active가 꺼져있고 색상이 맞는 유닛을 불러온다.
+                
+                MoveUsedToEmpty(obj_1); //obj_1->obj_2로 이동이기 때문에 obj_1의 자리는 비워준다.
+                obj_2.GetComponent<BlockInfo>().Refresh(); //obj_2의 경우는 empty가 되는건 아니라서 그냥 obj_2만 초기화시키고 지운다.
+                properBlockObj.SetActive(true); //새로 들어올 블럭은 obj_2의 위치에 들어가야하기 때문에 obj_2를 없애기 전에 위치를 전달받고 옮겨놓기
+                properBlockObj.transform.position = obj_2.transform.position;
+                obj_2.transform.position = new Vector3(-5, 0, 0); 
+                obj_2.SetActive(false);
+
+
+            }
+        }
+
     }
 }

@@ -40,15 +40,7 @@ public class ButtonDrag : MonoBehaviour
         {
             if (hitObj.transform.gameObject.tag=="Block")
             {
-                string blockType = hitObj.transform.gameObject.GetComponent<BlockInfo>().blockName.ToUpper(); //종류 비교를 위해 블럭정보 스크립트에서 이름을 획득
-                if (gameObject.name.ToUpper().Contains(blockType)) //동일한 종류(혹시 소문자/대문자 착각이 있을 수 있으므로 대문자로 변형해서 확인)
-                {
-                    //레벨이 같은지도 차후에 추가해야됨
-
-                    GameObject.Find("gameManager").LevelUp(gameObject,hitObj.transform.gameObject);
-
-                    GameObject.Find("gameManager").GetComponent<AppManager>().MoveUsedToEmpty(gameObject);
-                }
+                GameObject.Find("gameManager").GetComponent<AppManager>().BlockLevelUp(gameObject, hitObj.transform.gameObject);
             }
             previewObj.SetActive(false);
         }
