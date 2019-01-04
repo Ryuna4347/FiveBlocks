@@ -10,6 +10,7 @@ public class AppManager : MonoBehaviour
     public List<GameObject> usedBlocks; //대기 유닛들
 
     public GameObject blocksParent; //블럭유닛을 모아둘 상위 빈 오브젝트
+    public SoundManager audio; //게임진행 시 나올 소리를 위한 오디오매니저
 
     // Start is called before the first frame update
     void Start()
@@ -18,7 +19,6 @@ public class AppManager : MonoBehaviour
         usedBlocks = new List<GameObject>();
 
         LoadBlockData();
-
     }
 
     // Update is called once per frame
@@ -29,8 +29,8 @@ public class AppManager : MonoBehaviour
     
     public void MakeBlock()
     {
-        if (usedBlocks.Count==25)
-        { //25칸이 다 차있다는 뜻이므로 블럭생성 불가
+        if (usedBlocks.Count==36)
+        { //36칸이 다 차있다는 뜻이므로 블럭생성 불가
             return;
         }
         int typeRandom = Random.Range(0, 2); //현재는 2가지 밖에 없어서. 차후에 5로 늘릴것
@@ -80,7 +80,7 @@ public class AppManager : MonoBehaviour
             temp.name = obj.name; //유닛별로 모아두기 위한 빈 오브젝트
             temp.transform.parent = blocksParent.transform;
 
-            for (int i = 0; i < 25; i++)
+            for (int i = 0; i < 36; i++)
             {
                 GameObject block = GameObject.Instantiate(obj);
                 block.name =obj.name+i;
@@ -95,7 +95,8 @@ public class AppManager : MonoBehaviour
 
     public void MoveUsedToEmpty(GameObject movingBlock) //옮길 블럭의 원래 위치에 있는 EmptyArea를 반환해준다.()
     {
-        GameObject willBeEmpty = usedArea.Find(x => x.transform.position == movingBlock.transform.position);
+        GameObject willBeEmpty = usedArea.Find(x => (x.transform.position.x == movingBlock.transform.position.x)&&(x.transform.position.y==movingBlock.transform.position.y));
+        //z는 Block과 EmptyArea가 다르므로 z를 빼고 비교를 해야 된다.
 
         usedArea.Remove(willBeEmpty);
         emptyArea.Add(willBeEmpty);
@@ -142,6 +143,8 @@ public class AppManager : MonoBehaviour
                 obj_2.GetComponent<BlockInfo>().Refresh(); //obj_2의 경우는 empty가 되는건 아니라서 그냥 obj_2만 초기화시키고 지운다.
                 properBlockObj.SetActive(true); //새로 들어올 블럭은 obj_2의 위치에 들어가야하기 때문에 obj_2를 없애기 전에 위치를 전달받고 옮겨놓기
                 properBlockObj.transform.position = obj_2.transform.position;
+                audio.PlayAudio("Synthesize");
+
                 obj_2.transform.position = new Vector3(-5, 0, 0); 
                 obj_2.SetActive(false);
 
