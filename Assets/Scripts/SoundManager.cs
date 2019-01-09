@@ -5,6 +5,7 @@ using UnityEngine;
 public class SoundManager : MonoBehaviour
 {
     public AudioClip synthesizeBlock;
+    public AudioClip createBlock;
     public AudioClip fireBullet;
     private AudioSource audio;
 
@@ -18,6 +19,10 @@ public class SoundManager : MonoBehaviour
         if (audioName == "Synthesize")
         {
             audio.PlayOneShot(synthesizeBlock);
+        }
+        else if (audioName == "CreateBlock")
+        {
+            audio.PlayOneShot(createBlock);
         }
         else if (audioName == "FireBullet")
         {
