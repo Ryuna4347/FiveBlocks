@@ -76,7 +76,7 @@ public class AppManager : MonoBehaviour
     }
     private void LoadBlockData()
     {
-        GameObject[] blocks = Resources.LoadAll<GameObject>("Prefabs");
+        GameObject[] blocks = Resources.LoadAll<GameObject>("Prefabs/Blocks");
         
         foreach (GameObject obj in blocks)
         {
