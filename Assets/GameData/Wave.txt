@@ -1,0 +1,1 @@
+﻿{"waveNow":1,"waveMapName":"66normal","pathInfo":"0" ,"unitName":{"Enemy_Rect"},"numOfUnit":{1}}

@@ -13,6 +13,7 @@ public class AppManager : MonoBehaviour
 
     public GameObject blocksParent; //블럭유닛을 모아둘 상위 빈 오브젝트
     public SoundManager audio; //게임진행 시 나올 소리를 위한 오디오매니저
+    public WaveManager waveManager;
 
     // Start is called before the first frame update
     void Start()
@@ -21,6 +22,7 @@ public class AppManager : MonoBehaviour
         usedBlocks = new List<GameObject>();
 
         LoadBlockData();
+        waveManager.LoadGameData();
     }
 
     // Update is called once per frame

@@ -21,10 +21,6 @@ public class EnemyInfo : MonoBehaviour
     private void Awake()
     {
         GameObject path=GameObject.Find("path");
-        foreach (Transform child in path.transform)
-        { //path 하위에 있는 자식들이 각각의 좌표를 가지고 있다.
-            pathList.Add(child.position);            
-        }
         appManager = GameObject.Find("AppManager");
     }
 
@@ -108,5 +104,10 @@ public class EnemyInfo : MonoBehaviour
         { //목표지점에 도착을 하고 그 목표지점이 종료지점이 아닌 경우에는 다음 목표지점으로 설정
             targetPathIdx++;
         }
+    }
+
+    public void SetAtStartLine() //적 유닛 사용을 위해 시작 지점에 두기
+    {
+        transform.position = pathList[0];
     }
 }
