@@ -23,6 +23,7 @@ public class AppManager : MonoBehaviour
 
         LoadBlockData();
         waveManager.LoadGameData();
+        waveManager.ReadyForWave(1); //바로 시작할것이므로 1탄 준비
     }
 
     // Update is called once per frame

@@ -6,9 +6,9 @@ using System.IO;
 public class XmlWaveInfo
 {//xml파일을 읽어서 defunit에 넣기 전에 중간과정(유니티의 xml 파서가 기본형밖에 지원 안 해주기 때문)
     //스테이지별 모든 유닛의 정보가 담겨있다.
-    public int Wavenow; //현재 웨이브
+    public int waveNow; //현재 웨이브
     public string waveMapName; //웨이브가 진행 될 맵이름(맵이름이 다를 경우 gameManager에 신 이동 요구)
-    public string path;
+    public string pathInfo;
 
     public string[] unitName;
     public int[] numOfUnit;
@@ -38,12 +38,18 @@ class WaveUnitInfo //각 웨이브에 등장하는 각 유닛들의 이름과 �
 class Wave //각 웨이브의 정보를 소유하는 클래스
 {
     private int waveNum;
+    private string waveMapName;
     private GameObject wavePath;
     private List<WaveUnitInfo> unitInfo;
 
-    public void SetWave(int n, GameObject pathInfo, List<string> EnemyList)
+    public Wave(){
+        unitInfo = new List<WaveUnitInfo>();
+    }
+
+    public void SetWave(int n, string mapName, GameObject pathInfo, List<string> EnemyList)
     {
         waveNum = n;
+        waveMapName=mapName;
         wavePath = pathInfo;
 
         foreach (string enemyName in EnemyList)
@@ -64,6 +70,10 @@ class Wave //각 웨이브의 정보를 소유하는 클래스
     {
         return wavePath;
     }
+    public string GetWaveMapName()
+    {
+        return waveMapName;
+    }
     public int GetWaveNum()
     {
         return waveNum;
@@ -74,11 +84,19 @@ public class WaveManager : MonoBehaviour
 {
     private List<GameObject> allEnemy; //현재 로드 되어있는 모든 적 유닛
     private List<Wave> waveInfo;
+    private List<GameObject> allMap;
+    private List<GameObject> allPath;
+
+    private GameObject mapNow; //현재 맵과 경로(다음 웨이브와 비교하여 변경 필요여부 조사)
+    private GameObject pathNow;
 
     // Start is called before the first frame update
     private void Awake()
     {
         allEnemy = new List<GameObject>();
+        allMap = new List<GameObject>();
+        allPath = new List<GameObject>();
+
         waveInfo = new List<Wave>();
     }
 
@@ -97,7 +115,34 @@ public class WaveManager : MonoBehaviour
                 newEnemy.name = enemy.name +"_"+ i;
                 newEnemy.transform.parent = enemyGroup.transform;
                 allEnemy.Add(newEnemy);
+                newEnemy.SetActive(false);
             }
+        }
+    }
+    private void LoadMapNPaths()
+    { //게임 진행에 필요한 적 유닛 프리팹을 불러옴(게임 시작 전에)
+        GameObject[] mapPrefabs = Resources.LoadAll<GameObject>("Prefabs/Maps");
+
+        GameObject mapGroup = GameObject.Find("MapGroup");
+        foreach (GameObject map in mapPrefabs)
+        {
+            GameObject newMap = GameObject.Instantiate(map);
+            newMap.name = map.name;
+            newMap.transform.parent = mapGroup.transform;
+            allMap.Add(newMap);
+            newMap.SetActive(false);
+        }
+
+        GameObject[] pathPrefabs = Resources.LoadAll<GameObject>("Prefabs/PathInfo");
+        GameObject pathGroup = GameObject.Find("PathGroup");
+
+        foreach (GameObject path in pathPrefabs)
+        {
+            GameObject newPath = GameObject.Instantiate(path);
+            newPath.name = path.name;
+            newPath.transform.parent = pathGroup.transform;
+            allPath.Add(newPath);
+            newPath.SetActive(false);
         }
     }
 
@@ -117,8 +162,9 @@ public class WaveManager : MonoBehaviour
             { //빈칸이었을 경우 제외(2중엔터시 나올 수 있음)
                 continue;
             }
-            XmlWaveInfo tempStageInfo = JsonUtility.FromJson<XmlWaveInfo>(WaveDataTxt[i]);
 
+            XmlWaveInfo tempStageInfo = JsonUtility.FromJson<XmlWaveInfo>(WaveDataTxt[i]);
+            
             List<string> waveEnemyList = new List<string>();
 
             int enemyLen = tempStageInfo.unitName.Length;
@@ -135,8 +181,8 @@ public class WaveManager : MonoBehaviour
             }
 
             Wave newWave = new Wave();
-            GameObject wavePath = pathGroup.Find(x => x.name.Contains(tempStageInfo.waveMapName)); //길의 이름(뒤의 숫자로 분별)을 포함한 길 좌표 오브젝트
-            newWave.SetWave(tempStageInfo.Wavenow,wavePath, waveEnemyList);
+            GameObject wavePath = pathGroup.Find(x => x.name.Contains(tempStageInfo.pathInfo)); //길의 이름(뒤의 숫자로 분별)을 포함한 길 좌표 오브젝트
+            newWave.SetWave(tempStageInfo.waveNow, tempStageInfo.waveMapName, wavePath, waveEnemyList);
 
             waveInfo.Add(newWave); //새로운 wave정보를 추가
         }
@@ -145,9 +191,18 @@ public class WaveManager : MonoBehaviour
     public void LoadGameData() //gameManager에게 게임로드를 전달받아 필요한 리소스를 로드
     {
         LoadEnemyPrefabs();
+        LoadMapNPaths();
         LoadWaveData();
+        SetDefaultMap();
     }
+    private void SetDefaultMap()
+    {
+        mapNow = allMap.Find(x => x.name.Contains("0"));
+        pathNow = allPath.Find(x => x.name.Contains("0"));
 
+        mapNow.SetActive(true);
+        pathNow.SetActive(true);
+    }
 
     /*
      게임 진행중에 스테이지(웨이브)에 맞는 적 오브젝트 소환
@@ -158,22 +213,51 @@ public class WaveManager : MonoBehaviour
 
         if (unitInfo != null)
         {
-            //길과 맵의 변동여부 판단필요
+            List<WaveUnitInfo> waveUnitInfo = unitInfo.GetWaveUnitInfo();
+            
+            //맵(블럭 분리상태)과 경로의 변경이 필요한 경우를 비교
+            if (!mapNow.name.Contains(unitInfo.GetWaveMapName()))
+            {//맵 이름과 다르므로 맵과 경로 변경 필요
+
+                //맵 변경시 블럭 유닛의 위치 변경도 필요하다.
+                
+                mapNow.SetActive(false);
+
+                mapNow = allMap.Find(x => x.name.Contains(unitInfo.GetWaveMapName()));
+                mapNow.SetActive(true);
+            }
+            if (!pathNow.name.Contains(unitInfo.GetWavePathInfo().name))
+            {
+                pathNow.SetActive(false);
+
+                pathNow = allPath.Find(x => x.name.Contains(unitInfo.GetWavePathInfo().name));
+                pathNow.SetActive(true);
+            }
 
 
             //여기부터는 적 유닛 포지셔닝에 관한 부분
-            List<WaveUnitInfo> waveUnitInfo = unitInfo.GetWaveUnitInfo();   
-
-            foreach(WaveUnitInfo tempUnit in waveUnitInfo)
+            foreach (WaveUnitInfo tempUnit in waveUnitInfo)
             {
                 string unitName=tempUnit.GetUnitName();
                 int unitNum = tempUnit.GetUnitNum();
-
-                for(int i=0; i<unitNum; i++)
+                
+                for (int i=0; i<unitNum; i++)
                 {
                     //찾으려는 유닛(이름으로 구분)이며 현재 사용중이지 않은 유닛 한개를 선택
                     GameObject unit = allEnemy.Find(x => x.name.Contains(unitName) && (x.activeSelf == false));
                     unit.SetActive(true);
+
+                    if (pathNow.transform.childCount != 0)
+                    { //각 웨이브의 경로가 1개인 경우는 자녀가 없고, 2개 이상인 경우 자식이 각각의 경로를 가지고 있으므로
+                      //자식이 0이 아닌경우에는 여러갈래의 경로를 나누어 배분해야한다.
+                        GameObject pathChild = pathNow.transform.GetChild((int)((i+1)/pathNow.transform.childCount)).gameObject; // i/child로 할 시 유닛이 2개가 있으면 둘다 0, 0.5여서 0으로 배정이 된다. 따라서 확실히 나누기 위해 i에 1을 더함
+
+                        unit.GetComponent<EnemyInfo>().SetPathInfomation(pathChild);
+                    }
+                    else
+                    {
+                        unit.GetComponent<EnemyInfo>().SetPathInfomation(pathNow);
+                    }
                     unit.GetComponent<EnemyInfo>().SetAtStartLine();
                 }
             }

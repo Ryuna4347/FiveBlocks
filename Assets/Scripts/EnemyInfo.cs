@@ -21,6 +21,7 @@ public class EnemyInfo : MonoBehaviour
     private void Awake()
     {
         GameObject path=GameObject.Find("path");
+        pathList = new List<Vector3>();
         appManager = GameObject.Find("AppManager");
     }
 
@@ -37,36 +38,36 @@ public class EnemyInfo : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        if (abnormal_status != ""&&(isAbnormalChecked==false))
-        {
-            if (abnormal_status.Contains("Slow_Down"))
-            {
-                string seperatedStr = abnormal_status.Split('_')[2]; //형식이 Slow_Down_속도저하율 순으로 나오기 때문에 3번째 나오는 문자열을 받아야한다.
-                speed *= (100-int.Parse(seperatedStr)) / 100f; //속도저하율 만큼 속도 하향
-                abnormalCoolTime = 1f;
-            }
-            else if(abnormal_status.Contains("Stop")){
-                speed = 0;
-                abnormalCoolTime = 1f;
-            }
-        }
+    //void Update()
+    //{
+    //    if (abnormal_status != ""&&(isAbnormalChecked==false))
+    //    {
+    //        if (abnormal_status.Contains("Slow_Down"))
+    //        {
+    //            string seperatedStr = abnormal_status.Split('_')[2]; //형식이 Slow_Down_속도저하율 순으로 나오기 때문에 3번째 나오는 문자열을 받아야한다.
+    //            speed *= (100-int.Parse(seperatedStr)) / 100f; //속도저하율 만큼 속도 하향
+    //            abnormalCoolTime = 1f;
+    //        }
+    //        else if(abnormal_status.Contains("Stop")){
+    //            speed = 0;
+    //            abnormalCoolTime = 1f;
+    //        }
+    //    }
 
-        if (abnormalCoolTime != 0)
-        {
-            abnormalCoolTime -= Time.deltaTime;
-        }
-        else if ((abnormalCoolTime <= 0) && (isAbnormalChecked == true)) //현재 상태이상이 걸려있고 시간이 지나서 해제해야하는 경우
-        {
-            abnormalCoolTime = 0;
-            isAbnormalChecked = false;
-            abnormal_status = "";
-            speed = 1f;
-        }
-        Move();
+    //    if (abnormalCoolTime != 0)
+    //    {
+    //        abnormalCoolTime -= Time.deltaTime;
+    //    }
+    //    else if ((abnormalCoolTime <= 0) && (isAbnormalChecked == true)) //현재 상태이상이 걸려있고 시간이 지나서 해제해야하는 경우
+    //    {
+    //        abnormalCoolTime = 0;
+    //        isAbnormalChecked = false;
+    //        abnormal_status = "";
+    //        speed = 1f;
+    //    }
+    //    Move();
         
-    }
+    //}
 
     public void GetDamaged(int damage, string statusChanged="")
     {
@@ -103,6 +104,18 @@ public class EnemyInfo : MonoBehaviour
         if (transform.position == pathList[targetPathIdx]&&((targetPathIdx+1)!=pathList.Count))
         { //목표지점에 도착을 하고 그 목표지점이 종료지점이 아닌 경우에는 다음 목표지점으로 설정
             targetPathIdx++;
+        }
+    }
+
+    //path오브젝트에 포함된 line Renderer에서 좌표를 가져옴
+    public void SetPathInfomation(GameObject path)
+    {
+        LineRenderer pathVert = path.GetComponent<LineRenderer>();
+        int pathVertNum = pathVert.positionCount;
+        
+        for(int i=0; i<pathVertNum; i++)
+        {
+            pathList.Add(pathVert.GetPosition(i));
         }
     }
 
