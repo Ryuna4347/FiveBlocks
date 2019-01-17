@@ -17,12 +17,15 @@ public class EnemyInfo : MonoBehaviour
 
     private GameObject unitHealthText; //체력 숫자 표시를 위해서 사용하는 텍스트 UI
 
+    private bool isWaveStart;
 
     private void Awake()
     {
         GameObject path=GameObject.Find("path");
         pathList = new List<Vector3>();
         appManager = GameObject.Find("AppManager");
+        isWaveStart = false;
+        abnormal_status = "";
     }
 
     private void ResetValue()
@@ -37,37 +40,40 @@ public class EnemyInfo : MonoBehaviour
         health = stageHealth;
     }
 
-    // Update is called once per frame
-    //void Update()
-    //{
-    //    if (abnormal_status != ""&&(isAbnormalChecked==false))
-    //    {
-    //        if (abnormal_status.Contains("Slow_Down"))
-    //        {
-    //            string seperatedStr = abnormal_status.Split('_')[2]; //형식이 Slow_Down_속도저하율 순으로 나오기 때문에 3번째 나오는 문자열을 받아야한다.
-    //            speed *= (100-int.Parse(seperatedStr)) / 100f; //속도저하율 만큼 속도 하향
-    //            abnormalCoolTime = 1f;
-    //        }
-    //        else if(abnormal_status.Contains("Stop")){
-    //            speed = 0;
-    //            abnormalCoolTime = 1f;
-    //        }
-    //    }
+    //Update is called once per frame
+    void Update()
+    {
+        if (isWaveStart)
+        {
+            if (abnormal_status != "" && (isAbnormalChecked == false))
+            {
+                if (abnormal_status.Contains("Slow_Down"))
+                {
+                    string seperatedStr = abnormal_status.Split('_')[2]; //형식이 Slow_Down_속도저하율 순으로 나오기 때문에 3번째 나오는 문자열을 받아야한다.
+                    speed *= (100 - int.Parse(seperatedStr)) / 100f; //속도저하율 만큼 속도 하향
+                    abnormalCoolTime = 1f;
+                }
+                else if (abnormal_status.Contains("Stop"))
+                {
+                    speed = 0;
+                    abnormalCoolTime = 1f;
+                }
+            }
 
-    //    if (abnormalCoolTime != 0)
-    //    {
-    //        abnormalCoolTime -= Time.deltaTime;
-    //    }
-    //    else if ((abnormalCoolTime <= 0) && (isAbnormalChecked == true)) //현재 상태이상이 걸려있고 시간이 지나서 해제해야하는 경우
-    //    {
-    //        abnormalCoolTime = 0;
-    //        isAbnormalChecked = false;
-    //        abnormal_status = "";
-    //        speed = 1f;
-    //    }
-    //    Move();
-        
-    //}
+            if (abnormalCoolTime != 0)
+            {
+                abnormalCoolTime -= Time.deltaTime;
+            }
+            else if ((abnormalCoolTime <= 0) && (isAbnormalChecked == true)) //현재 상태이상이 걸려있고 시간이 지나서 해제해야하는 경우
+            {
+                abnormalCoolTime = 0;
+                isAbnormalChecked = false;
+                abnormal_status = "";
+                speed = 1f;
+            }
+            Move();
+        }
+    }
 
     public void GetDamaged(int damage, string statusChanged="")
     {
@@ -100,10 +106,13 @@ public class EnemyInfo : MonoBehaviour
 
     private void Move()
     {
-        transform.position = Vector3.MoveTowards(transform.position, pathList[targetPathIdx], speed); //목표지점을 향해 speed의 속도로 진행
-        if (transform.position == pathList[targetPathIdx]&&((targetPathIdx+1)!=pathList.Count))
+        transform.position = Vector3.MoveTowards(transform.position, pathList[targetPathIdx], speed*Time.deltaTime); //목표지점을 향해 speed의 속도로 진행
+        if (transform.position == pathList[targetPathIdx]&&(targetPathIdx!=pathList.Count))
         { //목표지점에 도착을 하고 그 목표지점이 종료지점이 아닌 경우에는 다음 목표지점으로 설정
             targetPathIdx++;
+        }
+        if(targetPathIdx == pathList.Count){ //맨 끝까지 도착시 더는 움직일 필요가 없다.
+            isWaveStart = false;
         }
     }
 
@@ -122,5 +131,10 @@ public class EnemyInfo : MonoBehaviour
     public void SetAtStartLine() //적 유닛 사용을 위해 시작 지점에 두기
     {
         transform.position = pathList[0];
+    }
+
+    public void StartMove()
+    { //웨이브의 시작을 알림
+        isWaveStart = true;
     }
 }

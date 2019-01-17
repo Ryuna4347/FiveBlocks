@@ -276,4 +276,14 @@ public class WaveManager : MonoBehaviour
         }
         return null; //찾아도 없는 경우는 뭔가 잘못된 케이스
     }
+
+    public void WaveStart()
+    {
+        List<GameObject> usingEnemy = allEnemy.FindAll(x=>x.activeSelf==true); //현재 웨이브에 사용하기 위해 active를 켜둔 상태인 적 유닛들에게 웨이브 시작을 알림
+
+        foreach(GameObject enemy in usingEnemy)
+        {
+            enemy.GetComponent<EnemyInfo>().StartMove();
+        }
+    }
 }
