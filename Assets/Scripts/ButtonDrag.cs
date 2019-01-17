@@ -28,7 +28,7 @@ public class ButtonDrag : MonoBehaviour
     private void OnMouseDrag()
     {
         Vector3 temp = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        temp.z = -0.5f;
+        temp.z = -2f;
         previewObj.SetActive(true);
         previewObj.transform.position =  temp;
     }

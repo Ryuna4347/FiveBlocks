@@ -218,9 +218,9 @@ public class WaveManager : MonoBehaviour
             //맵(블럭 분리상태)과 경로의 변경이 필요한 경우를 비교
             if (!mapNow.name.Contains(unitInfo.GetWaveMapName()))
             {//맵 이름과 다르므로 맵과 경로 변경 필요
-
-                //맵 변경시 블럭 유닛의 위치 변경도 필요하다.
                 
+                //EmptyArea와 UsedArea의 복사가 필요하다.
+
                 mapNow.SetActive(false);
 
                 mapNow = allMap.Find(x => x.name.Contains(unitInfo.GetWaveMapName()));

@@ -24,6 +24,9 @@ public class AppManager : MonoBehaviour
         LoadBlockData();
         waveManager.LoadGameData();
         waveManager.ReadyForWave(1); //바로 시작할것이므로 1탄 준비
+        RegisterEmptyArea(); //맵을 프리팹으로 만듦에 따라 에디터에서 등록해서 사용하는 방법을 쓸수가 없다.
+                            //따라서 맨 처음 맵이 불려진 이후 EmptyArea를 저장하고 맵이 변경되면 EmptyArea, usedArea를 복사해서 옮겨줘야한다.
+
     }
 
     // Update is called once per frame
@@ -66,7 +69,7 @@ public class AppManager : MonoBehaviour
 
         int randomPos = Random.Range(0, emptyArea.Count); //빈 곳 중에 랜덤하게 1곳
         Vector3 blockPos = emptyArea[randomPos].transform.position;
-        blockPos.z = 0;
+        blockPos.z = -1; //블럭이 제일 위에 보이도록 쌓아야해서 z축을 고정
         properBlockObj.transform.position = blockPos;
 
         audio.PlayAudio("CreateBlock");
@@ -159,6 +162,21 @@ public class AppManager : MonoBehaviour
             }
         }
 
+    }
+
+    private void RegisterEmptyArea()
+    { //인자가 없는 함수는 게임 시작시에 appManager에서 자체적으로 실행
+        foreach (Transform childMapData in GameObject.Find("MapGroup").transform)
+        {
+            if ((childMapData.gameObject.name.Contains("Map_")) && (childMapData.gameObject.activeSelf == true))
+            {
+                GameObject EmptyAreaGroup = childMapData.Find("EmptyGroup").gameObject;
+                foreach (Transform emptyAreaData in EmptyAreaGroup.transform)
+                {
+                    emptyArea.Add(emptyAreaData.gameObject);
+                }
+            }
+        }
     }
 
     public void EnemyDead(GameObject enemyUnit)
