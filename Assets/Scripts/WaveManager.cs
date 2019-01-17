@@ -87,6 +87,8 @@ public class WaveManager : MonoBehaviour
     private List<GameObject> allMap;
     private List<GameObject> allPath;
 
+    public AppManager appManager;
+
     private GameObject mapNow; //현재 맵과 경로(다음 웨이브와 비교하여 변경 필요여부 조사)
     private GameObject pathNow;
 
@@ -218,12 +220,12 @@ public class WaveManager : MonoBehaviour
             //맵(블럭 분리상태)과 경로의 변경이 필요한 경우를 비교
             if (!mapNow.name.Contains(unitInfo.GetWaveMapName()))
             {//맵 이름과 다르므로 맵과 경로 변경 필요
-                
-                //EmptyArea와 UsedArea의 복사가 필요하다.
-
                 mapNow.SetActive(false);
 
                 mapNow = allMap.Find(x => x.name.Contains(unitInfo.GetWaveMapName()));
+
+                appManager.RegisterEmptyArea(mapNow); //맵의 변경에 따른 appManager의 block과 emptyArea/usedArea의 정보를 변경해줘야한다.
+
                 mapNow.SetActive(true);
             }
             if (!pathNow.name.Contains(unitInfo.GetWavePathInfo().name))

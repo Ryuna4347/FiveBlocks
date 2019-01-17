@@ -1,1 +1,2 @@
 ﻿{"waveNow":"1", "waveMapName":"Map_0", "pathInfo":"1", "unitName":["Enemy_Rect","Enemy_Round"], "numOfUnit":[3,2]}
+{"waveNow":"2", "waveMapName":"Map_1", "pathInfo":"1", "unitName":["Enemy_Rect","Enemy_Round"], "numOfUnit":[2,2]}

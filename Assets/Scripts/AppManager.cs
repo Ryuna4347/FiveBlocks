@@ -72,13 +72,17 @@ public class AppManager : MonoBehaviour
         blockPos.z = -1; //블럭이 제일 위에 보이도록 쌓아야해서 z축을 고정
         properBlockObj.transform.position = blockPos;
 
-        audio.PlayAudio("CreateBlock");
-
-
+        audio.PlayAudio("CreateBlock"); //블럭 생성에 대한 사운드 재생
+        
         waitBlocks.Remove(properBlockObj);
         usedBlocks.Add(properBlockObj);
         usedArea.Add(emptyArea[randomPos]);
         emptyArea.RemoveAt(randomPos);
+
+        if (usedArea.Count > 5)
+        { //테스트용
+            waveManager.ReadyForWave(2);
+        }
     }
     private void LoadBlockData()
     {
@@ -177,6 +181,40 @@ public class AppManager : MonoBehaviour
                 }
             }
         }
+    }
+    public void RegisterEmptyArea(GameObject newMap)
+    {//게임 시작 직후가 아닌 게임 진행 중 맵의 변경으로 옮길 시 사용하는 함수(WaveManager에서 요청)
+        List<GameObject> newEmptyArea = new List<GameObject>();
+
+        GameObject EmptyAreaGroup = newMap.transform.Find("EmptyGroup").gameObject;
+        foreach (GameObject existedEmpty in emptyArea)
+        { //현재 emptyArea에 포함된 위치를 돌아다니면서 newMap 하위에 이름이 같은 오브젝트를 껴넣는다.
+            Transform newMapEmptyAreaObj = EmptyAreaGroup.transform.Find(existedEmpty.name);
+            if (newMapEmptyAreaObj != null)
+            { //emptyArea에 있는 이름들로 새 맵에 있는 동일한 emptyArea들을 찾아냄
+                newEmptyArea.Add(newMapEmptyAreaObj.gameObject);
+            }
+        }
+        emptyArea = newEmptyArea;
+
+        List<GameObject> newUsedArea = new List<GameObject>();
+        foreach (GameObject existedUsed in usedArea)
+        { //현재 emptyArea에 포함된 위치를 돌아다니면서 newMap 하위에 이름이 같은 오브젝트를 껴넣는다.
+            
+            Transform newMapUsedAreaObj = EmptyAreaGroup.transform.Find(existedUsed.name);
+            if (newMapUsedAreaObj != null)
+            { //emptyArea에 있는 이름들로 새 맵에 있는 동일한 emptyArea들을 찾아냄
+                newUsedArea.Add(newMapUsedAreaObj.gameObject);
+
+                //기존에 usedArea의 위치에 있던 block을 nesMapUsedAreaObj의 위치로 옮김
+                GameObject block = usedBlocks.Find(x => (x.transform.position.x == existedUsed.transform.position.x)&&(x.transform.position.y == existedUsed.transform.position.y));
+                Vector3 newBlockPos = newMapUsedAreaObj.transform.position;
+                newBlockPos.z = -1; //z축이 area와 같으면 겹치니까 z는 따로 빼준다.
+                block.transform.position = newBlockPos;
+            }
+        }
+        usedArea = newUsedArea;
+        
     }
 
     public void EnemyDead(GameObject enemyUnit)
