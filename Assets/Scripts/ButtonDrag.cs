@@ -24,6 +24,7 @@ public class ButtonDrag : MonoBehaviour
         previewObj.SetActive(true);
         previewObj.transform.position = transform.position; //드래그 효과를 위해서 가져온다.
         previewObj.GetComponent<SpriteRenderer>().sprite = gameObject.GetComponent<SpriteRenderer>().sprite;
+
     }
     private void OnMouseDrag()
     {
@@ -38,7 +39,7 @@ public class ButtonDrag : MonoBehaviour
         
         if (hitObj.transform!= null)
         {
-            if (hitObj.transform.gameObject.tag=="Block")
+            if (hitObj.transform.gameObject.tag=="Block"&&hitObj.transform.gameObject!=gameObject) //자기 자신이 아니어야 하며 block끼리만 레벨업 가능
             {
                 GameObject.Find("gameManager").GetComponent<AppManager>().BlockLevelUp(gameObject, hitObj.transform.gameObject);
             }

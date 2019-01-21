@@ -5,15 +5,18 @@ using UnityEngine.UI;
 
 public class EnemyInfo : MonoBehaviour
 {
-    private float health;
-    public float speed;
     private List<Vector3> pathList;
     private int targetPathIdx; //현재 이동목표로 삼고 있는 위치
+    
+    private float health;
+    public float speed;
     private string abnormal_status; //상태이상(현재는 슬로우/일시정지만 존재) 여부
     private float abnormalCoolTime; //상태이상이 남은 시간
     private bool isAbnormalChecked; //상태이상 중복 체크 방지를 위한 boolean값(기본 false)
 
     private GameObject appManager; //죽을때마다 find로 매니저 찾으려면 연산이 많아질거같아서 추가
+    private WaveManager waveManager; //사망처리 요구
+    private TextMesh HP_UI; //체력 잔량 표시를 위한 자식 텍스트 메쉬
 
     private GameObject unitHealthText; //체력 숫자 표시를 위해서 사용하는 텍스트 UI
 
@@ -23,9 +26,15 @@ public class EnemyInfo : MonoBehaviour
     {
         GameObject path=GameObject.Find("path");
         pathList = new List<Vector3>();
-        appManager = GameObject.Find("AppManager");
+        appManager = GameObject.Find("gameManager");
+        waveManager = GameObject.Find("WaveManager").GetComponent<WaveManager>();
+
+        unitHealthText = gameObject.transform.Find("HP_UI").gameObject;
         isWaveStart = false;
+
+        health = 15;
         abnormal_status = "";
+        HP_UI = transform.Find("HP_UI").gameObject.GetComponent<TextMesh>();
     }
 
     private void ResetValue()
@@ -35,9 +44,11 @@ public class EnemyInfo : MonoBehaviour
         unitHealthText.SetActive(true);
     }
 
-    public void SetInfomation(int stageHealth)
-    { //웨이브 시작전에 적 유닛의 체력 등을 설정(이동속도는 유닛별로 일정하므로 굳이 설정 x)
-        health = stageHealth;
+    //웨이브 시작전에 적 유닛의 체력 등을 설정(이동속도는 유닛별로 일정하므로 굳이 설정 x)
+    //stage를 인자로 받는 이유 : 체력이 stage에 따라서 변동되기 때문에
+    public void SetInfomation(int stage)
+    { 
+        health = stage;
     }
 
     //Update is called once per frame
@@ -73,9 +84,16 @@ public class EnemyInfo : MonoBehaviour
             }
             Move();
         }
+        HP_UI.text = health.ToString();
     }
 
-    public void GetDamaged(int damage, string statusChanged="")
+    private void OnDisable()
+    {
+        ResetValue();
+        unitHealthText.SetActive(false);
+    }
+
+    public void GetDamaged(float damage, string statusChanged="")
     {
         health -= damage;
         if ((health<=999)&&(health >= 0))
@@ -88,6 +106,7 @@ public class EnemyInfo : MonoBehaviour
 
         if (health <= 0)
         {
+            health = 0;
             appManager.GetComponent<AppManager>().EnemyDead(gameObject); //적 유닛 제거 및 남은 유닛수 표시, 폭파 사운드 재생를 위해 appManager에서 처리 요청
             Dead();
         }
@@ -100,8 +119,7 @@ public class EnemyInfo : MonoBehaviour
 
     void Dead()
     {
-        ResetValue();
-        unitHealthText.SetActive(false);
+        waveManager.EnemyDead(gameObject);
     }
 
     private void Move()
@@ -112,6 +130,7 @@ public class EnemyInfo : MonoBehaviour
             targetPathIdx++;
         }
         if(targetPathIdx == pathList.Count){ //맨 끝까지 도착시 더는 움직일 필요가 없다.
+            waveManager.GameOver();
             isWaveStart = false;
         }
     }
@@ -133,8 +152,8 @@ public class EnemyInfo : MonoBehaviour
         transform.position = pathList[0];
     }
 
-    public void StartMove()
+    public void SwitchWaveStatus(bool val)
     { //웨이브의 시작을 알림
-        isWaveStart = true;
+        isWaveStart = val;
     }
 }
