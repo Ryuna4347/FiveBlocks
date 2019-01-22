@@ -59,15 +59,10 @@ public class BlockInfo : MonoBehaviour
     
     public void SwitchWaveStatus(bool val)
     { //isWaveStart의 값을 바꾸는 함수
-        Debug.Log(val);
         isWaveStart = val;
         if (val == true)
         {
             Coroutine shoot = StartCoroutine("Shoot");
-        }
-        else
-        {
-            StopCoroutine(shoot);
         }
     }
 

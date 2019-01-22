@@ -14,6 +14,8 @@ public class AppManager : MonoBehaviour
     public GameObject blocksParent; //블럭유닛을 모아둘 상위 빈 오브젝트
     public SoundManager audio; //게임진행 시 나올 소리를 위한 오디오매니저
     public WaveManager waveManager;
+    public GameObject clearWaveNotice; //웨이브 클리어 성공/실패에 따른 안내문
+    public GameObject failedWaveNotice;
 
     private bool isGameOver;
     private bool isWaveProcessing; //현재 웨이브가 진행중인가?(웨이브 도중 블럭 생성시 바로 탄환 발사가 되게 조절해야해서 추가함)
@@ -87,11 +89,7 @@ public class AppManager : MonoBehaviour
             usedBlocks.Add(properBlockObj);
             usedArea.Add(emptyArea[randomPos]);
             emptyArea.RemoveAt(randomPos);
-
-            if (usedArea.Count > 5)
-            { //테스트용
-                waveManager.ReadyForWave(2);
-            }
+            
         }
     }
     private void LoadBlockData()
@@ -254,6 +252,9 @@ public class AppManager : MonoBehaviour
             block.GetComponent<BlockInfo>().SwitchWaveStatus(false);
         }
         waveManager.ReadyForWave(n+1);
+
+        clearWaveNotice.SetActive(true); //웨이브 성공에 따른 안내 UI On
+        clearWaveNotice.GetComponent<WaveNotice>().ControlChildNotice(n + 1); //다음 웨이브를 전달하여 보스출현/일반 웨이브인지 구별하여 텍스트를 켤수있도록 함
     }
 
     //게임 종료

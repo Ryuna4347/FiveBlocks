@@ -288,8 +288,16 @@ public class WaveManager : MonoBehaviour
     public GameObject GetEnemyPosition()
     { //block 오브젝트에서 사격할 대상을 달라고 요청할때 사용하는 함수. 생존한 적들 중에서 랜덤하게 선정
         List<GameObject> aliveEnemy = allEnemy.FindAll(x => x.activeSelf == true);
+        GameObject selected= aliveEnemy[Random.Range(0, aliveEnemy.Count)];
 
-        return aliveEnemy[Random.Range(0, aliveEnemy.Count)];
+        if (selected != null)
+        { //적 유닛이 없을 경우 range오류가 난다.
+            return aliveEnemy[Random.Range(0, aliveEnemy.Count)];
+        }
+        else
+        {
+            return null;
+        }
     }
 
     //적 유닛 targetObj의 위치에서 range거리 이내에 존재하는 모든 적 유닛을 반환한다.(Bullet에서 스플래시 데미지 대상을 정하기 위한 함수)
