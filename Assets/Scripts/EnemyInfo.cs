@@ -31,8 +31,7 @@ public class EnemyInfo : MonoBehaviour
 
         unitHealthText = gameObject.transform.Find("HP_UI").gameObject;
         isWaveStart = false;
-
-        health = 15;
+        
         abnormal_status = "";
         HP_UI = transform.Find("HP_UI").gameObject.GetComponent<TextMesh>();
     }
@@ -90,7 +89,6 @@ public class EnemyInfo : MonoBehaviour
     private void OnDisable()
     {
         ResetValue();
-        unitHealthText.SetActive(false);
     }
 
     public void GetDamaged(float damage, string statusChanged="")
@@ -119,7 +117,9 @@ public class EnemyInfo : MonoBehaviour
 
     void Dead()
     {
+        SwitchWaveStatus(false);
         waveManager.EnemyDead(gameObject);
+        gameObject.SetActive(false); //EnemyDead()를 통해 active를 조절하면 시간이 걸려서 총알이 바로 사라지지 않음
     }
 
     private void Move()
@@ -135,8 +135,14 @@ public class EnemyInfo : MonoBehaviour
         }
     }
 
+    public void SetEnemyInformation(int heal, GameObject path)
+    { //적 유닛의 정보를 웨이브에 맞게 전달받는다.
+        health = heal;
+        SetPathInfomation(path);
+    }
+
     //path오브젝트에 포함된 line Renderer에서 좌표를 가져옴
-    public void SetPathInfomation(GameObject path)
+    private void SetPathInfomation(GameObject path)
     {
         LineRenderer pathVert = path.GetComponent<LineRenderer>();
         int pathVertNum = pathVert.positionCount;

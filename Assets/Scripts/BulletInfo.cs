@@ -40,6 +40,7 @@ public class BulletInfo : MonoBehaviour
         {//발사는 되었지만 다른 탄환에 의해서 목표 적 유닛이 죽었을 경우 그냥 탄환을 끈다.
             isShot = false;
             gameObject.SetActive(false);
+            return;
         }
         Vector3 nextPos  = Vector3.MoveTowards(transform.position,target.transform.position, 2.0f*Time.deltaTime);
         nextPos.z = -1.5f;

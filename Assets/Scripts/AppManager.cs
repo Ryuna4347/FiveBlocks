@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class AppManager : MonoBehaviour
 {
@@ -16,9 +17,13 @@ public class AppManager : MonoBehaviour
     public WaveManager waveManager;
     public GameObject clearWaveNotice; //웨이브 클리어 성공/실패에 따른 안내문
     public GameObject failedWaveNotice;
+    public GameObject moneyText; //현재 소지금을 표시
 
     private bool isGameOver;
-    private bool isWaveProcessing; //현재 웨이브가 진행중인가?(웨이브 도중 블럭 생성시 바로 탄환 발사가 되게 조절해야해서 추가함)
+    public bool isWaveProcessing; //현재 웨이브가 진행중인가?(웨이브 도중 블럭 생성시 바로 탄환 발사가 되게 조절해야해서 추가함)
+
+    private int money; //블럭 생성 및 강화에 사용되는 돈(적 유닛 제거시 지급)
+    private int createBlockMoney; //블럭 생성에 필요한 돈(누적해서 올라감)
 
     // Start is called before the first frame update
     void Start()
@@ -32,13 +37,12 @@ public class AppManager : MonoBehaviour
         RegisterEmptyArea(); //맵을 프리팹으로 만듦에 따라 에디터에서 등록해서 사용하는 방법을 쓸수가 없다.
                              //따라서 맨 처음 맵이 불려진 이후 EmptyArea를 저장하고 맵이 변경되면 EmptyArea, usedArea를 복사해서 옮겨줘야한다.
         isGameOver = false;
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-
+        money = 5; //기본 생성값 5
+        createBlockMoney=5;
+        moneyText.GetComponent<Text>().text = money.ToString();
     }
+    
 
     public void MakeBlock()
     {
@@ -46,6 +50,11 @@ public class AppManager : MonoBehaviour
         {
             if (usedBlocks.Count == 36)
             { //36칸이 다 차있다는 뜻이므로 블럭생성 불가
+                return;
+            }
+            if (money < createBlockMoney)
+            { //돈이 부족한 경우도 실패
+                //돈이 없을때의 사운드?
                 return;
             }
             int typeRandom = Random.Range(0, 2); //현재는 2가지 밖에 없어서. 차후에 5로 늘릴것
@@ -89,7 +98,11 @@ public class AppManager : MonoBehaviour
             usedBlocks.Add(properBlockObj);
             usedArea.Add(emptyArea[randomPos]);
             emptyArea.RemoveAt(randomPos);
-            
+
+            money -= createBlockMoney; //돈 차감
+            createBlockMoney += 5; //블럭을 생성할 때마다 가격이 계속 상승
+
+            moneyText.GetComponent<Text>().text = money.ToString();
         }
     }
     private void LoadBlockData()
@@ -251,10 +264,11 @@ public class AppManager : MonoBehaviour
         {
             block.GetComponent<BlockInfo>().SwitchWaveStatus(false);
         }
-        waveManager.ReadyForWave(n+1);
 
         clearWaveNotice.SetActive(true); //웨이브 성공에 따른 안내 UI On
         clearWaveNotice.GetComponent<WaveNotice>().ControlChildNotice(n + 1); //다음 웨이브를 전달하여 보스출현/일반 웨이브인지 구별하여 텍스트를 켤수있도록 함
+
+        waveManager.ReadyForWave(n + 1);
     }
 
     //게임 종료
@@ -269,5 +283,13 @@ public class AppManager : MonoBehaviour
 
         //여기에 최종 웨이브를 보여주는 ui를 켜고, 다시하기 버튼 등을 자리시킴
 
+    }
+
+    //적 유닛 제거로 돈을 얻음
+
+    public void IncreaseMoney()
+    {
+        money += 5;
+        moneyText.GetComponent<Text>().text = money.ToString();
     }
 }

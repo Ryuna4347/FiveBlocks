@@ -10,8 +10,6 @@ public class WaveNotice : MonoBehaviour
 
     private void OnEnable()
     {
-        Color temp= gameObject.GetComponent<Image>().color;
-        temp.a = 0;
         isFadingIn = true; //처음에는 fade in부터이므로 true로 설정
     }
 
@@ -33,9 +31,6 @@ public class WaveNotice : MonoBehaviour
             controlChildNow = transform.GetChild(0).gameObject;
         }
         controlChildNow.SetActive(true);
-
-        Color temp = controlChildNow.GetComponent<Text>().color;
-        temp.a = 0;
 
         StartCoroutine("FadeInNOut");
     }
@@ -60,7 +55,7 @@ public class WaveNotice : MonoBehaviour
             }
             else
             {
-                yield return new WaitForSeconds(0.1f);
+                yield return null;
             }
         }
         while (!isFadingIn)
@@ -71,14 +66,16 @@ public class WaveNotice : MonoBehaviour
             imageColor.a -= 0.02f;
             textColor.a -= 0.02f;
 
-            Debug.Log(imageColor);
-
             gameObject.GetComponent<Image>().color = imageColor;
             controlChildNow.GetComponent<Text>().color = textColor;
 
             if (imageColor.a <= 0)
             {
                 isFadingIn = true;
+            }
+            else
+            {
+                yield return null;
             }
         }
         gameObject.SetActive(false);

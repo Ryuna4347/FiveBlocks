@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
+using UnityEngine.UI;
 
 public class XmlWaveInfo
 {//xml파일을 읽어서 defunit에 넣기 전에 중간과정(유니티의 xml 파서가 기본형밖에 지원 안 해주기 때문)
@@ -89,8 +90,14 @@ public class WaveManager : MonoBehaviour
 
     public AppManager appManager;
 
+    //현재 웨이브 맵 관련 오브젝트
     private GameObject mapNow; //현재 맵과 경로(다음 웨이브와 비교하여 변경 필요여부 조사)
     private GameObject pathNow;
+
+    //게임 상단 UI관련
+    public GameObject totalEnemyNumText; //현재 웨이브의 총 적 유닛 수를 나타내는 텍스트 UI
+    public GameObject aliveEnemyNumText; //현재 살아있는 적 유닛 수
+    public GameObject WaveNowText; //현재 
 
     private int aliveEnemyNow;
     private int waveNow;
@@ -217,7 +224,7 @@ public class WaveManager : MonoBehaviour
         waveNow = n;
 
         Wave unitInfo = FindWave(n);
-
+        
         if (unitInfo != null)
         {
             List<WaveUnitInfo> waveUnitInfo = unitInfo.GetWaveUnitInfo();
@@ -261,16 +268,19 @@ public class WaveManager : MonoBehaviour
                       //자식이 0이 아닌경우에는 여러갈래의 경로를 나누어 배분해야한다.
                         GameObject pathChild = pathNow.transform.GetChild((int)((i+1)/pathNow.transform.childCount)).gameObject; // i/child로 할 시 유닛이 2개가 있으면 둘다 0, 0.5여서 0으로 배정이 된다. 따라서 확실히 나누기 위해 i에 1을 더함
 
-                        unit.GetComponent<EnemyInfo>().SetPathInfomation(pathChild);
+                        unit.GetComponent<EnemyInfo>().SetEnemyInformation(unitInfo.GetWaveNum(),pathChild); //현재 체력은 웨이브에 비례해서 증가
                     }
                     else
                     {
-                        unit.GetComponent<EnemyInfo>().SetPathInfomation(pathNow);
+                        unit.GetComponent<EnemyInfo>().SetEnemyInformation(unitInfo.GetWaveNum(),pathNow);
                     }
                     unit.GetComponent<EnemyInfo>().SetAtStartLine();
                 }
             }
-            
+
+            WaveNowText.GetComponent<Text>().text = unitInfo.GetWaveNum().ToString();
+            totalEnemyNumText.GetComponent<Text>().text = aliveEnemyNow.ToString(); //유닛의 수를 전부 센 이후에야 수정이 가능
+            aliveEnemyNumText.GetComponent<Text>().text = aliveEnemyNow.ToString(); //웨이브의 처음에는 총 적의 수와 생존 수가 같다
         }
     }
 
@@ -310,22 +320,26 @@ public class WaveManager : MonoBehaviour
 
     public void WaveStart()
     {
-        List<GameObject> usingEnemy = allEnemy.FindAll(x=>x.activeSelf==true); //현재 웨이브에 사용하기 위해 active를 켜둔 상태인 적 유닛들에게 웨이브 시작을 알림
-
-        foreach(GameObject enemy in usingEnemy)
+        if (!appManager.isWaveProcessing) //중복클릭에 반응하지 않도록
         {
-            enemy.GetComponent<EnemyInfo>().SwitchWaveStatus(true);
-        }
+            List<GameObject> usingEnemy = allEnemy.FindAll(x => x.activeSelf == true); //현재 웨이브에 사용하기 위해 active를 켜둔 상태인 적 유닛들에게 웨이브 시작을 알림
 
-        appManager.WaveStart();
+            foreach (GameObject enemy in usingEnemy)
+            {
+                enemy.GetComponent<EnemyInfo>().SwitchWaveStatus(true);
+            }
+
+            appManager.WaveStart();
+        }
     }
 
     public void EnemyDead(GameObject deadEnemy)
-    { //AppManager에게 점수판정 요청 및 잔여 적 갯수 갱신, 웨이브 종료여부 판단
-        deadEnemy.SetActive(false);
-        //현재 남은 적의 수가 필요함. 따로 waveInfo 클래스변수를 만들어서 써야할거 같다.
+    { //잔여 적 갯수 갱신, 웨이브 종료여부 판단
+        --aliveEnemyNow;
+        aliveEnemyNumText.GetComponent<Text>().text = aliveEnemyNow.ToString();
+        appManager.IncreaseMoney();
 
-        if (--aliveEnemyNow < 1)
+        if (aliveEnemyNow < 1)
         {
             appManager.WaveEnd(waveNow);
 
