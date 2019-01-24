@@ -105,8 +105,8 @@ public class EnemyInfo : MonoBehaviour
         if (health <= 0)
         {
             health = 0;
-            appManager.GetComponent<AppManager>().EnemyDead(gameObject); //적 유닛 제거 및 남은 유닛수 표시, 폭파 사운드 재생를 위해 appManager에서 처리 요청
             Dead();
+            waveManager.EnemyDead(gameObject);
         }
 
         if (statusChanged != "")
@@ -118,7 +118,6 @@ public class EnemyInfo : MonoBehaviour
     void Dead()
     {
         SwitchWaveStatus(false);
-        waveManager.EnemyDead(gameObject);
         gameObject.SetActive(false); //EnemyDead()를 통해 active를 조절하면 시간이 걸려서 총알이 바로 사라지지 않음
     }
 
@@ -155,6 +154,7 @@ public class EnemyInfo : MonoBehaviour
 
     public void SetAtStartLine() //적 유닛 사용을 위해 시작 지점에 두기
     {
+        //Debug.Log(gameObject.name + " " + pathList[0]);
         transform.position = pathList[0];
     }
 

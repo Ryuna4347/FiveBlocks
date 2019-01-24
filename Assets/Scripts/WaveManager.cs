@@ -84,6 +84,7 @@ class Wave //각 웨이브의 정보를 소유하는 클래스
 public class WaveManager : MonoBehaviour
 {
     private List<GameObject> allEnemy; //현재 로드 되어있는 모든 적 유닛
+    private List<GameObject> usingEnemy; //현재 웨이브에서 사용되는 적 유닛
     private List<Wave> waveInfo;
     private List<GameObject> allMap;
     private List<GameObject> allPath;
@@ -106,6 +107,7 @@ public class WaveManager : MonoBehaviour
     private void Awake()
     {
         allEnemy = new List<GameObject>();
+        usingEnemy = new List<GameObject>();
         allMap = new List<GameObject>();
         allPath = new List<GameObject>();
 
@@ -131,6 +133,7 @@ public class WaveManager : MonoBehaviour
             }
         }
     }
+
     private void LoadMapNPaths()
     { //게임 진행에 필요한 적 유닛 프리팹을 불러옴(게임 시작 전에)
         GameObject[] mapPrefabs = Resources.LoadAll<GameObject>("Prefabs/Maps");
@@ -256,17 +259,32 @@ public class WaveManager : MonoBehaviour
                 int unitNum = tempUnit.GetUnitNum();
 
                 aliveEnemyNow += unitNum; //각 적 유닛의 갯수를 더해 해당 웨이브의 총 적 유닛 수를 저장
+
                 
+                int enemyPerPath=0;
+                if (pathNow.transform.childCount > 0)
+                { //단일 path의 경우 자식이 없으므로
+                    enemyPerPath = unitNum / pathNow.transform.childCount;
+                }
+                int pathCount = 0; //현재 한 path에 얼마나 적이 들어갔는가를 세는 변수. enemyPerPath만큼이 되면 초기화
+                int pathIdx = 0; //현재 지정한 path. pathCount가 초기화될때 +1이 된다.
+
                 for (int i=0; i<unitNum; i++)
                 {
                     //찾으려는 유닛(이름으로 구분)이며 현재 사용중이지 않은 유닛 한개를 선택
                     GameObject unit = allEnemy.Find(x => x.name.Contains(unitName) && (x.activeSelf == false));
                     unit.SetActive(true);
+                    usingEnemy.Add(unit);
 
                     if (pathNow.transform.childCount != 0)
                     { //각 웨이브의 경로가 1개인 경우는 자녀가 없고, 2개 이상인 경우 자식이 각각의 경로를 가지고 있으므로
                       //자식이 0이 아닌경우에는 여러갈래의 경로를 나누어 배분해야한다.
-                        GameObject pathChild = pathNow.transform.GetChild((int)((i+1)/pathNow.transform.childCount)).gameObject; // i/child로 할 시 유닛이 2개가 있으면 둘다 0, 0.5여서 0으로 배정이 된다. 따라서 확실히 나누기 위해 i에 1을 더함
+                        GameObject pathChild = pathNow.transform.GetChild(pathIdx).gameObject; // i/child로 할 시 유닛이 2개가 있으면 둘다 0, 0.5여서 0으로 배정이 된다. 따라서 확실히 나누기 위해 i에 1을 더함
+                        if (++pathCount == enemyPerPath)
+                        { //path 1개당 허용된 적 유닛의 배분이 끝났을 경우 다음 path로 변경
+                            ++pathIdx;
+                            pathCount = 0; //pathCount 초기화
+                        }
 
                         unit.GetComponent<EnemyInfo>().SetEnemyInformation(unitInfo.GetWaveNum(),pathChild); //현재 체력은 웨이브에 비례해서 증가
                     }
@@ -297,12 +315,11 @@ public class WaveManager : MonoBehaviour
 
     public GameObject GetEnemyPosition()
     { //block 오브젝트에서 사격할 대상을 달라고 요청할때 사용하는 함수. 생존한 적들 중에서 랜덤하게 선정
-        List<GameObject> aliveEnemy = allEnemy.FindAll(x => x.activeSelf == true);
-        GameObject selected= aliveEnemy[Random.Range(0, aliveEnemy.Count)];
+        GameObject selected = usingEnemy[Random.Range(0, usingEnemy.Count)];
 
         if (selected != null)
         { //적 유닛이 없을 경우 range오류가 난다.
-            return aliveEnemy[Random.Range(0, aliveEnemy.Count)];
+            return selected;
         }
         else
         {
@@ -313,7 +330,7 @@ public class WaveManager : MonoBehaviour
     //적 유닛 targetObj의 위치에서 range거리 이내에 존재하는 모든 적 유닛을 반환한다.(Bullet에서 스플래시 데미지 대상을 정하기 위한 함수)
     public List<GameObject> GetEnemyInRange(GameObject targetObj, float range)
     {
-        List<GameObject> enemyInRange = allEnemy.FindAll(x => x.activeSelf == true&& Vector3.Distance(x.transform.position,targetObj.transform.position)<=range); //range거리 이내에 살아있는 적 유닛리스트 뽑아냄
+        List<GameObject> enemyInRange = usingEnemy.FindAll(x=>Vector3.Distance(x.transform.position,targetObj.transform.position)<=range); //range거리 이내에 살아있는 적 유닛리스트 뽑아냄
         
         return enemyInRange;
     }
@@ -322,8 +339,6 @@ public class WaveManager : MonoBehaviour
     {
         if (!appManager.isWaveProcessing) //중복클릭에 반응하지 않도록
         {
-            List<GameObject> usingEnemy = allEnemy.FindAll(x => x.activeSelf == true); //현재 웨이브에 사용하기 위해 active를 켜둔 상태인 적 유닛들에게 웨이브 시작을 알림
-
             foreach (GameObject enemy in usingEnemy)
             {
                 enemy.GetComponent<EnemyInfo>().SwitchWaveStatus(true);
@@ -334,23 +349,20 @@ public class WaveManager : MonoBehaviour
     }
 
     public void EnemyDead(GameObject deadEnemy)
-    { //잔여 적 갯수 갱신, 웨이브 종료여부 판단
+    { //잔여 적 갯수 갱신을 위한 함수
+        usingEnemy.Remove(deadEnemy);
         --aliveEnemyNow;
         aliveEnemyNumText.GetComponent<Text>().text = aliveEnemyNow.ToString();
         appManager.IncreaseMoney();
 
+        appManager.CheckBlockTarget(deadEnemy);
+
         if (aliveEnemyNow < 1)
         {
             appManager.WaveEnd(waveNow);
-
-            List<GameObject> usingEnemy = allEnemy.FindAll(x => x.activeSelf == true); //현재 웨이브에 사용하기 위해 active를 켜둔 상태인 적 유닛들에게 웨이브 시작을 알림
-
-            foreach (GameObject enemy in usingEnemy)
-            {
-                enemy.GetComponent<EnemyInfo>().SwitchWaveStatus(false);
-            }
         }
     }
+
     public void GameOver()
     { //적 유닛이 종착점에 도착하여 게임이 아예 종료됨
         List<GameObject> usingEnemy = allEnemy.FindAll(x => x.activeSelf == true); //현재 웨이브에 사용하기 위해 active를 켜둔 상태인 적 유닛들에게 웨이브 시작을 알림
@@ -363,4 +375,5 @@ public class WaveManager : MonoBehaviour
 
         appManager.GameOver();
     }
+    
 }

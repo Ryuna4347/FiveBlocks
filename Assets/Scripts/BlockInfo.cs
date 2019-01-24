@@ -14,6 +14,7 @@ public class BlockInfo : MonoBehaviour
 
     public float shootCoolTime;
     Coroutine shoot; //shoot 코루틴 해제를 위한 변수
+    private GameObject targetEnemy;
 
     private void Awake()
     {
@@ -72,7 +73,7 @@ public class BlockInfo : MonoBehaviour
             GameObject bullet = bulletList.Find(x => x.activeSelf == false);
             bullet.SetActive(true);
 
-            GameObject targetEnemy = waveManager.GetEnemyPosition();
+            targetEnemy = waveManager.GetEnemyPosition();
 
             bullet.GetComponent<BulletInfo>().Shoot(targetEnemy, 1.0f); //targetEnemy를 향해서 1.0f 데미지의 총알을 발사(총알 오브젝트는 자신의 하위 오브젝트에 각각 존재)
 
@@ -80,5 +81,17 @@ public class BlockInfo : MonoBehaviour
         }
     }
 
+    //enemy 유닛이 사망시 현재 사용중인 모든 block에게 요청하여 
+    //현재 사격중인 target이 사망한 enemy일 경우 하위 bullet을 전부 off로 돌림
+    public void CheckTarget(GameObject enemy)
+    {
+        if (targetEnemy == enemy)
+        {
+            foreach(Transform bullet in transform)
+            {
+                bullet.gameObject.GetComponent<BulletInfo>().DeadTarget();
+            }
+        }
+    }
 
 }
