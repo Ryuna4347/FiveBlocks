@@ -9,6 +9,7 @@ public class AppManager : MonoBehaviour
     public List<GameObject> usedArea; //현재 사용중인 공간
     public List<GameObject> waitBlocks; //대기 유닛들
     public List<GameObject> usedBlocks; //사용중인 유닛들
+    private bool yellowAlreadyInstalled; //지원블럭(노란 블럭)은 전체 블럭 중 1개만 사용가능하므로 현재 설치여부를 나타내는 변수
 
     public GameObject blocksParent; //블럭유닛을 모아둘 상위 빈 오브젝트
     public SoundManager audio; //게임진행 시 나올 소리를 위한 오디오매니저
@@ -36,6 +37,7 @@ public class AppManager : MonoBehaviour
                              //따라서 맨 처음 맵이 불려진 이후 EmptyArea를 저장하고 맵이 변경되면 EmptyArea, usedArea를 복사해서 옮겨줘야한다.
         isGameOver = false;
 
+        yellowAlreadyInstalled = false;
         money = 5; //기본 생성값 5
         createBlockMoney=5;
         moneyText.GetComponent<Text>().text = money.ToString();
@@ -55,7 +57,10 @@ public class AppManager : MonoBehaviour
                 //돈이 없을때의 사운드?
                 return;
             }
-            int typeRandom = Random.Range(0, 2); //현재는 2가지 밖에 없어서. 차후에 5로 늘릴것
+
+            int yellowBlockInstalled = yellowAlreadyInstalled ? 1 : 0;
+
+            int typeRandom = Random.Range(0, 5-yellowBlockInstalled); //지원블럭(노란색)의 설치여부에 따라 0~3/0~4로 랜덤 범위가 달라짐
             string BlockTypeString = "Block_";
             switch (typeRandom)
             {
@@ -63,16 +68,17 @@ public class AppManager : MonoBehaviour
                     BlockTypeString = "Blue" + BlockTypeString;
                     break;
                 case 1:
-                    BlockTypeString = "Green" + BlockTypeString;
+                    BlockTypeString = "Purple" + BlockTypeString;
                     break;
                 case 2:
                     BlockTypeString = "Red" + BlockTypeString;
                     break;
                 case 3:
-                    BlockTypeString = "White" + BlockTypeString;
+                    BlockTypeString = "Grey" + BlockTypeString;
                     break;
                 case 4:
-                    BlockTypeString = "Grey" + BlockTypeString;
+                    BlockTypeString = "Yellow" + BlockTypeString;
+                    yellowAlreadyInstalled = true;
                     break;
                 default:
                     break;
@@ -88,7 +94,7 @@ public class AppManager : MonoBehaviour
             int randomPos = Random.Range(0, emptyArea.Count); //빈 곳 중에 랜덤하게 1곳
             Vector3 blockPos = emptyArea[randomPos].transform.position;
             blockPos.z = -1; //블럭이 제일 위에 보이도록 쌓아야해서 z축을 고정
-            properBlockObj.transform.position = blockPos;
+            properBlockObj.GetComponent<BlockInfo>().InstallAtPos(blockPos); //설치하면서 blockType구분을 하기위해서 함수로 변경
 
             audio.PlayAudio("CreateBlock"); //블럭 생성에 대한 사운드 재생
 
@@ -140,9 +146,9 @@ public class AppManager : MonoBehaviour
     public void BlockLevelUp(GameObject obj_1, GameObject obj_2) //obj_2 위치에 다음 레벨을 생성
     { //레벨업에 필요한 과정
 
-        string blockType = obj_2.GetComponent<BlockInfo>().blockName.ToUpper(); //종류 비교를 위해 블럭정보 스크립트에서 이름을 획득
+        string obj2_type = obj_2.GetComponent<BlockInfo>().blockName; //종류 비교를 위해 블럭정보 스크립트에서 이름을 획득
 
-        if (obj_1.name.ToUpper().Contains(blockType)) //동일한 종류(혹시 소문자/대문자 착각이 있을 수 있으므로 대문자로 변형해서 확인)
+        if ((obj_1.name.Contains(obj2_type))||(obj_1.GetComponent<BlockInfo>().blockAttType=="Support"||obj_2.GetComponent<BlockInfo>().blockAttType=="Support")) //동일한 종류(소문자/대문자 착각 방지), 아니면 둘 중 하나가 지원블럭일 경우 레벨업 가능
         {
             if (obj_1.GetComponent<BlockInfo>().blockLevel == obj_2.GetComponent<BlockInfo>().blockLevel)
             {//동일레벨, 동일종류일 시 레벨업
@@ -170,18 +176,18 @@ public class AppManager : MonoBehaviour
                         break;
                 }
 
+                Vector2 obj2Pos = obj_2.transform.position;
+                obj_2.transform.position = new Vector3(-5, 0, 0); //obj_2자리는 새로 블럭이 들어오므로 제외
+                obj_2.SetActive(false); //먼저 기존에 있던 블럭을 제거해야 Support블럭에서 버프제거를 하고 새로운 블럭이 들어올 수 있다.
+
                 GameObject properBlockObj = waitBlocks.Find(x => x.name.Contains(BlockTypeString) && x.activeSelf == false); //현재 active가 꺼져있고 색상이 맞는 유닛을 불러온다.
 
                 MoveUsedToEmpty(obj_1); //obj_1->obj_2로 이동이기 때문에 obj_1의 자리는 비워준다.
+
                 obj_2.GetComponent<BlockInfo>().Refresh(); //obj_2의 경우는 empty가 되는건 아니라서 그냥 obj_2만 초기화시키고 지운다.
                 properBlockObj.SetActive(true); //새로 들어올 블럭은 obj_2의 위치에 들어가야하기 때문에 obj_2를 없애기 전에 위치를 전달받고 옮겨놓기
-                properBlockObj.transform.position = obj_2.transform.position;
+                properBlockObj.transform.position = obj2Pos;
                 audio.PlayAudio("Synthesize");
-
-                obj_2.transform.position = new Vector3(-5, 0, 0);
-                obj_2.SetActive(false);
-
-
             }
         }
 
@@ -242,6 +248,15 @@ public class AppManager : MonoBehaviour
         {
             block.GetComponent<BlockInfo>().CheckTarget(deadEnemy);
         }
+    }
+
+    //전달받은 노란 유닛의 위치 근방(대각선 제외 상하좌우만)에 위치한 유닛을 불러온다.
+    public List<GameObject> GetNearBlocks(Transform yellowPos)
+    {
+        float blockSize = usedArea[0].transform.localScale.x+0.05f; //usedArea를 사용하는 이유 : 이 함수를 불러왔다는 건 기본적으로 블럭 1개(노란색 블럭)은 있다는 뜻이므로 에러가 날 리가 없다.
+
+        List<GameObject> nearBlocks = usedBlocks.FindAll(x=>Vector3.Distance(yellowPos.position,x.transform.position)<=blockSize); //블럭 1개정도 차이(빈칸을 생각해서 0.05 정도 오차를 둠)가 나는 주위의 블럭들을 가져옴
+        return nearBlocks;
     }
 
     //모든 block유닛에게 웨이브가 시작했음을 알린다.

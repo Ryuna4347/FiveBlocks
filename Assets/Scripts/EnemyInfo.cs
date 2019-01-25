@@ -8,8 +8,11 @@ public class EnemyInfo : MonoBehaviour
     private List<Vector3> pathList;
     private int targetPathIdx; //현재 이동목표로 삼고 있는 위치
     
-    private float health;
+    private float health; //적 유닛의 체력
     public float speed;
+    
+    private float speedNow; //상태변화 적용을 위해서 speed이외에 별도로 준비(speed는 default값이고 Enable시/상태변화 해제시에 원래 값으로 돌아가기 위해서 필요하다.)
+
     private string abnormal_status; //상태이상(현재는 슬로우/일시정지만 존재) 여부
     private float abnormalCoolTime; //상태이상이 남은 시간
     private bool isAbnormalChecked; //상태이상 중복 체크 방지를 위한 boolean값(기본 false)
@@ -34,6 +37,7 @@ public class EnemyInfo : MonoBehaviour
         
         abnormal_status = "";
         HP_UI = transform.Find("HP_UI").gameObject.GetComponent<TextMesh>();
+        speedNow = speed;
     }
 
     private void ResetValue()
@@ -41,6 +45,7 @@ public class EnemyInfo : MonoBehaviour
         targetPathIdx = 0;
         abnormal_status = "";
         unitHealthText.SetActive(true);
+        speedNow = speed;
     }
 
     //웨이브 시작전에 적 유닛의 체력 등을 설정(이동속도는 유닛별로 일정하므로 굳이 설정 x)
@@ -55,32 +60,6 @@ public class EnemyInfo : MonoBehaviour
     {
         if (isWaveStart)
         {
-            if (abnormal_status != "" && (isAbnormalChecked == false))
-            {
-                if (abnormal_status.Contains("Slow_Down"))
-                {
-                    string seperatedStr = abnormal_status.Split('_')[2]; //형식이 Slow_Down_속도저하율 순으로 나오기 때문에 3번째 나오는 문자열을 받아야한다.
-                    speed *= (100 - int.Parse(seperatedStr)) / 100f; //속도저하율 만큼 속도 하향
-                    abnormalCoolTime = 1f;
-                }
-                else if (abnormal_status.Contains("Stop"))
-                {
-                    speed = 0;
-                    abnormalCoolTime = 1f;
-                }
-            }
-
-            if (abnormalCoolTime != 0)
-            {
-                abnormalCoolTime -= Time.deltaTime;
-            }
-            else if ((abnormalCoolTime <= 0) && (isAbnormalChecked == true)) //현재 상태이상이 걸려있고 시간이 지나서 해제해야하는 경우
-            {
-                abnormalCoolTime = 0;
-                isAbnormalChecked = false;
-                abnormal_status = "";
-                speed = 1f;
-            }
             Move();
         }
         HP_UI.text = health.ToString();
@@ -91,7 +70,7 @@ public class EnemyInfo : MonoBehaviour
         ResetValue();
     }
 
-    public void GetDamaged(float damage, string statusChanged="")
+    public void GetDamaged(float damage)
     {
         health -= damage;
         if ((health<=999)&&(health >= 0))
@@ -108,12 +87,26 @@ public class EnemyInfo : MonoBehaviour
             Dead();
             waveManager.EnemyDead(gameObject);
         }
-
-        if (statusChanged != "")
-        { //상태이상을 거는 탄환에 맞았을 경우 해당 상태 저장
-            abnormal_status = statusChanged;
-        }
     }
+
+    public void SetAbnormalStatus(string abnormal_Type, float time, float slowPercent=0) //인자 : 상태이상 종류, 상태이상 유지시간, 이동속도 감소율(이건 필수가 아님)
+    {
+        if (abnormal_Type == "slow")
+        {
+            speed *= (1 - slowPercent);
+        }
+        else if(abnormal_Type=="pause")
+        {
+            speed = 0f;
+        }
+        Invoke("ReturnNormalStatus", time);
+    }
+
+    private void ReturnNormalStatus()
+    {
+        speedNow = speed;
+    }
+
 
     void Dead()
     {
@@ -123,7 +116,7 @@ public class EnemyInfo : MonoBehaviour
 
     private void Move()
     {
-        transform.position = Vector3.MoveTowards(transform.position, pathList[targetPathIdx], speed*Time.deltaTime); //목표지점을 향해 speed의 속도로 진행
+        transform.position = Vector3.MoveTowards(transform.position, pathList[targetPathIdx], speedNow*Time.deltaTime); //목표지점을 향해 speed의 속도로 진행
         if (transform.position == pathList[targetPathIdx]&&(targetPathIdx!=pathList.Count))
         { //목표지점에 도착을 하고 그 목표지점이 종료지점이 아닌 경우에는 다음 목표지점으로 설정
             targetPathIdx++;

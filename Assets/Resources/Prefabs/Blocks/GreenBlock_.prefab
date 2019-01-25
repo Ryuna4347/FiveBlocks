@@ -143,6 +143,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   blockLevel: 0
+  damage: 0100000002000000
+  blockAttType: 
   shootCoolTime: 0.7
 --- !u!1 &1229154397304387878
 GameObject:

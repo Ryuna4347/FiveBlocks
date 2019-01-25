@@ -44,6 +44,7 @@ public class BulletInfo : MonoBehaviour
 
     private void DamageToEnemy(GameObject enemyObj)
     {
+        float percent;
         switch (bulletType)
         {
             case "splash": //splash의 경우 먼저 적을 타격 후 해당 적 포함 일정 범위 내의 모든 적에게 약한 데미지를 가한다.
@@ -60,7 +61,21 @@ public class BulletInfo : MonoBehaviour
             case "normal":
                 enemyObj.GetComponent<EnemyInfo>().GetDamaged(damage);
                 break;
+            case "pause":
+                enemyObj.GetComponent<EnemyInfo>().GetDamaged(damage);
+                percent = Random.Range(0, 100);
+                if (percent < 3.0f) //일정 확률로 일시정지
+                {
+                    enemyObj.GetComponent<EnemyInfo>().SetAbnormalStatus("pause",1.0f);
+                }
+                break;
             case "slow":
+                enemyObj.GetComponent<EnemyInfo>().GetDamaged(damage);
+                percent = Random.Range(0, 100);
+                if (percent < 4.0f) //일정 확률로 일시정지
+                {
+                    enemyObj.GetComponent<EnemyInfo>().SetAbnormalStatus("slow", 1.0f, 0.1f);
+                }
                 break;
         }
     }

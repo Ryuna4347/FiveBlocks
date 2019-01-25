@@ -573,6 +573,7 @@ GameObject:
   - component: {fileID: 917078752316172385}
   - component: {fileID: 8918143981220353392}
   - component: {fileID: 358361657017140953}
+  - component: {fileID: 7082785839389833404}
   m_Layer: 0
   m_Name: YellowBlock_
   m_TagString: Untagged
@@ -587,7 +588,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7511150471371481850}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.84, y: 1.84, z: 1}
   m_Children:
@@ -663,7 +664,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.28, y: 1.28}
+    oldSize: {x: 0.33333334, y: 0.33333334}
     newSize: {x: 1.28, y: 1.28}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -703,4 +704,18 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   blockLevel: 0
-  shootCoolTime: 0.7
+  damage: 0100000001000000
+  blockAttType: 
+  shootCoolTime: 1
+--- !u!114 &7082785839389833404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7511150471371481850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c3244b0cf288714aa35fc052deadd97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
