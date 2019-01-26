@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 903365355}
   m_Layer: 0
   m_Name: GreyBlock_
-  m_TagString: Untagged
+  m_TagString: Block
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -137,15 +137,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5f94b52deed6f3418e0e8b1841b2e1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blockName: BlueBlock
+  blockName: GreyBlock
   blockImage:
   - {fileID: 21300000, guid: 93d8c72865bc2bb468fe7cd509a5bdce, type: 3}
   - {fileID: 0}
   - {fileID: 0}
   blockLevel: 0
   damage: 0100000002000000
-  blockAttType: 
-  shootCoolTime: 0.7
+  blockAttType: normal
+  shootCoolTime: 3
 --- !u!1 &903365361
 GameObject:
   m_ObjectHideFlags: 0

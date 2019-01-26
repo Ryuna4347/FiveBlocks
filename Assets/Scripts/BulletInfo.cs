@@ -37,7 +37,7 @@ public class BulletInfo : MonoBehaviour
 
     private void MoveBullet()
     {
-        Vector3 nextPos  = Vector3.MoveTowards(transform.position,target.transform.position, 2.0f*Time.deltaTime);
+        Vector3 nextPos  = Vector3.MoveTowards(transform.position,target.transform.position, 3.0f*Time.deltaTime);
         nextPos.z = -1.5f;
         gameObject.transform.position = nextPos;
     }
@@ -54,7 +54,6 @@ public class BulletInfo : MonoBehaviour
                 foreach(GameObject enemy in damagedBySplash)
                 {
                     //추가예정 : 붉은 색으로 적 유닛을 잠깐 표시
-                    
                     enemy.GetComponent<EnemyInfo>().GetDamaged(damage);
                 }
                 break;
@@ -62,11 +61,11 @@ public class BulletInfo : MonoBehaviour
                 enemyObj.GetComponent<EnemyInfo>().GetDamaged(damage);
                 break;
             case "pause":
-                enemyObj.GetComponent<EnemyInfo>().GetDamaged(damage);
+                //enemyObj.GetComponent<EnemyInfo>().GetDamaged(damage);
                 percent = Random.Range(0, 100);
                 if (percent < 3.0f) //일정 확률로 일시정지
                 {
-                    enemyObj.GetComponent<EnemyInfo>().SetAbnormalStatus("pause",1.0f);
+                    enemyObj.GetComponent<EnemyInfo>().SetAbnormalStatus("pause",0.4f);
                 }
                 break;
             case "slow":
@@ -80,19 +79,25 @@ public class BulletInfo : MonoBehaviour
         }
     }
 
-    public void DeadTarget()
+    public void DeadTarget(GameObject enemy)
     {
-        target = null;
-        isShot = false;
-        gameObject.SetActive(false);
+        if (target.name == enemy.name)
+        {
+            target = null;
+            isShot = false;
+            gameObject.SetActive(false);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Enemy"&&collision.gameObject.name==target.name) { //목표한 피격체여야 타격 성립
-            isShot = false;
-            DamageToEnemy(collision.gameObject);
-            gameObject.SetActive(false);
+        if (collision.gameObject.tag == "Enemy"&&target!=null){
+            if (collision.gameObject.name == target.name)
+            { //목표한 피격체여야 타격 성립
+                isShot = false;
+                DamageToEnemy(collision.gameObject);
+                gameObject.SetActive(false);
+            }
         }
     }
 }

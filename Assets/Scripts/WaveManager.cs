@@ -259,7 +259,6 @@ public class WaveManager : MonoBehaviour
                 int unitNum = tempUnit.GetUnitNum();
 
                 aliveEnemyNow += unitNum; //각 적 유닛의 갯수를 더해 해당 웨이브의 총 적 유닛 수를 저장
-
                 
                 int enemyPerPath=0;
                 if (pathNow.transform.childCount > 0)
@@ -280,8 +279,8 @@ public class WaveManager : MonoBehaviour
                     { //각 웨이브의 경로가 1개인 경우는 자녀가 없고, 2개 이상인 경우 자식이 각각의 경로를 가지고 있으므로
                       //자식이 0이 아닌경우에는 여러갈래의 경로를 나누어 배분해야한다.
                         GameObject pathChild = pathNow.transform.GetChild(pathIdx).gameObject; // i/child로 할 시 유닛이 2개가 있으면 둘다 0, 0.5여서 0으로 배정이 된다. 따라서 확실히 나누기 위해 i에 1을 더함
-                        if (++pathCount == enemyPerPath)
-                        { //path 1개당 허용된 적 유닛의 배분이 끝났을 경우 다음 path로 변경
+                        if (++pathCount == enemyPerPath&&(pathIdx<pathNow.transform.childCount-1))
+                        { //path 1개당 허용된 적 유닛의 배분이 끝났을 경우 다음 path로 변경(단, pathNow의 마지막 자식 path까지 온 상황이면 그냥 나머지 적 유닛을 마지막 자식 path에 추가한다.->인덱스 오류 제거)
                             ++pathIdx;
                             pathCount = 0; //pathCount 초기화
                         }

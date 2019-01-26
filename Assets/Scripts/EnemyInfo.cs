@@ -44,6 +44,7 @@ public class EnemyInfo : MonoBehaviour
     {
         targetPathIdx = 0;
         abnormal_status = "";
+        pathList = new List<Vector3>();
         unitHealthText.SetActive(true);
         speedNow = speed;
     }
@@ -93,11 +94,11 @@ public class EnemyInfo : MonoBehaviour
     {
         if (abnormal_Type == "slow")
         {
-            speed *= (1 - slowPercent);
+            speedNow *= (1 - slowPercent);
         }
         else if(abnormal_Type=="pause")
         {
-            speed = 0f;
+            speedNow = 0f;
         }
         Invoke("ReturnNormalStatus", time);
     }

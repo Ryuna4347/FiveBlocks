@@ -40,15 +40,12 @@ public class BlockInfo : MonoBehaviour
 
     private void OnDisable()
     {
-        if (blockLevel != 1)
-        { //다른 곳에서 초기화를 하겠지만 안되어있을 경우 초기화
-            Refresh();
-        }
+        Refresh();
     }
     public void InstallAtPos(Vector3 pos)
     {
         transform.position = pos;
-        if (blockAttType == "Support")
+        if (blockAttType == "support")
         {
             gameObject.GetComponent<SupportBlockInfo>().EnhanceNearBlocks();
         }
@@ -59,6 +56,10 @@ public class BlockInfo : MonoBehaviour
         blockLevel = 1;
         gameObject.GetComponent<SpriteRenderer>().sprite = blockImage[0];
         isWaveStart = false;
+        foreach(Transform bullet in transform)
+        {
+            bullet.gameObject.SetActive(false);
+        }
     }
 
     public void SetBlockLevel(int lev)
@@ -106,11 +107,11 @@ public class BlockInfo : MonoBehaviour
     //현재 사격중인 target이 사망한 enemy일 경우 하위 bullet을 전부 off로 돌림
     public void CheckTarget(GameObject enemy)
     {
-        if (targetEnemy == enemy)
+        foreach (Transform bullet in transform)
         {
-            foreach(Transform bullet in transform)
+            if (bullet.gameObject.activeSelf == true)
             {
-                bullet.gameObject.GetComponent<BulletInfo>().DeadTarget();
+                bullet.gameObject.GetComponent<BulletInfo>().DeadTarget(enemy);
             }
         }
     }

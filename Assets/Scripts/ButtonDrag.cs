@@ -6,19 +6,15 @@ public class ButtonDrag : MonoBehaviour
 {
     public GameObject previewObj; //previewObj자체가 투명도 0.3~0.5정도로 되어있음(조절 x)
     Camera mainCamera;
+    private AppManager appManager;
 
     // Start is called before the first frame update
     void Start()
     {
         mainCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
+        appManager = GameObject.Find("gameManager").GetComponent<AppManager>();
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    
     private void OnMouseDown()
     {
         previewObj.SetActive(true);
@@ -41,7 +37,8 @@ public class ButtonDrag : MonoBehaviour
         {
             if (hitObj.transform.gameObject.tag=="Block"&&hitObj.transform.gameObject!=gameObject) //자기 자신이 아니어야 하며 block끼리만 레벨업 가능
             {
-                GameObject.Find("gameManager").GetComponent<AppManager>().BlockLevelUp(gameObject, hitObj.transform.gameObject);
+                Debug.Log("실행");
+                appManager.BlockLevelUp(gameObject, hitObj.transform.gameObject);
             }
             previewObj.SetActive(false);
         }
