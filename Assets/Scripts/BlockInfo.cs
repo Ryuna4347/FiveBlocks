@@ -5,6 +5,7 @@ using UnityEngine;
 public class BlockInfo : MonoBehaviour
 {
     private WaveManager waveManager;
+    private Animator blockAnim;
 
     public string blockName;
     public List<Sprite> blockImage;
@@ -24,6 +25,10 @@ public class BlockInfo : MonoBehaviour
     private void Awake()
     {
         waveManager = GameObject.Find("WaveManager").GetComponent<WaveManager>();
+        if (!gameObject.name.Contains("Yellow"))
+        { //노란 블럭은 버프 애니메이션의 필요가 없음
+            blockAnim = gameObject.GetComponent<Animator>();
+        }
         gameObject.GetComponent<ButtonDrag>().previewObj=GameObject.Find("PreviewObj").gameObject;
         blockLevel = 1;
         enhanceDmgBySupport = 1;
@@ -80,10 +85,12 @@ public class BlockInfo : MonoBehaviour
     public void EnhancedBySupport(float mag)
     {
         enhanceDmgBySupport = mag;
+        blockAnim.SetInteger("enhanced", 1);
     }
     public void ResetEnhance()
     { //노란 블럭이 근방에서 사라짐에 따라 데미지 상승효과 제거
         enhanceDmgBySupport = 1;
+        blockAnim.SetInteger("enhanced", 0);
     }
 
     IEnumerator Shoot() { //shootCoolTime 간격으로 적을 향해 사격

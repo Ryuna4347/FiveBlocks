@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 970468198}
   - component: {fileID: 970468199}
   - component: {fileID: 5192120764980244186}
+  - component: {fileID: 2726923023922835133}
   m_Layer: 0
   m_Name: RedBlock_
   m_TagString: Block
@@ -146,6 +147,25 @@ MonoBehaviour:
   damage: 0100000002000000
   blockAttType: normal
   shootCoolTime: 1
+--- !u!95 &2726923023922835133
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 970468197}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 629fab9f6b33aca4881c8568b01f382a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1229154397304387878
 GameObject:
   m_ObjectHideFlags: 0

@@ -153,6 +153,7 @@ GameObject:
   - component: {fileID: 357863745134117167}
   - component: {fileID: 4610725986783450407}
   - component: {fileID: 4102086127028274177}
+  - component: {fileID: 458132439}
   m_Layer: 0
   m_Name: BlueBlock_
   m_TagString: Block
@@ -241,7 +242,7 @@ BoxCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
-    border: {x: 0.018229168, y: 0.010416667, z: 0.018229168, w: 0.010416667}
+    border: {x: 0.018229168, y: 0.0052083335, z: 0.018229168, w: 0.0052083335}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 0.33333334, y: 0.33333334}
     newSize: {x: 1.28, y: 1.28}
@@ -286,6 +287,25 @@ MonoBehaviour:
   damage: 0100000002000000
   blockAttType: normal
   shootCoolTime: 1
+--- !u!95 &458132439
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2984010993492500616}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 629fab9f6b33aca4881c8568b01f382a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &3009199684160663180
 GameObject:
   m_ObjectHideFlags: 0

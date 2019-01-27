@@ -293,6 +293,7 @@ GameObject:
   - component: {fileID: 6042223257841379186}
   - component: {fileID: 6064607501001697012}
   - component: {fileID: 8569127468957239056}
+  - component: {fileID: 3962771574501128023}
   m_Layer: 0
   m_Name: PurpleBlock_
   m_TagString: Block
@@ -426,6 +427,25 @@ MonoBehaviour:
   damage: 0100000002000000
   blockAttType: normal
   shootCoolTime: 1
+--- !u!95 &3962771574501128023
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8124682217259730089}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 629fab9f6b33aca4881c8568b01f382a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &8167168135885269222
 GameObject:
   m_ObjectHideFlags: 0

@@ -169,7 +169,7 @@ public class AppManager : MonoBehaviour
         string obj2_type = obj_2.GetComponent<BlockInfo>().blockName; //종류 비교를 위해 블럭정보 스크립트에서 이름을 획득
 
         Debug.Log("0단계");
-        if ((obj_1.name.Contains(obj2_type))||(obj_1.GetComponent<BlockInfo>().blockAttType=="Support"||obj_2.GetComponent<BlockInfo>().blockAttType=="Support")) //동일한 종류(소문자/대문자 착각 방지), 아니면 둘 중 하나가 지원블럭일 경우 레벨업 가능
+        if ((obj_1.name.Contains(obj2_type))||(obj_1.GetComponent<BlockInfo>().blockAttType=="support"||obj_2.GetComponent<BlockInfo>().blockAttType=="support")) //동일한 종류(소문자/대문자 착각 방지), 아니면 둘 중 하나가 지원블럭일 경우 레벨업 가능
         {
             Debug.Log("1단계");
             if (obj_1.GetComponent<BlockInfo>().blockLevel == obj_2.GetComponent<BlockInfo>().blockLevel)
@@ -187,6 +187,9 @@ public class AppManager : MonoBehaviour
                 MoveUsedToEmpty(obj_1);
                 if ((obj_1.GetComponent<BlockInfo>().blockAttType == "support")|| (obj_1.GetComponent<BlockInfo>().blockAttType == "support"))
                 {//합쳐지는 두 블럭 중 노란 블럭이 존재할 경우 노란 블럭이 제거되는 것이므로 설치여부를 false로 돌림
+
+                    Debug.Log("노란 블럭 삭제");
+
                     yellowAlreadyInstalled = false;
                 }
 
