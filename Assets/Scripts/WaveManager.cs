@@ -4,8 +4,8 @@ using UnityEngine;
 using System.IO;
 using UnityEngine.UI;
 
-public class XmlWaveInfo
-{//xml파일을 읽어서 defunit에 넣기 전에 중간과정(유니티의 xml 파서가 기본형밖에 지원 안 해주기 때문)
+public class WaveInfoJson
+{//json파일을 읽어서 defunit에 넣기 전에 중간과정(유니티의 xml 파서가 기본형밖에 지원 안 해주기 때문)
     //스테이지별 모든 유닛의 정보가 담겨있다.
     public int waveNow; //현재 웨이브
     public string waveMapName; //웨이브가 진행 될 맵이름(맵이름이 다를 경우 gameManager에 신 이동 요구)
@@ -178,7 +178,7 @@ public class WaveManager : MonoBehaviour
                 continue;
             }
 
-            XmlWaveInfo tempStageInfo = JsonUtility.FromJson<XmlWaveInfo>(WaveDataTxt[i]);
+            WaveInfoJson tempStageInfo = JsonUtility.FromJson<WaveInfoJson>(WaveDataTxt[i]);
             
             List<string> waveEnemyList = new List<string>();
 

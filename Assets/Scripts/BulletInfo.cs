@@ -6,6 +6,7 @@ public class BulletInfo : MonoBehaviour
 {
     private GameObject target; //총알이 발사될 목표
     private float damage;
+    private float specialEffect; //특수효과 관련 확률 또는 데미지
     private bool isShot; //총알이 발사되었는가를 판단하는 bool변수
     public string bulletType;
     private WaveManager waveManager;
@@ -54,27 +55,25 @@ public class BulletInfo : MonoBehaviour
                 foreach(GameObject enemy in damagedBySplash)
                 {
                     //추가예정 : 붉은 색으로 적 유닛을 잠깐 표시
-                    enemy.GetComponent<EnemyInfo>().GetDamaged(damage);
+                    enemy.GetComponent<EnemyInfo>().GetDamaged((int)specialEffect); //붉은 블럭의 강화수치에 따른 특수효과 데미지를 따른다.
                 }
                 break;
             case "normal":
                 enemyObj.GetComponent<EnemyInfo>().GetDamaged(damage);
                 break;
             case "pause":
-                //enemyObj.GetComponent<EnemyInfo>().GetDamaged(damage);
-                percent = Random.Range(0, 100);
-                if (percent < 3.0f) //일정 확률로 일시정지
+                enemyObj.GetComponent<EnemyInfo>().GetDamaged(damage);
+
+                percent = Random.Range(0, 1000)/10.0f; //소수 첫째자리까지 계산
+                if (percent < specialEffect) //일정 확률로 일시정지
                 {
                     enemyObj.GetComponent<EnemyInfo>().SetAbnormalStatus("pause",0.4f);
                 }
                 break;
             case "slow":
                 enemyObj.GetComponent<EnemyInfo>().GetDamaged(damage);
-                percent = Random.Range(0, 100);
-                if (percent < 4.0f) //일정 확률로 일시정지
-                {
-                    enemyObj.GetComponent<EnemyInfo>().SetAbnormalStatus("slow", 1.0f, 0.1f);
-                }
+                
+                enemyObj.GetComponent<EnemyInfo>().SetAbnormalStatus("slow", 2.0f, specialEffect);
                 break;
         }
     }
@@ -99,5 +98,10 @@ public class BulletInfo : MonoBehaviour
                 gameObject.SetActive(false);
             }
         }
+    }
+
+    //각 블럭의 고유 특수효과에 대한 확률/데미지를 설정
+    public void SetSpecialEffect(float value) {
+        specialEffect = value;
     }
 }

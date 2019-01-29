@@ -313,6 +313,12 @@ public class AppManager : MonoBehaviour
         return nearBlocks;
     }
 
+    //현재 사용중인 블럭 중에 blockType의 블럭을 반환(이름에 블럭 종류가 포함되어있으니 그것으로 구분)
+    public List<GameObject> GetBlocksByType(string blockType)
+    {
+        return usedBlocks.FindAll(x => x.name.Contains(blockType));
+    }
+
     //모든 block유닛에게 웨이브가 시작했음을 알린다.
     public void WaveStart()
     {

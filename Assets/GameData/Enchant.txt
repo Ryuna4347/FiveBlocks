@@ -1,0 +1,5 @@
+﻿{"blockName":"RedBlock", "blockAttEnchant":[1,2,3,5,7,9,12,15], "blockSpecialEffect":[1,1,2,3,5,7,9,12], "requiredMoney":[0,10,20,30,45,70,100,150]}
+{"blockName":"BlueBlock", "blockAttEnchant":[1,2,3,5,7,9,12,15], "blockSpecialEffect":[0.01,0.02,0.04,0.06,0.08,0.11,0.13,0.15],"requiredMoney":[0,10,20,30,45,70,100,150]}
+{"blockName":"GreyBlock", "blockAttEnchant":[1,2,3,5,7,9,12,15], "blockSpecialEffect":[1,2,3,4,5,6,7.5,9],"requiredMoney":[0,10,20,30,45,70,100,150]}
+{"blockName":"PurpleBlock", "blockAttEnchant":[1,2,4,6,8,11,14,18], "blockSpecialEffect":[0,0,0,0,0,0,0,0],"requiredMoney":[0,10,20,30,45,70,100,150]}
+{"blockName":"YellowBlock", "blockAttEnchant":[1,1,2,3,5,7,9,10], "blockSpecialEffect":[1.1,1.2,1.4,1.6,1.8,2.0,2.2,2.5],"requiredMoney":[0,10,20,30,45,70,100,150]}

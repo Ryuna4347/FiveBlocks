@@ -13,6 +13,8 @@ public class BlockInfo : MonoBehaviour
     public int blockLevel;
     public List<int> damage; //현재 레벨에서의 데미지(기준점으로서 사용)->레벨을 사용한다면 리스트로 만들고 현재 레벨번째 값을 사용하는게 나을듯
     private float enhanceDmgBySupport; //보조 블럭(노란색)으로 인한 데미지 증가 배수(기본값 1)
+    private int enchantDamage; //블럭 유닛 강화로 인한 데미지 상승량
+    //데미지 공식 : (유닛 레벨별 기본 데미지+유닛 강화 데미지)*노란 블럭 데미지 상승배수
     private float damageNow; //여러가지 효과를 더한 상태에서의 데미지(실제 사용하는 값)
 
     private bool isWaveStart;
@@ -54,11 +56,13 @@ public class BlockInfo : MonoBehaviour
         {
             gameObject.GetComponent<SupportBlockInfo>().EnhanceNearBlocks();
         }
+        GameObject.Find("EnchantManager").GetComponent<EnchantManager>().RequestEnchantInfo(this); 
     }    
 
     public void Refresh()
     { //유닛 초기화
         blockLevel = 1;
+        enchantDamage = 0;
         gameObject.GetComponent<SpriteRenderer>().sprite = blockImage[0];
         isWaveStart = false;
         foreach(Transform bullet in transform)
@@ -99,7 +103,8 @@ public class BlockInfo : MonoBehaviour
             GameObject bullet = bulletList.Find(x => x.activeSelf == false);
             bullet.SetActive(true);
 
-            damageNow = damage[blockLevel - 1] * enhanceDmgBySupport;
+            damageNow = (damage[blockLevel - 1]+enchantDamage) * enhanceDmgBySupport;
+            Debug.Log(gameObject.name + " " + enchantDamage + " " +enhanceDmgBySupport+" "+damageNow);
 
             targetEnemy = waveManager.GetEnemyPosition();
 
@@ -120,6 +125,22 @@ public class BlockInfo : MonoBehaviour
             {
                 bullet.gameObject.GetComponent<BulletInfo>().DeadTarget(enemy);
             }
+        }
+    }
+
+    public void SetEnchantInfo(int att, float special)
+    {
+        enchantDamage = att;
+        if (blockAttType!="support")
+        {
+            foreach (Transform child in transform) //노란블럭 제외 특수효과는 전부 탄환에서 이루어지므로 바로 적용
+            {
+                child.gameObject.GetComponent<BulletInfo>().SetSpecialEffect(special);
+            }
+        }
+        else
+        {
+            gameObject.GetComponent<SupportBlockInfo>().SetEnhanceRatio(special);
         }
     }
 
