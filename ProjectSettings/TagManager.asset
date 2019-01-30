@@ -6,6 +6,7 @@ TagManager:
   tags:
   - EmptyArea
   - Block
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -40,6 +41,18 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: UI
+    uniqueID: 3561576199
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Game
+    uniqueID: 4036197467
+    locked: 0
+  - name: Units
+    uniqueID: 1359377479
+    locked: 0
+  - name: NoticeUI
+    uniqueID: 1841875637
     locked: 0

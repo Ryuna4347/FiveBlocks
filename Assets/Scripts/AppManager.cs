@@ -167,15 +167,12 @@ public class AppManager : MonoBehaviour
     { 
 
         string obj2_type = obj_2.GetComponent<BlockInfo>().blockName; //종류 비교를 위해 블럭정보 스크립트에서 이름을 획득
-
-        Debug.Log("0단계");
+        
         if ((obj_1.name.Contains(obj2_type))||(obj_1.GetComponent<BlockInfo>().blockAttType=="support"||obj_2.GetComponent<BlockInfo>().blockAttType=="support")) //동일한 종류(소문자/대문자 착각 방지), 아니면 둘 중 하나가 지원블럭일 경우 레벨업 가능
         {
-            Debug.Log("1단계");
             if (obj_1.GetComponent<BlockInfo>().blockLevel == obj_2.GetComponent<BlockInfo>().blockLevel)
             {//동일레벨, 동일종류일 시 레벨업
-
-                Debug.Log("2단계");
+                
                 //새로 블럭이 생길 위치(obj_2)부터 제거
                 Vector3 obj2Pos = obj_2.transform.position;
                 obj_2.transform.position = new Vector3(-5, 0, 0);
@@ -187,9 +184,6 @@ public class AppManager : MonoBehaviour
                 MoveUsedToEmpty(obj_1);
                 if ((obj_1.GetComponent<BlockInfo>().blockAttType == "support")|| (obj_1.GetComponent<BlockInfo>().blockAttType == "support"))
                 {//합쳐지는 두 블럭 중 노란 블럭이 존재할 경우 노란 블럭이 제거되는 것이므로 설치여부를 false로 돌림
-
-                    Debug.Log("노란 블럭 삭제");
-
                     yellowAlreadyInstalled = false;
                 }
 
@@ -221,8 +215,7 @@ public class AppManager : MonoBehaviour
 
                 //레벨업한 블럭 생성
                 GameObject properBlockObj = waitBlocks.Find(x => x.name.Contains(BlockTypeString) && x.activeSelf == false); //현재 active가 꺼져있고 색상이 맞는 유닛을 불러온다.
-
-                Debug.Log(properBlockObj.name);
+                
                 properBlockObj.SetActive(true); //새로 들어올 블럭은 obj_2의 위치에 들어가야하기 때문에 obj_2를 없애기 전에 위치를 전달받고 옮겨놓기
                 properBlockObj.transform.position = obj2Pos;
                 audio.PlayAudio("Synthesize");

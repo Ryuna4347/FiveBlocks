@@ -37,7 +37,6 @@ public class ButtonDrag : MonoBehaviour
         {
             if (hitObj.transform.gameObject.tag=="Block"&&hitObj.transform.gameObject!=gameObject) //자기 자신이 아니어야 하며 block끼리만 레벨업 가능
             {
-                Debug.Log("실행");
                 appManager.BlockLevelUp(gameObject, hitObj.transform.gameObject);
             }
             previewObj.SetActive(false);

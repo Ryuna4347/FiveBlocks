@@ -104,7 +104,6 @@ public class BlockInfo : MonoBehaviour
             bullet.SetActive(true);
 
             damageNow = (damage[blockLevel - 1]+enchantDamage) * enhanceDmgBySupport;
-            Debug.Log(gameObject.name + " " + enchantDamage + " " +enhanceDmgBySupport+" "+damageNow);
 
             targetEnemy = waveManager.GetEnemyPosition();
 
