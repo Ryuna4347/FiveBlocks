@@ -52,12 +52,12 @@ public class AppManager : MonoBehaviour
             { //36칸이 다 차있다는 뜻이므로 블럭생성 불가
                 return;
             }
-            if (money < createBlockCost)
+            if (!CheckMoney(createBlockCost))
             { //돈이 부족한 경우도 실패
                 //돈이 없을때의 사운드?
                 return;
             }
-
+            
             int yellowBlockInstalled = yellowAlreadyInstalled ? 1 : 0;
 
             int typeRandom = Random.Range(0, 5-yellowBlockInstalled); //지원블럭(노란색)의 설치여부에 따라 0~3/0~4로 랜덤 범위가 달라짐
@@ -112,10 +112,8 @@ public class AppManager : MonoBehaviour
             usedArea.Add(emptyArea[randomPos]);
             emptyArea.RemoveAt(randomPos);
 
-            money -= createBlockCost; //돈 차감
+            UseMoney(createBlockCost);
             createBlockCost += 5; //블럭을 생성할 때마다 가격이 계속 상승
-
-            moneyText.GetComponent<Text>().text = money.ToString();
         }
     }
     private void LoadBlockData()
@@ -219,6 +217,10 @@ public class AppManager : MonoBehaviour
                 properBlockObj.SetActive(true); //새로 들어올 블럭은 obj_2의 위치에 들어가야하기 때문에 obj_2를 없애기 전에 위치를 전달받고 옮겨놓기
                 properBlockObj.transform.position = obj2Pos;
                 audio.PlayAudio("Synthesize");
+                if (isWaveProcessing) //이미 웨이브 진행중일 때 블럭을 생성시 바로 상태를 바꿔주어서 공격할 수 있게
+                {
+                    properBlockObj.GetComponent<BlockInfo>().SwitchWaveStatus(true);
+                }
 
                 if (yellowAlreadyInstalled && (typeRandom != 4)) //현재 설치하는 블럭이 노란 블럭이 아니며 노란블럭이 설치가 되어있는 상태이면 현재 설치하는 블럭이 노란 블럭 근방인지 체크하고 맞다면 버프효과를 받게한다.
                 {
@@ -352,8 +354,33 @@ public class AppManager : MonoBehaviour
 
     }
 
-    //적 유닛 제거로 돈을 얻음
 
+
+    /*
+     *돈과 관련된 함수
+     */
+    public bool CheckMoney(int cost)
+    {
+        if (money >= cost)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    // 건설 또는 강화로 돈을 사용
+    public void UseMoney(int cost)
+    {
+        if (cost > 0)
+        {
+            money -= cost;
+            moneyText.GetComponent<Text>().text = money.ToString();
+        }
+    }
+    //적 유닛 제거로 돈을 얻음
     public void IncreaseMoney()
     {
         money += 5;

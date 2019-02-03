@@ -35,6 +35,7 @@ public class BlockEnchantUI : MonoBehaviour
     public Text SEType; //특수효과 종류, SE=Special Effect
     public Text SENowText;
     public Text SENextText;
+    public Text costText; //강화 레벨업 비용 텍스트
 
     private void Awake()
     {
@@ -127,34 +128,51 @@ public class BlockEnchantUI : MonoBehaviour
 
 
         float SENext = enchantManager.GetNextSpecialEffect(blockName);
-
-        if (blockName=="PurpleBlock")
-        { //보라색 블럭의 경우 특수능력이 존재하지 않음
+        if (SENext <= -100)
+        { //강화 다음레벨이 없는경우(-100은 현재 블럭들의 효과중에서는 존재하지 않음)
             SENextText.text = "-";
         }
         else
         {
-            string tempText="";
-            if (blockName == "BlueBlock" || blockName == "GreyBlock")
+            if (blockName == "PurpleBlock")
+            { //보라색 블럭의 경우 특수능력이 존재하지 않음
+                SENextText.text = "-";
+            }
+            else
             {
-                if (blockName == "BlueBlock")
+                string tempText = "";
+                if (blockName == "BlueBlock" || blockName == "GreyBlock")
                 {
-                    SENext *= 100;
+                    if (blockName == "BlueBlock")
+                    {
+                        SENext *= 100;
+                    }
+                    tempText = SENext.ToString(); //소수인 파란 블럭때문에 우선 예외처리 후 문자열로 변경
+                    tempText += "%";
                 }
-                tempText = SENext.ToString(); //소수인 파란 블럭때문에 우선 예외처리 후 문자열로 변경
-                tempText += "%";
-            }
-            else if (blockName == "YellowBlock")
-            {
-                tempText = SENext.ToString();
-                tempText += "x";
-            }
-            else //붉은 블럭의 경우 위의 어느것도 해당되지 않음
-            {
-                tempText = SENext.ToString();
-            }
+                else if (blockName == "YellowBlock")
+                {
+                    tempText = SENext.ToString();
+                    tempText += "x";
+                }
+                else //붉은 블럭의 경우 위의 어느것도 해당되지 않음
+                {
+                    tempText = SENext.ToString();
+                }
 
-            SENextText.text = tempText;
+                SENextText.text = tempText;
+            }
+        }
+
+        //레벨업 비용 관련
+        int costToLevUpEnchant = enchantManager.GetRequiredMoney(blockName);
+        if (costToLevUpEnchant < 0)
+        {
+            costText.text = "-";
+        }
+        else
+        {
+            costText.text = costToLevUpEnchant.ToString();
         }
     }
 
@@ -170,7 +188,109 @@ public class BlockEnchantUI : MonoBehaviour
 
         SENowText.text = "";
         SENextText.text = "";
+    }
+
+    /*
+     * 블럭 강화 시 강화된 내용을 갱신(공격력/특수능력의 수치만 바꾸면 된다.)
+     */
+    public void UpdateBlockInfo(string blockName)
+    {
+        //공격력 관련부분
+        dmgNowText.text = enchantManager.GetAttackDamage(blockName).ToString();
+        int dmgNext = enchantManager.GetNextAttackDamage(blockName);
+        if (dmgNext < 0)
+        { //만약 다음 강화레벨이 없다면 빈칸 취급
+            dmgNextText.text = "-";
+        }
+        else
+        {
+            dmgNextText.text = dmgNext.ToString();
+        }
+
+        float SENow = enchantManager.GetSpecialEffect(blockName);
+        if (blockName == "PurpleBlock")
+        {//보라색 블럭의 경우 특수능력이 존재하지 않음
+            SENowText.text = "-";
+        }
+        else
+        {
+            string tempText = "";
+            if (blockName == "BlueBlock" || blockName == "GreyBlock")
+            {
+                if (blockName == "BlueBlock")
+                {
+                    SENow *= 100;
+                }
+                tempText = SENow.ToString(); //소수인 파란 블럭때문에 우선 예외처리 후 문자열로 변경
+                tempText += "%";
+            }
+            else if (blockName == "YellowBlock")
+            {
+                tempText = SENow.ToString();
+                tempText += "x";
+            }
+            else //붉은 블럭의 경우 위의 어느것도 해당되지 않음
+            {
+                tempText = SENow.ToString();
+            }
+
+            SENowText.text = tempText; //이해 쉽게 정리된 문자열을 출력
+        }
 
 
+        float SENext = enchantManager.GetNextSpecialEffect(blockName);
+        if (SENext <= -100)
+        { //강화 다음레벨이 없는경우(-100은 현재 블럭들의 효과중에서는 존재하지 않음)
+            SENextText.text = "-";
+        }
+        else
+        {
+            if (blockName == "PurpleBlock")
+            { //보라색 블럭의 경우 특수능력이 존재하지 않음
+                SENextText.text = "-";
+            }
+            else
+            {
+                string tempText = "";
+                if (blockName == "BlueBlock" || blockName == "GreyBlock")
+                {
+                    if (blockName == "BlueBlock")
+                    {
+                        SENext *= 100;
+                    }
+                    tempText = SENext.ToString(); //소수인 파란 블럭때문에 우선 예외처리 후 문자열로 변경
+                    tempText += "%";
+                }
+                else if (blockName == "YellowBlock")
+                {
+                    tempText = SENext.ToString();
+                    tempText += "x";
+                }
+                else //붉은 블럭의 경우 위의 어느것도 해당되지 않음
+                {
+                    tempText = SENext.ToString();
+                }
+
+                SENextText.text = tempText;
+            }
+        }
+
+        int costToLevUpEnchant = enchantManager.GetRequiredMoney(blockName);
+        if (costToLevUpEnchant < 0)
+        {
+            costText.text = "-";
+        }
+        else
+        {
+            costText.text = costToLevUpEnchant.ToString();
+        }
+    }
+
+    public void RequestLevelUp()
+    {
+        if (enchantManager.EnchantLevelUp(blockNameText.text + "Block"))
+        {
+            UpdateBlockInfo(blockNameText.text + "Block");
+        }
     }
 }

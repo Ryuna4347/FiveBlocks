@@ -39,7 +39,7 @@ public class BulletInfo : MonoBehaviour
     private void MoveBullet()
     {
         Vector3 nextPos  = Vector3.MoveTowards(transform.position,target.transform.position, 3.0f*Time.deltaTime);
-        nextPos.z = -1.5f;
+        nextPos.z = -2f;
         gameObject.transform.position = nextPos;
     }
 
@@ -52,6 +52,10 @@ public class BulletInfo : MonoBehaviour
                 enemyObj.GetComponent<EnemyInfo>().GetDamaged(damage);
 
                 List<GameObject> damagedBySplash = waveManager.GetEnemyInRange(enemyObj,0.3f);
+                if (damagedBySplash == null) //맞출 대상이 없는경우 취소
+                {
+                    break;
+                }
                 foreach(GameObject enemy in damagedBySplash)
                 {
                     //추가예정 : 붉은 색으로 적 유닛을 잠깐 표시

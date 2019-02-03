@@ -329,9 +329,13 @@ public class WaveManager : MonoBehaviour
     //적 유닛 targetObj의 위치에서 range거리 이내에 존재하는 모든 적 유닛을 반환한다.(Bullet에서 스플래시 데미지 대상을 정하기 위한 함수)
     public List<GameObject> GetEnemyInRange(GameObject targetObj, float range)
     {
-        List<GameObject> enemyInRange = usingEnemy.FindAll(x=>Vector3.Distance(x.transform.position,targetObj.transform.position)<=range); //range거리 이내에 살아있는 적 유닛리스트 뽑아냄
-        
-        return enemyInRange;
+        if (appManager.isWaveProcessing) //빨간 유닛의 확산피해(스플래시 데미지)가 웨이브 종료 후 다음 웨이브때 영향을 미치는 경우가 생겨서 웨이브 진행중이 아니면 막음
+        {
+            List<GameObject> enemyInRange = usingEnemy.FindAll(x => Vector3.Distance(x.transform.position, targetObj.transform.position) <= range); //range거리 이내에 살아있는 적 유닛리스트 뽑아냄
+
+            return enemyInRange;
+        }
+        return null;
     }
 
     public void WaveStart()
