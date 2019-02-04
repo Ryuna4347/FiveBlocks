@@ -1,5 +1,5 @@
 ﻿{"waveNow":"1", "waveMapName":"Map_0", "pathInfo":"0", "unitName":["Enemy_Rect"], "numOfUnit":[1]}
-{"waveNow":"2", "waveMapName":"Map_1", "pathInfo":"0", "unitName":["Enemy_Rect"], "numOfUnit":[2]}
+{"waveNow":"2", "waveMapName":"Map_0", "pathInfo":"0", "unitName":["Enemy_Rect"], "numOfUnit":[2]}
 {"waveNow":"3", "waveMapName":"Map_0", "pathInfo":"0", "unitName":["Enemy_Rect","Enemy_Round"], "numOfUnit":[2,1]}
 {"waveNow":"4", "waveMapName":"Map_0", "pathInfo":"0", "unitName":["Enemy_Rect","Enemy_Round"], "numOfUnit":[3,1]}
 {"waveNow":"5", "waveMapName":"Map_0", "pathInfo":"1", "unitName":["Enemy_Rect","Enemy_Round"], "numOfUnit":[4,1]}

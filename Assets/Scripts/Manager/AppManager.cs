@@ -14,9 +14,10 @@ public class AppManager : MonoBehaviour
     public GameObject blocksParent; //블럭유닛을 모아둘 상위 빈 오브젝트
     public SoundManager audio; //게임진행 시 나올 소리를 위한 오디오매니저
     public WaveManager waveManager;
-    public GameObject clearWaveNotice; //웨이브 클리어 성공/실패에 따른 안내문
-    public GameObject failedWaveNotice;
+    public EnchantManager enchantManager;
+    public GameObject clearWaveNotice; //웨이브 클리어 성공에 따른 안내문
     public GameObject moneyText; //현재 소지금을 표시
+    public GameObject gameOverUI; //게임 종료시 뜨는 UI
 
     private bool isGameOver;
     public bool isWaveProcessing; //현재 웨이브가 진행중인가?(웨이브 도중 블럭 생성시 바로 탄환 발사가 되게 조절해야해서 추가함)
@@ -27,20 +28,15 @@ public class AppManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        usedArea = new List<GameObject>();
-        usedBlocks = new List<GameObject>();
-
         LoadBlockData();
         waveManager.LoadGameData();
-        waveManager.ReadyForWave(1); //바로 시작할것이므로 1탄 준비
+
+        SetDefault();
+
         RegisterEmptyArea(); //맵을 프리팹으로 만듦에 따라 에디터에서 등록해서 사용하는 방법을 쓸수가 없다.
                              //따라서 맨 처음 맵이 불려진 이후 EmptyArea를 저장하고 맵이 변경되면 EmptyArea, usedArea를 복사해서 옮겨줘야한다.
-        isGameOver = false;
 
-        yellowAlreadyInstalled = false;
-        money = 100000; //기본 생성값 5
-        createBlockCost=5;
-        moneyText.GetComponent<Text>().text = money.ToString();
+        waveManager.ReadyForWave(1);
     }
     
 
@@ -343,18 +339,55 @@ public class AppManager : MonoBehaviour
     public void GameOver()
     {
         isGameOver = true;
+        isWaveProcessing = false;
 
-        foreach(GameObject block in usedBlocks)
+        foreach (GameObject block in usedBlocks)
         {
             block.GetComponent<BlockInfo>().SwitchWaveStatus(false);
             block.SetActive(false);
         }
 
-        //여기에 최종 웨이브를 보여주는 ui를 켜고, 다시하기 버튼 등을 자리시킴
-
+        //게임 종료를 보여주는 ui를 켜고, 다시하기 버튼 등을 자리시킴
+        gameOverUI.SetActive(true);
     }
 
+    public void GameRestart()
+    {
+        waveManager.SetDefault();
+        enchantManager.SetDefault();
+        SetDefault();
+        
+        waveManager.ReadyForWave(1);
+    }
 
+    private void SetDefault()
+    {
+        isGameOver = false;
+
+        if (usedArea.Count > 0)
+        {
+            foreach (GameObject area in usedArea)
+            {
+                emptyArea.Add(area);
+            }
+        }
+        if (usedBlocks.Count > 0)
+        {
+            foreach (GameObject block in usedBlocks)
+            {
+                waitBlocks.Add(block);
+            }
+        }
+        usedArea = new List<GameObject>();
+        usedBlocks = new List<GameObject>();
+
+        yellowAlreadyInstalled = false;
+        money = 100000; //기본 생성값 5
+        createBlockCost = 5;
+        moneyText.GetComponent<Text>().text = money.ToString();
+
+        gameOverUI.SetActive(false);
+    }
 
     /*
      *돈과 관련된 함수

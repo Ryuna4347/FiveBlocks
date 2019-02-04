@@ -106,12 +106,19 @@ public class WaveManager : MonoBehaviour
     // Start is called before the first frame update
     private void Awake()
     {
+        SetDefault();
+    }
+    public void SetDefault()
+    {
         allEnemy = new List<GameObject>();
         usingEnemy = new List<GameObject>();
         allMap = new List<GameObject>();
         allPath = new List<GameObject>();
 
         waveInfo = new List<Wave>();
+
+        waveNow = 1;
+        aliveEnemyNow = 0;
     }
 
     /*
@@ -217,6 +224,11 @@ public class WaveManager : MonoBehaviour
 
         mapNow.SetActive(true);
         pathNow.SetActive(true);
+    }
+
+    public int GetWaveNow()
+    {
+        return waveNow;
     }
 
     /*

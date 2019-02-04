@@ -100,6 +100,11 @@ public class EnchantInfo //블럭 이름
         ++enchantLev;
         return true;
     }
+
+    public void ResetLevel()
+    {
+        enchantLev = 1;
+    }
 }
 
 public class EnchantManager : MonoBehaviour
@@ -113,6 +118,16 @@ public class EnchantManager : MonoBehaviour
         allEnchant = new List<EnchantInfo>();
         appManager = GameObject.Find("gameManager").GetComponent<AppManager>();
         LoadEnchantData();
+
+        SetDefault();
+    }
+
+    public void SetDefault()
+    {
+        foreach(EnchantInfo enchant in allEnchant)
+        {
+            enchant.ResetLevel();
+        }
 
         foreach (EnchantInfo enchant in allEnchant)
         {
