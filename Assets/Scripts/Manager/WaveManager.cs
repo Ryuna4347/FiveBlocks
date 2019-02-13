@@ -9,7 +9,7 @@ public class WaveInfoJson
     //스테이지별 모든 유닛의 정보가 담겨있다.
     public int waveNow; //현재 웨이브
     public string waveMapName; //웨이브가 진행 될 맵이름(맵이름이 다를 경우 gameManager에 신 이동 요구)
-    public string pathInfo;
+    public string pathInfo; //적 오브젝트들이 이동할 길의 이름
 
     public string[] unitName;
     public int[] numOfUnit;
@@ -106,16 +106,17 @@ public class WaveManager : MonoBehaviour
     // Start is called before the first frame update
     private void Awake()
     {
-        SetDefault();
-    }
-    public void SetDefault()
-    {
         allEnemy = new List<GameObject>();
         usingEnemy = new List<GameObject>();
         allMap = new List<GameObject>();
         allPath = new List<GameObject>();
-
         waveInfo = new List<Wave>();
+
+        SetDefault();
+    }
+    public void SetDefault()
+    {
+        usingEnemy = new List<GameObject>();
 
         waveNow = 1;
         aliveEnemyNow = 0;
@@ -130,10 +131,23 @@ public class WaveManager : MonoBehaviour
 
         foreach(GameObject enemy in enemyPrefabs)
         {
-            GameObject enemyGroup = GameObject.Find(enemy.name+"_Group");
-            for (int i = 0; i < 150; i++) {
+            if (!enemy.name.Contains("Boss")) //보스오브젝트 이외의 일반 적 오브젝트
+            {
+                GameObject enemyGroup = GameObject.Find(enemy.name + "_Group");
+                for (int i = 0; i < 150; i++)
+                {
+                    GameObject newEnemy = GameObject.Instantiate(enemy);
+                    newEnemy.name = enemy.name + "_" + i;
+                    newEnemy.transform.parent = enemyGroup.transform;
+                    allEnemy.Add(newEnemy);
+                    newEnemy.SetActive(false);
+                }
+            }
+            else //보스오브젝트(1개씩만)
+            {
+                GameObject enemyGroup = GameObject.Find("Boss_Group");
                 GameObject newEnemy = GameObject.Instantiate(enemy);
-                newEnemy.name = enemy.name +"_"+ i;
+                newEnemy.name = enemy.name;
                 newEnemy.transform.parent = enemyGroup.transform;
                 allEnemy.Add(newEnemy);
                 newEnemy.SetActive(false);
@@ -170,24 +184,24 @@ public class WaveManager : MonoBehaviour
 
     private void LoadWaveData()
     {
-        string[] WaveDataTxt = File.ReadAllText("Assets/GameData/Wave.txt").Split('\n');
+        string[] WaveDataTxt = File.ReadAllText("Assets/GameData/Wave.txt").Split('\n'); //웨이브 정보를 담은 텍스트 파일을 지정하여 읽어온다.
 
         int fileLen = WaveDataTxt.Length;
 
         if (fileLen < 1)
-        {  //저장된 정보가 있어야 불러옴
+        {  //저장된 정보가 있어야 불러올 수 있다.
             return;
         }
         for (int i = 0; i < fileLen; i++)
         {
             if (WaveDataTxt[i] == "")
-            { //빈칸이었을 경우 제외(2중엔터시 나올 수 있음)
+            { //빈칸이었을 경우 제외(2중엔터시 나올 수 있으므로 미리 제거)
                 continue;
             }
 
-            WaveInfoJson tempStageInfo = JsonUtility.FromJson<WaveInfoJson>(WaveDataTxt[i]);
+            WaveInfoJson tempStageInfo = JsonUtility.FromJson<WaveInfoJson>(WaveDataTxt[i]); //1줄씩 문자열을 WaveInfoJson클래스로 변환한다.
             
-            List<string> waveEnemyList = new List<string>();
+            List<string> waveEnemyList = new List<string>(); //웨이브에 필요한 적 오브젝트의 정보를 담기위한 리스트
 
             int enemyLen = tempStageInfo.unitName.Length;
             for(int j=0; j<enemyLen; j++)
@@ -196,15 +210,15 @@ public class WaveManager : MonoBehaviour
                 waveEnemyList.Add(enemyInfoCombined);
             }
 
-            GameObject[] pathArr = Resources.LoadAll<GameObject>("Prefabs/PathInfo");
-            List<GameObject> pathGroup = new List<GameObject>();//find함수를 찾기 위해서 리스트로 변환()
+            GameObject[] pathArr = Resources.LoadAll<GameObject>("Prefabs/PathInfo"); //적 오브젝트가 사용할 길에 대한 프리팹을 로드
+            List<GameObject> pathGroup = new List<GameObject>(); //배열->리스트로 전환
             foreach (GameObject path in pathArr) {
                 pathGroup.Add(path);
             }
 
             Wave newWave = new Wave();
             GameObject wavePath = pathGroup.Find(x => x.name.Contains(tempStageInfo.pathInfo)); //길의 이름(뒤의 숫자로 분별)을 포함한 길 좌표 오브젝트
-            newWave.SetWave(tempStageInfo.waveNow, tempStageInfo.waveMapName, wavePath, waveEnemyList);
+            newWave.SetWave(tempStageInfo.waveNow, tempStageInfo.waveMapName, wavePath, waveEnemyList); //읽은 적의 정보/길의 정보를 Wave클래스에 추가한다.
 
             waveInfo.Add(newWave); //새로운 wave정보를 추가
         }
@@ -354,14 +368,51 @@ public class WaveManager : MonoBehaviour
     {
         if (!appManager.isWaveProcessing) //중복클릭에 반응하지 않도록
         {
-            foreach (GameObject enemy in usingEnemy)
-            {
-                enemy.GetComponent<EnemyInfo>().SwitchWaveStatus(true);
-            }
-
             appManager.WaveStart();
+
+            StartCoroutine("StartEnemyMove");
         }
     }
+    
+    /*
+     *일정 시간을 두고 적 오브젝트를 출발시킨다
+     */
+    private IEnumerator StartEnemyMove()
+    {
+        List<Transform> tempPath = new List<Transform>();
+        if (pathNow.transform.childCount > 0) //길이 여러개인 경우 각각의 길에서 따로 적을 동시에 1개씩 출발시키기 위함
+        {
+            foreach(Transform childPath in pathNow.transform)
+            {
+                tempPath.Add(childPath);
+            }
+        }
+        else
+        {
+            tempPath.Add(pathNow.transform);
+        }
+        while (true)
+        {
+            GameObject block=null;
+            foreach (Transform path in tempPath)
+            {
+                block = allEnemy.Find(x => x.activeSelf == true && x.GetComponent<EnemyInfo>().isWaveStart == false && x.GetComponent<EnemyInfo>().pathName == path.name); //현재 준비는 되었으나 아직 이동이 시작되지 않은 오브젝트 선택
+
+                if (block == null) //더이상 출발시킬 블럭이 없는 경우 탈출(아래에서 에러가 남)
+                {
+                    break;
+                }
+                block.GetComponent<EnemyInfo>().SwitchWaveStatus(true);
+            }
+
+            if (block == null) //더이상 블록이 없을경우 코루틴 종료
+            {
+                break;
+            }
+            yield return new WaitForSeconds(0.4f);
+        }
+    }
+
 
     public void EnemyDead(GameObject deadEnemy)
     { //잔여 적 갯수 갱신을 위한 함수

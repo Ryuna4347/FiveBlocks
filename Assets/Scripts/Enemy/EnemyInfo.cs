@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class EnemyInfo : MonoBehaviour
 {
+    public string pathName;
     private List<Vector3> pathList;
     private int targetPathIdx; //현재 이동목표로 삼고 있는 위치
     
@@ -23,7 +24,7 @@ public class EnemyInfo : MonoBehaviour
 
     private GameObject unitHealthText; //체력 숫자 표시를 위해서 사용하는 텍스트 UI
 
-    private bool isWaveStart;
+    public bool isWaveStart;
 
     private void Awake()
     {
@@ -52,7 +53,8 @@ public class EnemyInfo : MonoBehaviour
     //웨이브 시작전에 적 유닛의 체력 등을 설정(이동속도는 유닛별로 일정하므로 굳이 설정 x)
     //stage를 인자로 받는 이유 : 체력이 stage에 따라서 변동되기 때문에
     public void SetInfomation(int stage)
-    { 
+    {
+        Debug.Log(name);
         health = stage;
     }
 
@@ -137,6 +139,7 @@ public class EnemyInfo : MonoBehaviour
     //path오브젝트에 포함된 line Renderer에서 좌표를 가져옴
     private void SetPathInfomation(GameObject path)
     {
+        pathName = path.name;
         LineRenderer pathVert = path.GetComponent<LineRenderer>();
         int pathVertNum = pathVert.positionCount;
         

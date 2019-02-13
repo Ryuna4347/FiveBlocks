@@ -106,7 +106,7 @@ GameObject:
   - component: {fileID: 2496549334617635588}
   - component: {fileID: 7966516189660028273}
   m_Layer: 0
-  m_Name: Enemy_Rect
+  m_Name: Boss_Rect
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -152,7 +152,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 0c2e5bd23ed7e6044b8e959f377f1e28, type: 2}
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

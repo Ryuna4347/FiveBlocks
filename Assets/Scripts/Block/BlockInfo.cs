@@ -82,7 +82,11 @@ public class BlockInfo : MonoBehaviour
         isWaveStart = val;
         if (val == true)
         {
-            Coroutine shoot = StartCoroutine("Shoot");
+            shoot = StartCoroutine("Shoot");
+        }
+        else
+        {
+            StopCoroutine(shoot);
         }
     }
 
@@ -109,7 +113,7 @@ public class BlockInfo : MonoBehaviour
 
             bullet.GetComponent<BulletInfo>().Shoot(targetEnemy,(int)Mathf.Round(damageNow)); //targetEnemy를 향해서 1.0f 데미지의 총알을 발사(총알 오브젝트는 자신의 하위 오브젝트에 각각 존재)
             //탄환의 데미지는 현재 블럭의 레벨에 따른 데미지와 차후 추가할 블럭 강화레벨에 따른 데미지의 합에 노란 블럭의 강화배수를 곱해 반올림처리하여 사용한다.
-
+            
             yield return new WaitForSeconds(shootCoolTime);
         }
     }

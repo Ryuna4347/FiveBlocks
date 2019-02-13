@@ -18,6 +18,8 @@ public class AppManager : MonoBehaviour
     public GameObject clearWaveNotice; //웨이브 클리어 성공에 따른 안내문
     public GameObject moneyText; //현재 소지금을 표시
     public GameObject gameOverUI; //게임 종료시 뜨는 UI
+    public GameObject waveStartBtn; //웨이브 시작 버튼
+    public GameObject speedControlBtn; //게임 진행 속도 변경 버튼
 
     private bool isGameOver;
     public bool isWaveProcessing; //현재 웨이브가 진행중인가?(웨이브 도중 블럭 생성시 바로 탄환 발사가 되게 조절해야해서 추가함)
@@ -39,25 +41,26 @@ public class AppManager : MonoBehaviour
         waveManager.ReadyForWave(1);
     }
     
-
+    /*
+     * 블럭생성 버튼을 클릭할 경우 빈 공간에 공격을 위한 블럭 오브젝트를 생성하는 함수
+     */
     public void MakeBlock()
     {
-        if (!isGameOver) //게임 진행중에만 사용
+        if (!isGameOver) //게임 진행중에만 사용가능
         {
             if (usedBlocks.Count == 36)
-            { //36칸이 다 차있다는 뜻이므로 블럭생성 불가
+            { //36칸이 다 차있다는 뜻이므로 블럭 생성이 불가
                 return;
             }
             if (!CheckMoney(createBlockCost))
             { //돈이 부족한 경우도 실패
-                //돈이 없을때의 사운드?
                 return;
             }
             
             int yellowBlockInstalled = yellowAlreadyInstalled ? 1 : 0;
 
             int typeRandom = Random.Range(0, 5-yellowBlockInstalled); //지원블럭(노란색)의 설치여부에 따라 0~3/0~4로 랜덤 범위가 달라짐
-            string BlockTypeString = "Block_";
+            string BlockTypeString = "Block_"; //기본적으로 블럭 오브젝트 프리팹의 명칭이 '색상Block_'이므로 공통적인 부분은 미리 작성한다.
             switch (typeRandom)
             {
                 case 0:
@@ -74,13 +77,14 @@ public class AppManager : MonoBehaviour
                     break;
                 case 4:
                     BlockTypeString = "Yellow" + BlockTypeString;
-                    yellowAlreadyInstalled = true;
+                    yellowAlreadyInstalled = true; //노란색 블럭의 경우 동시에 1개만 설치가 가능하기 때문에 뒤에 생성되는 것을 방지
                     break;
                 default:
                     break;
             }
-            
-            GameObject properBlockObj = waitBlocks.Find(x => x.name.Contains(BlockTypeString) && x.activeSelf == false); //현재 active가 꺼져있고 색상이 맞는 유닛을 불러온다.
+
+            //현재 active가 꺼져있고 원하는 색상이 맞는 유닛을 불러온다.
+            GameObject properBlockObj = waitBlocks.Find(x => x.name.Contains(BlockTypeString) && x.activeSelf == false); 
             properBlockObj.SetActive(true);
             if (isWaveProcessing) //이미 웨이브 진행중일 때 블럭을 생성시 바로 상태를 바꿔주어서 공격할 수 있게
             {
@@ -92,8 +96,9 @@ public class AppManager : MonoBehaviour
             blockPos.z = -1; //블럭이 제일 위에 보이도록 쌓아야해서 z축을 고정
             properBlockObj.GetComponent<BlockInfo>().InstallAtPos(blockPos); //설치하면서 blockType구분을 하기위해서 함수로 변경
 
-            if (yellowAlreadyInstalled&&(typeRandom!=4)) //현재 설치하는 블럭이 노란 블럭이 아니며 노란블럭이 설치가 되어있는 상태이면 현재 설치하는 블럭이 노란 블럭 근방인지 체크하고 맞다면 버프효과를 받게한다.
-            {
+            //현재 설치하는 블럭이 노란 블럭이 아니며 노란블럭이 설치가 되어있는 상태이면
+            //현재 설치하는 블럭이 노란 블럭 근방인지 체크하고 맞다면 버프효과를 받게한다.
+            if (yellowAlreadyInstalled&&(typeRandom!=4)) {
                 GameObject yellowBlock = usedBlocks.Find(x => x.name.Contains("Yellow"));
                 if(Vector2.Distance(yellowBlock.transform.position, properBlockObj.transform.position) <= 0.6f)
                 {
@@ -103,9 +108,9 @@ public class AppManager : MonoBehaviour
 
             audio.PlayAudio("CreateBlock"); //블럭 생성에 대한 사운드 재생
 
-            waitBlocks.Remove(properBlockObj);
+            waitBlocks.Remove(properBlockObj); //선택한 블럭의 정보를 대기중->사용중으로 이동
             usedBlocks.Add(properBlockObj);
-            usedArea.Add(emptyArea[randomPos]);
+            usedArea.Add(emptyArea[randomPos]); //블럭이 설치된 위치 역시 대기중->사용중으로 이동
             emptyArea.RemoveAt(randomPos);
 
             UseMoney(createBlockCost);
@@ -318,6 +323,9 @@ public class AppManager : MonoBehaviour
         {
             block.GetComponent<BlockInfo>().SwitchWaveStatus(true);
         }
+
+        waveStartBtn.SetActive(false);
+        speedControlBtn.SetActive(true);
     }
 
     //block유닛의 이동 방지
@@ -331,6 +339,9 @@ public class AppManager : MonoBehaviour
 
         clearWaveNotice.SetActive(true); //웨이브 성공에 따른 안내 UI On
         clearWaveNotice.GetComponent<WaveNotice>().ControlChildNotice(n + 1); //다음 웨이브를 전달하여 보스출현/일반 웨이브인지 구별하여 텍스트를 켤수있도록 함
+
+        waveStartBtn.SetActive(true);
+        speedControlBtn.SetActive(false);
 
         waveManager.ReadyForWave(n + 1);
     }
@@ -349,6 +360,19 @@ public class AppManager : MonoBehaviour
 
         //게임 종료를 보여주는 ui를 켜고, 다시하기 버튼 등을 자리시킴
         gameOverUI.SetActive(true);
+
+        speedControlBtn.SetActive(false); //게임이 종료되었으므로 처음 상태로 웨이브 시작버튼을 돌려놓는다.
+        waveStartBtn.SetActive(true);
+    }
+
+    public void GameSpeedChange()
+    {
+        Time.timeScale *= 3;
+        if (Time.timeScale > 9) //8배율을 넘을경우 1배로 귀환
+        {
+            Time.timeScale = 1.0f;
+        }
+        speedControlBtn.transform.Find("SpeedText").gameObject.GetComponent<Text>().text = Time.timeScale.ToString();
     }
 
     public void GameRestart()
@@ -356,7 +380,9 @@ public class AppManager : MonoBehaviour
         waveManager.SetDefault();
         enchantManager.SetDefault();
         SetDefault();
-        
+        Time.timeScale = 1.0f;
+        speedControlBtn.transform.Find("SpeedText").gameObject.GetComponent<Text>().text = "1";
+
         waveManager.ReadyForWave(1);
     }
 
@@ -378,6 +404,7 @@ public class AppManager : MonoBehaviour
                 waitBlocks.Add(block);
             }
         }
+        
         usedArea = new List<GameObject>();
         usedBlocks = new List<GameObject>();
 
