@@ -101,12 +101,12 @@ LineRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Positions:
-  - {x: 0, y: 2.9, z: -1.5}
-  - {x: 0, y: 2.5, z: -1.5}
-  - {x: 2.3, y: 2.5, z: -1.5}
-  - {x: 2.3, y: -1.5, z: -1.5}
-  - {x: 0, y: -1.5, z: -1.5}
-  - {x: 0, y: -1.9, z: -1.5}
+  - {x: 0, y: 2.9, z: 0}
+  - {x: 0, y: 2.5, z: 0}
+  - {x: 2.3, y: 2.5, z: 0}
+  - {x: 2.3, y: -1.5, z: 0}
+  - {x: 0, y: -1.5, z: 0}
+  - {x: 0, y: -1.9, z: 0}
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 0.05
@@ -231,12 +231,12 @@ LineRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Positions:
-  - {x: 0, y: 2.9, z: -1.5}
-  - {x: 0, y: 2.5, z: -1.5}
-  - {x: -2.3, y: 2.5, z: -1.5}
-  - {x: -2.3, y: -1.5, z: -1.5}
-  - {x: 0, y: -1.5, z: -1.5}
-  - {x: 0, y: -1.9, z: -1.5}
+  - {x: 0, y: 2.9, z: 0}
+  - {x: 0, y: 2.5, z: 0}
+  - {x: -2.3, y: 2.5, z: 0}
+  - {x: -2.3, y: -1.5, z: 0}
+  - {x: 0, y: -1.5, z: 0}
+  - {x: 0, y: -1.9, z: 0}
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 0.05

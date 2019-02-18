@@ -11,6 +11,7 @@ public class EnemyInfo : MonoBehaviour
     
     private float health; //적 유닛의 체력
     public float speed;
+    public List<Sprite> effects; //피해를 입게되는 효과들의 이미지 종류
     
     private float speedNow; //상태변화 적용을 위해서 speed이외에 별도로 준비(speed는 default값이고 Enable시/상태변화 해제시에 원래 값으로 돌아가기 위해서 필요하다.)
 
@@ -21,6 +22,7 @@ public class EnemyInfo : MonoBehaviour
     private GameObject appManager; //죽을때마다 find로 매니저 찾으려면 연산이 많아질거같아서 추가
     private WaveManager waveManager; //사망처리 요구
     private TextMesh HP_UI; //체력 잔량 표시를 위한 자식 텍스트 메쉬
+    private Sprite EffectSprite; //특수효과 피해를 받았을 경우 나타나는 이미지들을 표시하기 위한 오브젝트
 
     private GameObject unitHealthText; //체력 숫자 표시를 위해서 사용하는 텍스트 UI
 
@@ -54,7 +56,6 @@ public class EnemyInfo : MonoBehaviour
     //stage를 인자로 받는 이유 : 체력이 stage에 따라서 변동되기 때문에
     public void SetInfomation(int stage)
     {
-        Debug.Log(name);
         health = stage;
     }
 
@@ -119,8 +120,12 @@ public class EnemyInfo : MonoBehaviour
 
     private void Move()
     {
-        transform.position = Vector3.MoveTowards(transform.position, pathList[targetPathIdx], speedNow*Time.deltaTime); //목표지점을 향해 speed의 속도로 진행
-        if (transform.position == pathList[targetPathIdx]&&(targetPathIdx!=pathList.Count))
+        Vector3 movePos= Vector2.MoveTowards((Vector2)transform.position, (Vector2)pathList[targetPathIdx], speedNow*Time.deltaTime); //목표지점을 향해 speed의 속도로 진행
+        movePos.z = -1.5f;
+        transform.position = movePos;
+        
+
+        if (((Vector2)transform.position == (Vector2)pathList[targetPathIdx])&&(targetPathIdx!=pathList.Count)) //movePos인 이유 : transform.position은 z좌표가 달라서 맞지 않는다.
         { //목표지점에 도착을 하고 그 목표지점이 종료지점이 아닌 경우에는 다음 목표지점으로 설정
             targetPathIdx++;
         }
@@ -152,7 +157,10 @@ public class EnemyInfo : MonoBehaviour
     public void SetAtStartLine() //적 유닛 사용을 위해 시작 지점에 두기
     {
         //Debug.Log(gameObject.name + " " + pathList[0]);
-        transform.position = pathList[0];
+        Vector3 startPos= pathList[0];
+        startPos.z = -1.5f;
+        transform.position = startPos;
+        targetPathIdx++;
     }
 
     public void SwitchWaveStatus(bool val)
