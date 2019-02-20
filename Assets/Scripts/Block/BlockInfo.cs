@@ -8,8 +8,10 @@ public class BlockInfo : MonoBehaviour
     private Animator blockAnim;
 
     public string blockName;
-    public List<Sprite> blockImage;
+    public List<Sprite> blockLevImage;
+    public SpriteRenderer levImage; //레벨 이미지를 보여줄 자식 스프라이트렌더러 오브젝트
     private List<GameObject> bulletList;
+    private Transform bulletListObj; //총알 오브젝트들의 그룹 오브젝트
     public int blockLevel;
     public List<int> damage; //현재 레벨에서의 데미지(기준점으로서 사용)->레벨을 사용한다면 리스트로 만들고 현재 레벨번째 값을 사용하는게 나을듯
     private float enhanceDmgBySupport; //보조 블럭(노란색)으로 인한 데미지 증가 배수(기본값 1)
@@ -27,17 +29,19 @@ public class BlockInfo : MonoBehaviour
     private void Awake()
     {
         waveManager = GameObject.Find("WaveManager").GetComponent<WaveManager>();
+        bulletListObj = transform.Find("BulletList"); //총알 오브젝트의 접근을 위해서 해당 그룹을 미리 찾아둔다.
         if (!gameObject.name.Contains("Yellow"))
         { //노란 블럭은 버프 애니메이션의 필요가 없음
             blockAnim = gameObject.GetComponent<Animator>();
         }
         gameObject.GetComponent<ButtonDrag>().previewObj=GameObject.Find("PreviewObj").gameObject;
+        levImage.sprite = blockLevImage[0];
         blockLevel = 1;
         enhanceDmgBySupport = 1;
         isWaveStart = false;
 
         bulletList = new List<GameObject>();
-        foreach(Transform child in gameObject.transform)
+        foreach(Transform child in bulletListObj)
         {
             bulletList.Add(child.gameObject);
             child.gameObject.SetActive(false); //총알 오브젝트를 리스트에 넣고 끄기
@@ -52,6 +56,7 @@ public class BlockInfo : MonoBehaviour
     public void InstallAtPos(Vector3 pos)
     {
         transform.position = pos;
+        levImage.gameObject.SetActive(true);
         if (blockAttType == "support")
         {
             gameObject.GetComponent<SupportBlockInfo>().EnhanceNearBlocks();
@@ -63,7 +68,6 @@ public class BlockInfo : MonoBehaviour
     { //유닛 초기화
         blockLevel = 1;
         enchantDamage = 0;
-        gameObject.GetComponent<SpriteRenderer>().sprite = blockImage[0];
         isWaveStart = false;
         foreach(Transform bullet in transform)
         {
@@ -74,7 +78,7 @@ public class BlockInfo : MonoBehaviour
     public void SetBlockLevel(int lev)
     { //레벨업 시 바로 해당 레벨로 가야하므로 레벨을 설정하는 함수(AppManager에서 합성시 사용됨)
         blockLevel = lev;
-        gameObject.GetComponent<SpriteRenderer>().sprite = blockImage[lev-1];
+        levImage.sprite = blockLevImage[lev-1];
     }
     
     public void SwitchWaveStatus(bool val)
@@ -82,6 +86,7 @@ public class BlockInfo : MonoBehaviour
         isWaveStart = val;
         if (val == true)
         {
+            bulletListObj.gameObject.SetActive(true);
             shoot = StartCoroutine("Shoot");
         }
         else
@@ -122,7 +127,7 @@ public class BlockInfo : MonoBehaviour
     //현재 사격중인 target이 사망한 enemy일 경우 하위 bullet을 전부 off로 돌림
     public void CheckTarget(GameObject enemy)
     {
-        foreach (Transform bullet in transform)
+        foreach (Transform bullet in bulletListObj)
         {
             if (bullet.gameObject.activeSelf == true)
             {
@@ -136,7 +141,7 @@ public class BlockInfo : MonoBehaviour
         enchantDamage = att;
         if (blockAttType!="support")
         {
-            foreach (Transform child in transform) //노란블럭 제외 특수효과는 전부 탄환에서 이루어지므로 바로 적용
+            foreach (Transform child in bulletListObj) //노란블럭 제외 특수효과는 전부 탄환에서 이루어지므로 바로 적용
             {
                 child.gameObject.GetComponent<BulletInfo>().SetSpecialEffect(special);
             }

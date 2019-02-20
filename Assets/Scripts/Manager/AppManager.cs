@@ -15,14 +15,18 @@ public class AppManager : MonoBehaviour
     public SoundManager audio; //게임진행 시 나올 소리를 위한 오디오매니저
     public WaveManager waveManager;
     public EnchantManager enchantManager;
-    public GameObject clearWaveNotice; //웨이브 클리어 성공에 따른 안내문
-    public GameObject moneyText; //현재 소지금을 표시
     public GameObject gameOverUI; //게임 종료시 뜨는 UI
     public GameObject waveStartBtn; //웨이브 시작 버튼
+    public GameObject clearWaveNotice; //웨이브 클리어 성공에 따른 안내문
+    public Text moneyText; //현재 소지금을 표시
+    public Text requiredMoneyText; //블럭 생성에 필요한 금액을 표시하는 오브젝트
     public GameObject speedControlBtn; //게임 진행 속도 변경 버튼
+    public Text gameSpeedText; //게임 진행 속도를 표시하는 텍스트
+    public GameObject tutorialUI; //튜토리얼 관련 UI를 관리하기 위한 오브젝트
 
     private bool isGameOver;
     public bool isWaveProcessing; //현재 웨이브가 진행중인가?(웨이브 도중 블럭 생성시 바로 탄환 발사가 되게 조절해야해서 추가함)
+    private bool isFirstGame; //처음 게임을 하는가에 대한 bool값(처음이면 튜토리얼을 켠다. playerPrefs로 관리)
 
     private int money; //블럭 생성 및 강화에 사용되는 돈(적 유닛 제거시 지급)
     private int createBlockCost; //블럭 생성에 필요한 돈(누적해서 올라감)
@@ -39,6 +43,12 @@ public class AppManager : MonoBehaviour
                              //따라서 맨 처음 맵이 불려진 이후 EmptyArea를 저장하고 맵이 변경되면 EmptyArea, usedArea를 복사해서 옮겨줘야한다.
 
         waveManager.ReadyForWave(1);
+
+        isFirstGame = PlayerPrefs.GetInt("isFirstGame",-1)==-1 ? true : false;
+        if (isFirstGame)
+        {
+            tutorialUI.SetActive(true);
+        }
     }
     
     /*
@@ -95,8 +105,9 @@ public class AppManager : MonoBehaviour
             Vector3 blockPos = emptyArea[randomPos].transform.position;
             blockPos.z = -1; //블럭이 제일 위에 보이도록 쌓아야해서 z축을 고정
             properBlockObj.GetComponent<BlockInfo>().InstallAtPos(blockPos); //설치하면서 blockType구분을 하기위해서 함수로 변경
+            properBlockObj.GetComponent<BlockInfo>().SetBlockLevel(1);
 
-            //현재 설치하는 블럭이 노란 블럭이 아니며 노란블럭이 설치가 되어있는 상태이면
+            //현재 설치하는 블럭이 노란 블럭이 아니고 노란블럭이 설치가 되어있는 상태이면
             //현재 설치하는 블럭이 노란 블럭 근방인지 체크하고 맞다면 버프효과를 받게한다.
             if (yellowAlreadyInstalled&&(typeRandom!=4)) {
                 GameObject yellowBlock = usedBlocks.Find(x => x.name.Contains("Yellow"));
@@ -115,6 +126,7 @@ public class AppManager : MonoBehaviour
 
             UseMoney(createBlockCost);
             createBlockCost += 5; //블럭을 생성할 때마다 가격이 계속 상승
+            requiredMoneyText.text = createBlockCost.ToString();
         }
     }
     private void LoadBlockData()
@@ -164,7 +176,6 @@ public class AppManager : MonoBehaviour
      */
     public void BlockLevelUp(GameObject obj_1, GameObject obj_2) //obj_2 위치에 다음 레벨을 생성
     { 
-
         string obj2_type = obj_2.GetComponent<BlockInfo>().blockName; //종류 비교를 위해 블럭정보 스크립트에서 이름을 획득
         
         if ((obj_1.name.Contains(obj2_type))||(obj_1.GetComponent<BlockInfo>().blockAttType=="support"||obj_2.GetComponent<BlockInfo>().blockAttType=="support")) //동일한 종류(소문자/대문자 착각 방지), 아니면 둘 중 하나가 지원블럭일 경우 레벨업 가능
@@ -174,6 +185,7 @@ public class AppManager : MonoBehaviour
                 
                 //새로 블럭이 생길 위치(obj_2)부터 제거
                 Vector3 obj2Pos = obj_2.transform.position;
+                int blockLev = obj_2.GetComponent<BlockInfo>().blockLevel;
                 obj_2.transform.position = new Vector3(-5, 0, 0);
                 obj_2.SetActive(false); //먼저 기존에 있던 블럭을 제거해야 Support블럭에서 버프제거를 하고 새로운 블럭이 들어올 수 있다.
                 usedBlocks.Remove(obj_2); 
@@ -216,14 +228,16 @@ public class AppManager : MonoBehaviour
                 GameObject properBlockObj = waitBlocks.Find(x => x.name.Contains(BlockTypeString) && x.activeSelf == false); //현재 active가 꺼져있고 색상이 맞는 유닛을 불러온다.
                 
                 properBlockObj.SetActive(true); //새로 들어올 블럭은 obj_2의 위치에 들어가야하기 때문에 obj_2를 없애기 전에 위치를 전달받고 옮겨놓기
-                properBlockObj.transform.position = obj2Pos;
+                properBlockObj.GetComponent<BlockInfo>().InstallAtPos(obj2Pos);
+                properBlockObj.GetComponent<BlockInfo>().SetBlockLevel(blockLev + 1);
                 audio.PlayAudio("Synthesize");
+
                 if (isWaveProcessing) //이미 웨이브 진행중일 때 블럭을 생성시 바로 상태를 바꿔주어서 공격할 수 있게
                 {
                     properBlockObj.GetComponent<BlockInfo>().SwitchWaveStatus(true);
                 }
 
-                if (yellowAlreadyInstalled && (typeRandom != 4)) //현재 설치하는 블럭이 노란 블럭이 아니며 노란블럭이 설치가 되어있는 상태이면 현재 설치하는 블럭이 노란 블럭 근방인지 체크하고 맞다면 버프효과를 받게한다.
+                if (yellowAlreadyInstalled && (typeRandom != 4)) //현재 설치하는 블럭이 노란 블럭이 아니고 노란블럭이 설치가 되어있는 상태이면 현재 설치하는 블럭이 노란 블럭 근방인지 체크하고 맞다면 버프효과를 받게한다.
                 {
                     GameObject yellowBlock = usedBlocks.Find(x => x.name.Contains("Yellow"));
                     if (Vector2.Distance(yellowBlock.transform.position, properBlockObj.transform.position) <= 0.6f)
@@ -372,7 +386,7 @@ public class AppManager : MonoBehaviour
         {
             Time.timeScale = 1.0f;
         }
-        speedControlBtn.transform.Find("SpeedText").gameObject.GetComponent<Text>().text = Time.timeScale.ToString();
+        gameSpeedText.text = Time.timeScale.ToString();
     }
 
     public void GameRestart()
@@ -409,9 +423,11 @@ public class AppManager : MonoBehaviour
         usedBlocks = new List<GameObject>();
 
         yellowAlreadyInstalled = false;
-        money = 100000; //기본 생성값 5
+        money = 5; //소지금 및 블럭 생성 요구 비용 초기화
         createBlockCost = 5;
-        moneyText.GetComponent<Text>().text = money.ToString();
+        moneyText.text = money.ToString();
+        requiredMoneyText.text = createBlockCost.ToString();
+
 
         gameOverUI.SetActive(false);
     }
@@ -437,13 +453,13 @@ public class AppManager : MonoBehaviour
         if (cost > 0)
         {
             money -= cost;
-            moneyText.GetComponent<Text>().text = money.ToString();
+            moneyText.text = money.ToString();
         }
     }
     //적 유닛 제거로 돈을 얻음
     public void IncreaseMoney()
     {
         money += 5;
-        moneyText.GetComponent<Text>().text = money.ToString();
+        moneyText.text = money.ToString();
     }
 }
