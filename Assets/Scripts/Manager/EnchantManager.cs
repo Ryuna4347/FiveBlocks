@@ -56,6 +56,10 @@ public class EnchantInfo //블럭 이름
             return -1;
         }
     }
+    public int GetLevel()
+    {
+        return enchantLev;
+    }
     public void AddSpecialInfo(float value)
     {
         specialEffect.Add(value);
@@ -119,6 +123,10 @@ public class EnchantManager : MonoBehaviour
         appManager = GameObject.Find("gameManager").GetComponent<AppManager>();
         LoadEnchantData();
 
+    }
+
+    private void Start()
+    {
         SetDefault();
     }
 
@@ -132,6 +140,7 @@ public class EnchantManager : MonoBehaviour
         foreach (EnchantInfo enchant in allEnchant)
         {
             GameObject enchantBtn = enchantBtnList.Find(x => x.name.Contains(enchant.enchantBlockName));
+            enchantBtn.transform.Find("LevText").gameObject.GetComponent<Text>().text = enchant.GetLevel().ToString();
             enchantBtn.transform.Find("Att").gameObject.GetComponent<Text>().text = enchant.GetAttInfo().ToString();
             if (enchantBtn.transform.Find("SpecialEffect") != null)
             {
@@ -149,7 +158,7 @@ public class EnchantManager : MonoBehaviour
 
     private void LoadEnchantData()
     {
-        string[] EnchantDataTxt = File.ReadAllText("Assets/GameData/Enchant.txt").Split('\n');
+        string[] EnchantDataTxt = Resources.Load<TextAsset>("GameData/Enchant").text.Split('\n');
 
         int fileLen = EnchantDataTxt.Length;
 
@@ -177,7 +186,7 @@ public class EnchantManager : MonoBehaviour
             {
                 enchant.AddSpecialInfo(value);
             }
-            foreach (int value in tempEnchatInfo.blockRequiredMoney) //강화로 인한 특수능력 정보 추가
+            foreach (int value in tempEnchatInfo.blockRequiredMoney) 
             {
                 enchant.AddRequiredMoney(value);
             }
@@ -228,6 +237,7 @@ public class EnchantManager : MonoBehaviour
                 appManager.UseMoney(reqCost); //돈을 차감(reqCost의 갱신은 BlockEnchantUI에서 실행)
 
                 GameObject enchantBtn = enchantBtnList.Find(x => x.name.Contains(blockName));
+                enchantBtn.transform.Find("LevText").gameObject.GetComponent<Text>().text = blockEnchant.GetLevel().ToString();
                 enchantBtn.transform.Find("Att").gameObject.GetComponent<Text>().text = blockEnchant.GetAttInfo().ToString();
                 if (enchantBtn.transform.Find("SpecialEffect") != null)
                 {

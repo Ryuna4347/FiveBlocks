@@ -47,10 +47,9 @@ public class BlockEnchantUI : MonoBehaviour
 
     private void LoadBlockDescription()
     {
-        string[] blockDescText = File.ReadAllText("Assets/GameData/BlockDescription.txt").Split('\n');
+        string[] blockDescText = Resources.Load<TextAsset>("GameData/BlockDescription").text.Split('\n');
 
         int fileLen = blockDescText.Length;
-        Debug.Log(fileLen);
 
         if (fileLen < 1)
         {  //저장된 정보가 있어야 불러옴

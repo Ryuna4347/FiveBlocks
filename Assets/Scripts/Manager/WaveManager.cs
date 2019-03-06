@@ -88,6 +88,7 @@ public class WaveManager : MonoBehaviour
     private List<Wave> waveInfo;
     private List<GameObject> allMap;
     private List<GameObject> allPath;
+    private List<GameObject> enemyPrefabs; //적 유닛들의 프리팹(랜덤 웨이브 생성시 사용하기 위해서 클래스 내 변수로 변경)
 
     public AppManager appManager;
 
@@ -116,6 +117,10 @@ public class WaveManager : MonoBehaviour
     }
     public void SetDefault()
     {
+        foreach(GameObject aliveEnemy in usingEnemy)
+        {
+            aliveEnemy.SetActive(false);
+        }
         usingEnemy = new List<GameObject>();
 
         waveNow = 1;
@@ -127,7 +132,8 @@ public class WaveManager : MonoBehaviour
          */
     private void LoadEnemyPrefabs()
     { //게임 진행에 필요한 적 유닛 프리팹을 불러옴(게임 시작 전에)
-        GameObject[] enemyPrefabs=Resources.LoadAll<GameObject>("Prefabs/Enemy");
+
+        enemyPrefabs=new List<GameObject>(Resources.LoadAll<GameObject>("Prefabs/Enemy"));
 
         foreach(GameObject enemy in enemyPrefabs)
         {
@@ -184,8 +190,8 @@ public class WaveManager : MonoBehaviour
 
     private void LoadWaveData()
     {
-        string[] WaveDataTxt = File.ReadAllText("Assets/GameData/Wave.txt").Split('\n'); //웨이브 정보를 담은 텍스트 파일을 지정하여 읽어온다.
-
+        string[] WaveDataTxt = Resources.Load<TextAsset>("GameData/Wave").text.Split('\n'); //웨이브 정보를 담은 텍스트 파일을 지정하여 읽어온다.
+       
         int fileLen = WaveDataTxt.Length;
 
         if (fileLen < 1)
@@ -253,7 +259,10 @@ public class WaveManager : MonoBehaviour
         waveNow = n;
 
         Wave unitInfo = FindWave(n);
-        
+
+        if (unitInfo == null) { //더 이상 진행할 웨이브가 없는 경우 자체 생성
+            CreateWave();
+        }
         if (unitInfo != null)
         {
             List<WaveUnitInfo> waveUnitInfo = unitInfo.GetWaveUnitInfo();
@@ -427,6 +436,60 @@ public class WaveManager : MonoBehaviour
         {
             appManager.WaveEnd(waveNow);
         }
+    }
+
+    //최종 웨이브 도달 이후 무한으로 웨이브 제작
+    private void CreateWave()
+    {
+        int waveNum; //생성할 웨이브 번호
+        Wave newWave; //웨이브 추가를 위한 Wave 객체
+        List<string> waveEnemyList; //해당 웨이브에 사용할 적 유닛의 명칭과 갯수
+        Wave randomWave = waveInfo[Random.Range(0, waveInfo.Count)]; //랜덤하게 전체 웨이브 중 1개 선택(맵과 길을 한번에 정하기 위함)
+
+        for(int i=0; i<14; i++)
+        {
+            waveNum=waveInfo.Count+i; //현재 만드는 웨이브의 위치
+            int totalUnitNum = waveNum; //현재 웨이브에서 만들 수 있는 적 유닛의 총 수
+            float[] unitPercent = { 0.34f, 0.33f, 0.33f }; //각 유닛 별 생성 점유율(순서대로 삼각/사각/원)
+
+            newWave = new Wave();
+
+            waveEnemyList = new List<string>();
+
+            float adjustPercent = Mathf.Clamp(Random.Range(0, (waveNum-100) * 0.003f),0,0.33f); //각 유닛 별 생성 점유율을 조절하기 위한 확률. 스테이지가 올라갈 수록 삼각형 유닛이 늘어난다.(삼각은 증가, 사각은 유지, 원은 감소)
+            unitPercent[0] += adjustPercent;
+            unitPercent[2] -= adjustPercent;
+
+            foreach(GameObject enemyPref in enemyPrefabs)
+            {
+                string waveEnemyNum = enemyPref + "-";
+                if (waveEnemyNum.Contains("Triangle"))
+                {
+                    waveEnemyNum += Mathf.Ceil(waveNum * unitPercent[0]);
+                }
+                else if (waveEnemyNum.Contains("Triangle"))
+                {
+                    waveEnemyNum += Mathf.Ceil(waveNum * unitPercent[1]);
+                }
+                else if (waveEnemyNum.Contains("Round"))
+                {
+                    waveEnemyNum += Mathf.Ceil(waveNum * unitPercent[2]);
+                }
+                waveEnemyList.Add(waveEnemyNum); //적 유닛별 생성 갯수 추가
+            }
+
+            newWave.SetWave(waveNum, randomWave.GetWaveMapName(), randomWave.GetWavePathInfo(),waveEnemyList); //새로운 웨이브 추가
+        }
+
+        //보스 웨이브 추가
+        waveNum = waveInfo.Count+1; //현재 만드는 웨이브의 위치
+        List<GameObject> bossPrefs = enemyPrefabs.FindAll(x => x.name.Contains("Boss"));
+        string bossType = bossPrefs[Random.Range(0, bossPrefs.Count)].name+"-1"; //보스 관련 오브젝트 중에 1개의 이름을 추가(-1은 1개를 의미)
+
+        newWave = new Wave();
+        waveEnemyList = new List<string>();
+        waveEnemyList.Add(bossType);
+        newWave.SetWave(waveNum, randomWave.GetWaveMapName(), randomWave.GetWavePathInfo(), waveEnemyList); //보스 웨이브 추가
     }
 
     public void GameOver()

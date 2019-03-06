@@ -20,6 +20,7 @@ public class EnemyInfo : MonoBehaviour
     private bool isAbnormalChecked; //상태이상 중복 체크 방지를 위한 boolean값(기본 false)
 
     private GameObject appManager; //죽을때마다 find로 매니저 찾으려면 연산이 많아질거같아서 추가
+    private SoundManager soundManager;
     private WaveManager waveManager; //사망처리 요구
     private TextMesh HP_UI; //체력 잔량 표시를 위한 자식 텍스트 메쉬
     private Sprite EffectSprite; //특수효과 피해를 받았을 경우 나타나는 이미지들을 표시하기 위한 오브젝트
@@ -33,6 +34,7 @@ public class EnemyInfo : MonoBehaviour
         GameObject path=GameObject.Find("path");
         pathList = new List<Vector3>();
         appManager = GameObject.Find("gameManager");
+        soundManager = GameObject.Find("SoundManager").GetComponent<SoundManager>();
         waveManager = GameObject.Find("WaveManager").GetComponent<WaveManager>();
 
         unitHealthText = gameObject.transform.Find("HP_UI").gameObject;
@@ -115,6 +117,7 @@ public class EnemyInfo : MonoBehaviour
     void Dead()
     {
         SwitchWaveStatus(false);
+        soundManager.PlayAudio("EnemyDead");
         gameObject.SetActive(false); //EnemyDead()를 통해 active를 조절하면 시간이 걸려서 총알이 바로 사라지지 않음
     }
 

@@ -14,6 +14,7 @@ public class EnchantButtonClicked : MonoBehaviour
     public void ActiveBlockEnchantInfo(string blockName)
     {
         targetObj.SetActive(true);
+        Debug.Log(targetObj.activeSelf);
         blockEnchantUI.SetBlockInfo(blockName); //BlockEnchantInformation 내에 blockName에 해당하는 내용을 보여주도록 설정
     }
 

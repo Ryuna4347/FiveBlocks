@@ -1,58 +1,58 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEditor;
+﻿//using System.Collections;
+//using System.Collections.Generic;
+//using UnityEngine;
+//using UnityEditor;
 
-public class MeshMaker : MonoBehaviour
-{
-    public List<Vector3> vert = new List<Vector3>();
-    public List<int> triangles = new List<int>();
-    private Mesh mesh;
+//public class MeshMaker : MonoBehaviour
+//{
+//    public List<Vector3> vert = new List<Vector3>();
+//    public List<int> triangles = new List<int>();
+//    private Mesh mesh;
 
-    private void Start()
-    {
-        MakePlaneMeshes();
-    }
+//    private void Start()
+//    {
+//        MakePlaneMeshes();
+//    }
 
-    private void MakePlaneMeshes()
-    {
-        float edgeLen = 0.5125f;
+//    private void MakePlaneMeshes()
+//    {
+//        float edgeLen = 0.5125f;
 
-        Mesh plane = new Mesh();
-        plane.name = "Round";
+//        Mesh plane = new Mesh();
+//        plane.name = "Round";
 
-        Vector3[] vertices = new Vector3[4];
+//        Vector3[] vertices = new Vector3[4];
 
-        vertices[0] = new Vector3(edgeLen / 2, edgeLen / 2, 0.5f);
-        vertices[1] = new Vector3(edgeLen / 2, -edgeLen / 2, 0.5f);
-        vertices[2] = new Vector3(-edgeLen / 2, -edgeLen / 2, 0.5f);
-        vertices[3] = new Vector3(-edgeLen / 2, edgeLen / 2, 0.5f);
+//        vertices[0] = new Vector3(edgeLen / 2, edgeLen / 2, 0.5f);
+//        vertices[1] = new Vector3(edgeLen / 2, -edgeLen / 2, 0.5f);
+//        vertices[2] = new Vector3(-edgeLen / 2, -edgeLen / 2, 0.5f);
+//        vertices[3] = new Vector3(-edgeLen / 2, edgeLen / 2, 0.5f);
 
-        int[] triangles = new int[6];
+//        int[] triangles = new int[6];
 
-        triangles[0] = 0;
-        triangles[1] = 2;
-        triangles[2] = 3;
-        triangles[3] = 0;
-        triangles[4] = 1;
-        triangles[5] = 2;
+//        triangles[0] = 0;
+//        triangles[1] = 2;
+//        triangles[2] = 3;
+//        triangles[3] = 0;
+//        triangles[4] = 1;
+//        triangles[5] = 2;
 
-        plane.vertices = vertices;
-        plane.triangles = triangles;
-        plane.uv = new Vector2[4];
+//        plane.vertices = vertices;
+//        plane.triangles = triangles;
+//        plane.uv = new Vector2[4];
 
-        plane.RecalculateNormals();
+//        plane.RecalculateNormals();
 
-        var savePath = "Assets/" + "Enemy_Rect.asset";
-        AssetDatabase.CreateAsset(plane, savePath);
+//        var savePath = "Assets/" + "Enemy_Rect.asset";
+//        AssetDatabase.CreateAsset(plane, savePath);
 
-        for (int i = 0; i < 1; i++)
-        {
-            GameObject meshObj = GameObject.Find("Enemy_Rect_" + i);
+//        for (int i = 0; i < 1; i++)
+//        {
+//            GameObject meshObj = GameObject.Find("Enemy_Rect_" + i);
 
-            meshObj.GetComponent<MeshFilter>().mesh = plane;
-        }
-    }
+//            meshObj.GetComponent<MeshFilter>().mesh = plane;
+//        }
+//    }
 
     //원 만들기 용
     //private void MakePlaneMeshes()
@@ -104,4 +104,4 @@ public class MeshMaker : MonoBehaviour
     //        meshObj.GetComponent<MeshFilter>().mesh = plane;
     //    }
     //}
-}
+//}

@@ -12,10 +12,11 @@ public class AppManager : MonoBehaviour
     private bool yellowAlreadyInstalled; //지원블럭(노란 블럭)은 전체 블럭 중 1개만 사용가능하므로 현재 설치여부를 나타내는 변수
 
     public GameObject blocksParent; //블럭유닛을 모아둘 상위 빈 오브젝트
-    public SoundManager audio; //게임진행 시 나올 소리를 위한 오디오매니저
+    private SoundManager audio; //게임진행 시 나올 소리를 위한 오디오매니저
     public WaveManager waveManager;
     public EnchantManager enchantManager;
     public GameObject gameOverUI; //게임 종료시 뜨는 UI
+    public GameObject pauseUI;
     public GameObject waveStartBtn; //웨이브 시작 버튼
     public GameObject clearWaveNotice; //웨이브 클리어 성공에 따른 안내문
     public Text moneyText; //현재 소지금을 표시
@@ -30,6 +31,13 @@ public class AppManager : MonoBehaviour
 
     private int money; //블럭 생성 및 강화에 사용되는 돈(적 유닛 제거시 지급)
     private int createBlockCost; //블럭 생성에 필요한 돈(누적해서 올라감)
+
+    private void Awake()
+    {
+        Screen.SetResolution(1080, 1920, true);
+        audio = GameObject.Find("SoundManager").GetComponent<SoundManager>(); //사운드매니저가 타이틀 씬에서 넘어오기 때문에 동적으로 추가해줘야 한다.
+        audio.gameObject.transform.parent = transform.parent; //사운드매니저가 타이틀 씬에서 넘어오기 때문에 부모가 정해지지 않았기 때문에 매니저 그룹오브젝트를 부모로 설정한다.
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -48,6 +56,7 @@ public class AppManager : MonoBehaviour
         if (isFirstGame)
         {
             tutorialUI.SetActive(true);
+            PlayerPrefs.SetInt("isFirstGame", 1); //최초 1번만 자동으로 튜토리얼이 뜬다.
         }
     }
     
@@ -379,6 +388,13 @@ public class AppManager : MonoBehaviour
         waveStartBtn.SetActive(true);
     }
 
+    //게임의 일시정지/재개에 관여하는 함수
+    public void GamePause(bool val)
+    {
+        Time.timeScale = (val == true) ? 0 : 1;
+        pauseUI.SetActive(val);
+    }
+
     public void GameSpeedChange()
     {
         Time.timeScale *= 3;
@@ -395,7 +411,9 @@ public class AppManager : MonoBehaviour
         enchantManager.SetDefault();
         SetDefault();
         Time.timeScale = 1.0f;
-        speedControlBtn.transform.Find("SpeedText").gameObject.GetComponent<Text>().text = "1";
+        gameSpeedText.text = "1";
+        if (speedControlBtn.activeSelf == true) { speedControlBtn.SetActive(false); }
+        waveStartBtn.SetActive(true);
 
         waveManager.ReadyForWave(1);
     }
@@ -416,6 +434,7 @@ public class AppManager : MonoBehaviour
             foreach (GameObject block in usedBlocks)
             {
                 waitBlocks.Add(block);
+                block.SetActive(false);
             }
         }
         
@@ -424,7 +443,7 @@ public class AppManager : MonoBehaviour
 
         yellowAlreadyInstalled = false;
         money = 5; //소지금 및 블럭 생성 요구 비용 초기화
-        createBlockCost = 5;
+        createBlockCost = 0;
         moneyText.text = money.ToString();
         requiredMoneyText.text = createBlockCost.ToString();
 
