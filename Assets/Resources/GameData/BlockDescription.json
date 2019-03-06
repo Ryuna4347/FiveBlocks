@@ -1,0 +1,5 @@
+﻿{"blockName":"Red", "Description" : "적이 탄환에 맞을 시\n주변 적들에게\n확산피해를 입힙니다.", "SpecialEffectName" : "확산피해"}
+{"blockName":"Blue", "Description" : "적이 탄환에 맞을 시\n2초간 이동속도가 느려집니다.", "SpecialEffectName" : "빙결효과"}
+{"blockName":"Purple", "Description" : "특별한 효과는 없지만\n다른 블럭보다\n피해를 더 입힐 수 있습니다.", "SpecialEffectName" : ""}
+{"blockName":"Grey", "Description" : "적이 탄환에 맞을 시\n일정 확률로 0.5초간\n움직이지 못하게 합니다.", "SpecialEffectName" : "포박효과"}
+{"blockName":"Yellow", "Description" : "자신의 상하좌우에 위치한\n블럭들의 공격력을\n향상시킵니다.", "SpecialEffectName" : "공격강화"}
