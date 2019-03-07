@@ -138,6 +138,7 @@ public class EnemyInfo : MonoBehaviour
         }
     }
 
+    //unitOrder=>textMesh가 뚫고 나오지 않도록
     public void SetEnemyInformation(int heal, GameObject path)
     { //적 유닛의 정보를 웨이브에 맞게 전달받는다.
         health = heal;
