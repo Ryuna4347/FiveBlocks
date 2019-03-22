@@ -4,13 +4,20 @@ using UnityEngine;
 using System.IO;
 using UnityEngine.UI;
 
+/*
+ * JSON에 있는 Wave에 대한 데이터를 불러들이기 위한 임시 클래스
+ */
+public class WaveJSON 
+{
+    public string[] waves;
+}
+
 public class WaveInfoJson
 {//json파일을 읽어서 defunit에 넣기 전에 중간과정(유니티의 xml 파서가 기본형밖에 지원 안 해주기 때문)
     //스테이지별 모든 유닛의 정보가 담겨있다.
     public int waveNow; //현재 웨이브
     public string waveMapName; //웨이브가 진행 될 맵이름(맵이름이 다를 경우 gameManager에 신 이동 요구)
     public string pathInfo; //적 오브젝트들이 이동할 길의 이름
-
     public string[] unitName;
     public int[] numOfUnit;
 }
@@ -55,7 +62,6 @@ class Wave //각 웨이브의 정보를 소유하는 클래스
 
         foreach (string enemyName in EnemyList)
         { //웨이브 내에 유닛 정보(유닛이름, 숫자) 저장
-            Debug.Log(enemyName);
 
             string splitEnemyName = enemyName.Split('-')[0]; //enemyName의 구성 적군이름(Enemy_OOO)-적유닛 갯수
             int splitEnemyNum = int.Parse(enemyName.Split('-')[1]);
@@ -192,22 +198,19 @@ public class WaveManager : MonoBehaviour
 
     private void LoadWaveData()
     {
-        string[] WaveDataTxt = Resources.Load<TextAsset>("GameData/Wave").text.Split('\n'); //웨이브 정보를 담은 텍스트 파일을 지정하여 읽어온다.
-       
-        int fileLen = WaveDataTxt.Length;
+        string WaveDataTxt = Resources.Load<TextAsset>("GameData/Wave").text; //웨이브 정보를 담은 텍스트 파일을 지정하여 읽어온다.
 
-        if (fileLen < 1)
+        WaveJSON waveJSON = JsonUtility.FromJson<WaveJSON>(WaveDataTxt);
+        
+        int len = waveJSON.waves.Length;
+
+        if (len < 1)
         {  //저장된 정보가 있어야 불러올 수 있다.
             return;
         }
-        for (int i = 0; i < fileLen; i++)
+        for (int i = 0; i < len; i++)
         {
-            if (WaveDataTxt[i] == "")
-            { //빈칸이었을 경우 제외(2중엔터시 나올 수 있으므로 미리 제거)
-                continue;
-            }
-
-            WaveInfoJson tempStageInfo = JsonUtility.FromJson<WaveInfoJson>(WaveDataTxt[i]); //1줄씩 문자열을 WaveInfoJson클래스로 변환한다.
+            WaveInfoJson tempStageInfo = JsonUtility.FromJson<WaveInfoJson>(waveJSON.waves[i].Replace("'","\"")); //1줄씩 문자열을 WaveInfoJson클래스로 변환한다.
             
             List<string> waveEnemyList = new List<string>(); //웨이브에 필요한 적 오브젝트의 정보를 담기위한 리스트
 

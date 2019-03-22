@@ -4,7 +4,17 @@ using UnityEngine;
 using System.IO; //json을 읽기 위함
 using UnityEngine.UI;
 
-public class EnchantJson
+/*
+ * 블럭에 대한 정보를 담은 JSON으로서
+ * BlockEnchantUI.cs와 EnchantManager.cs에서 사용될 블럭의 내용(설명 및 데미지/강화비용)을 담고있다.
+ */
+public class BlockJSON
+{
+    public string[] blockDesc;
+    public string[] blockEnchant;
+}
+
+public class EnchantJSON
 {
     public string blockName;
     public int[] blockAttEnchant;
@@ -116,13 +126,13 @@ public class EnchantManager : MonoBehaviour
     List<EnchantInfo> allEnchant;
     private AppManager appManager;
     public List<GameObject> enchantBtnList;
+    private BlockJSON blockJSON; //BlockEnchantUI에서 블럭 관련 설명을 위해서 별도의 변수로 가지고 있는다.
 
     private void Awake()
     {
         allEnchant = new List<EnchantInfo>();
         appManager = GameObject.Find("gameManager").GetComponent<AppManager>();
         LoadEnchantData();
-
     }
 
     private void Start()
@@ -156,42 +166,52 @@ public class EnchantManager : MonoBehaviour
         }
     }
 
+    public BlockJSON GetBlockJSON()
+    {
+        if (blockJSON == null)
+        { //혹시 EnchantManager보다 이게 더 먼저 실행된다면 null일 수도 있으므로
+            LoadEnchantData();
+        }
+        return blockJSON;
+    }
+
     private void LoadEnchantData()
     {
-        string[] EnchantDataTxt = Resources.Load<TextAsset>("GameData/Enchant").text.Split('\n');
-
-        int fileLen = EnchantDataTxt.Length;
-
-        if (fileLen < 1)
-        {  //저장된 정보가 있어야 불러옴
+        if (blockJSON != null)
+        { //혹시 blockEnchantUI와 겹치는 경우를 대비해서 이중 호출이 되지 않도록
             return;
         }
-        for (int i = 0; i < fileLen; i++)
+
+        string EnchantDataTxt = Resources.Load<TextAsset>("GameData/Enchant").text;
+
+        blockJSON = JsonUtility.FromJson<BlockJSON>(EnchantDataTxt);
+
+        int len = blockJSON.blockEnchant.Length;
+
+        if (len < 1)
+        {  //저장된 정보가 있어야 불러올 수 있다.
+            return;
+        }
+        for (int i = 0; i < len; i++)
         {
-            if (EnchantDataTxt[i] == "")
-            { //빈칸이었을 경우 제외(2중엔터시 나올 수 있음)
-                continue;
-            }
-
-            EnchantJson tempEnchatInfo = JsonUtility.FromJson<EnchantJson>(EnchantDataTxt[i]);
-
             EnchantInfo enchant = new EnchantInfo();
 
-            enchant.enchantBlockName = tempEnchatInfo.blockName;
-            foreach (int value in tempEnchatInfo.blockAttEnchant) //강화로 인한 공격력 정보 추가
+            EnchantJSON tempEnchantInfo=JsonUtility.FromJson<EnchantJSON>(blockJSON.blockEnchant[i].Replace("'","\""));
+
+            enchant.enchantBlockName = tempEnchantInfo.blockName;
+            foreach (int value in tempEnchantInfo.blockAttEnchant) //강화로 인한 공격력 정보 추가
             {
                 enchant.AddAttInfo(value);
             }
-            foreach (float value in tempEnchatInfo.blockSpecialEffect) //강화로 인한 특수능력 정보 추가
+            foreach (float value in tempEnchantInfo.blockSpecialEffect) //강화로 인한 특수능력 정보 추가
             {
                 enchant.AddSpecialInfo(value);
             }
-            foreach (int value in tempEnchatInfo.blockRequiredMoney) 
+            foreach (int value in tempEnchantInfo.blockRequiredMoney)
             {
                 enchant.AddRequiredMoney(value);
             }
-
-
+            
             allEnchant.Add(enchant);
         }
     }

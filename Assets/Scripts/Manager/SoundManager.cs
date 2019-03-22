@@ -12,6 +12,9 @@ public class SoundManager : MonoBehaviour
     private AudioSource audio;
     private bool audioOn; //오디오 on/off에 대한 설정값
     [SerializeField] private List<Sprite> audioImages; //오디오 on/off에 대한 이미지
+    private Image audioImage; //오디오 조절 버튼의 이미지
+
+    public Image AudioImage { get { return audioImage; } set { audioImage = value; } }
 
     private void Start()
     {
@@ -27,12 +30,12 @@ public class SoundManager : MonoBehaviour
         if (audioOn)
         {
             audioOn = false;
-            GameObject.Find("AudioImage").GetComponent<Image>().sprite = audioImages[1]; //오디오 off에 대한 이미지를 2번째 값으로 넣을것
+            audioImage.sprite = audioImages[1]; //오디오 off에 대한 이미지를 2번째 값으로 넣을것
         }
         else
         {
             audioOn = true;
-            GameObject.Find("AudioImage").GetComponent<Image>().sprite = audioImages[0]; //오디오 on에 대한 이미지를 1번째 값으로 넣을것
+            audioImage.sprite = audioImages[0]; //오디오 on에 대한 이미지를 1번째 값으로 넣을것
         }
     }
 

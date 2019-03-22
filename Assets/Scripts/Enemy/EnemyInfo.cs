@@ -23,7 +23,7 @@ public class EnemyInfo : MonoBehaviour
     private SoundManager soundManager;
     private WaveManager waveManager; //사망처리 요구
     private TextMesh HP_UI; //체력 잔량 표시를 위한 자식 텍스트 메쉬
-    private Sprite EffectSprite; //특수효과 피해를 받았을 경우 나타나는 이미지들을 표시하기 위한 오브젝트
+    private SpriteRenderer effectSprite; //특수효과 피해를 받았을 경우 나타나는 이미지들을 표시하기 위한 오브젝트
 
     private GameObject unitHealthText; //체력 숫자 표시를 위해서 사용하는 텍스트 UI
 
@@ -41,6 +41,7 @@ public class EnemyInfo : MonoBehaviour
         isWaveStart = false;
         
         abnormal_status = "";
+        effectSprite = transform.Find("EffectSprite").GetComponent<SpriteRenderer>();
         HP_UI = transform.Find("HP_UI").gameObject.GetComponent<TextMesh>();
         speedNow = speed;
     }
@@ -90,8 +91,10 @@ public class EnemyInfo : MonoBehaviour
         if (health <= 0)
         {
             health = 0;
+            //해당 오브젝트를 바로 재사용할 시 activeSelf가 순식간에 바뀌어 bullet의 특수효과 적용가능여부를 조사할 때
+            //true=>true로 인식된다. 따라서 바로 재사용 되지 않도록 방지하기 위해서 죽음처리를 먼저한다.
+            waveManager.EnemyDead(gameObject); 
             Dead();
-            waveManager.EnemyDead(gameObject);
         }
     }
 
@@ -100,10 +103,13 @@ public class EnemyInfo : MonoBehaviour
         if (abnormal_Type == "slow")
         {
             speedNow *= (1 - slowPercent);
+            Debug.Log(speedNow);
+            effectSprite.sprite = effects[0];
         }
         else if(abnormal_Type=="pause")
         {
             speedNow = 0f;
+            effectSprite.sprite = effects[1];
         }
         Invoke("ReturnNormalStatus", time);
     }
@@ -111,6 +117,7 @@ public class EnemyInfo : MonoBehaviour
     private void ReturnNormalStatus()
     {
         speedNow = speed;
+        effectSprite.sprite = null;
     }
 
 
@@ -118,6 +125,8 @@ public class EnemyInfo : MonoBehaviour
     {
         SwitchWaveStatus(false);
         soundManager.PlayAudio("EnemyDead");
+        CancelInvoke("ReturnNormalStatus"); //invoke가 걸려있으면 취소
+        effectSprite.sprite = null;
         gameObject.SetActive(false); //EnemyDead()를 통해 active를 조절하면 시간이 걸려서 총알이 바로 사라지지 않음
     }
 

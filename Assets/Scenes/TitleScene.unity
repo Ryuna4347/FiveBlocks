@@ -124,6 +124,7 @@ GameObject:
   - component: {fileID: 109548638}
   - component: {fileID: 109548637}
   - component: {fileID: 109548636}
+  - component: {fileID: 109548640}
   m_Layer: 5
   m_Name: Audio
   m_TagString: Untagged
@@ -170,18 +171,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 109548637}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1896132299}
-        m_MethodName: AudioOnOff
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &109548637
@@ -241,6 +231,18 @@ RectTransform:
   m_AnchoredPosition: {x: 220, y: 0}
   m_SizeDelta: {x: 160, y: 160}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &109548640
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 109548635}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6a74179127ee6b4cbc42ff0f3f423a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &248446657
 GameObject:
   m_ObjectHideFlags: 0
@@ -861,13 +863,14 @@ LineRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Positions:
-  - {x: -2.5, y: 4, z: 0}
-  - {x: -2.5, y: -4, z: 0}
-  - {x: 2.5, y: -4, z: 0}
-  - {x: 2.5, y: 4, z: 0}
+  - {x: -2.5, y: 4.5, z: 0}
+  - {x: -2.5, y: -4.2, z: 0}
+  - {x: 2.5, y: -4.2, z: 0}
+  - {x: 2.5, y: 4.5, z: 0}
+  - {x: -2.5, y: 4.5, z: 0}
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 0.015
+    widthMultiplier: 0.03
     widthCurve:
       serializedVersion: 2
       m_Curve:
@@ -992,7 +995,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1001186815}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1860871140}
+        m_MethodName: ShowAchievements
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1001186815
@@ -1140,7 +1154,7 @@ GameObject:
   - component: {fileID: 1579559044}
   - component: {fileID: 1579559043}
   m_Layer: 5
-  m_Name: Text
+  m_Name: PlayText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1272,26 +1286,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9107aee0ced90422da95f0b31680501f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  key: ef69ee4a-51a6-4c7a-8d63-906020a16c2c
-  saveEvent: 1
-  loadEvent: 1
-  settings:
-    _location: 0
-    path: SaveData.es3
-    encryptionType: 0
-    encryptionPassword: password
-    directory: 0
-    format: 0
-    bufferSize: 2048
-    typeChecking: 1
-    safeReflection: 1
-    memberReferenceMode: 0
-    referenceMode: 2
-    assemblyNames:
-    - Assembly-CSharp
-    - Assembly-CSharp-firstpass
-    showAdvancedSettings: 0
-  autoSaves: []
 --- !u!114 &1598448737
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1304,148 +1298,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a83408fcc9044c4fbc7e5d09a369ab6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  openReferences: 0
-  openPrefabs: 0
-  idRef:
-    _Keys: abd4620bc561ba589cd1ede1f22ac11adfd99a1600fcee0aaf34300aee6fca7670b33e7075d3ea61a1cc9c0fa4d99c0c51b8e3c2134060583d9244056e3ab92dfa89ae5996ce6f4d3c04493366025076d03cb8358b08624feb6852f7e70f2f247a36e9e4d4bc89202730fe178993bf3f1d44cacd7d7c5e01ecfe44fe2166354bcc92526213cbb413b2980d5a094ac65757ecebd426025d096c142f2cfe77bd7165494bf7415c2b17f9dd80158ab90b36c59ca8347a612431ef5bce28fbe1122a567ff5c0ffce164ce7fc24b77eb8814d0af86862ce89f6396e7d07e58d021c260f5494f65134c96c4d0ae3887a235037267fce0cb68b06208ad1ad7e38cf401b210158d6db74043d3d2b502693804c4ad330f4f32ed723645bb47f23e148a41c63639d57fdc9e3661d802882c6f6e70fb819d01ddb019a130074fd3989cb9b197dcdfd149392454c11b83678413c140b163e2a23816f4f64014ea88e39e31018e3bef907072c844aa2e3f4dc34dd2d3ca10eb1370a40650d8166e91dc52c7a2e59e16a7cbdf2fb42c475819e7b722f207ce42e4794482223230685a043668531a2dd7bac8c4f8152136f7495bec6920b9609a1e1fe329a5f048ea0c4789b852a054cbea71123522c9e24a5fc43481d1698910939c5a4326fbee34fe410ba357716b565f47ac6e273b6747e22d896a2448e75a2f65b4110611a4f64f572363c1def2e12f8ad11902d526a7dafdaf06954879372855c2cd22ba403da2b61ed017fc99eeef856640d6006d047c5bebf3b0ab8b87c06a9c2793e5de79db1ebbc8e3e6cfde63b0170fd2286118c2c7497e91bc7d073a870fad674192d9b6ec65c743d5e8530bba6770b28b69f8cba4ea6b23aff8279bb2f37ae66d45b22d4d48f5c2962b17405375a3e50c44af1d16e1b2540e0d67043e3b90e6934978f0299dffd45054aa862cd53fc593e357f86d77f2a107e9c0b02e1e7b91b40212e5f34c3481a4f3c33ea88a7031d216240ba95204347d413e8ab2b98a36486675a168e981813c32e5590a5166d177a5fe5b4b89e946d419d52b633d8f54a66319bdfb3137078b6d30899344d5d42a7d1268b7e571d240338a8d41531b864db6008294eb335671192011a6904c70cc0efa3fa007e3741b23f238495649c7ae65c412bbacc0c59f9718514a9fd4408ffb59405d4b3655a9849db8ed7b9fd530a79caf33d63ae0c1cb60b8dfbb31551c519c926f7240d34e2ffd90c411a3f13d94644bff8b5c80653533112da47434082d11a024f309e1bb954f0e9c5b5df1476be5f2fb315bc4ea4b26ab64f63c06ae2419d196152d21ccb000322922e1f4cfeba61774ed64355f6c7b13a956c7c1ceba534f8ac078a376e83054ce7201f75806ca4825cf88a039ccf29087823f105ad13cb7661fab853ce9f7add6f73ca40ce6ed3a4fe20583bf9c1545400fa5e524176ef9dde49054ee76ed21ebf2a0f6b8638e43f1f1bcd06566f66e36b82e11ec0f542bb1a0a7d4fc6bb4c2eafda791a072984ad0d07d85b
-    _Values:
-    - {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-    - {fileID: 1980459831, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-    - {fileID: -619905303, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-    - {fileID: 1301386320, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-    - {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-    - {fileID: 1077351063, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-    - {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-    - {fileID: 1260049674}
-    - {fileID: 1865776790}
-    - {fileID: 1260049677}
-    - {fileID: 1260049676}
-    - {fileID: 1260049675}
-    - {fileID: 1865776794}
-    - {fileID: 1865776793}
-    - {fileID: 1865776792}
-    - {fileID: 1865776791}
-    - {fileID: 1619485868}
-    - {fileID: 1619485871}
-    - {fileID: 1619485870}
-    - {fileID: 1619485869}
-    - {fileID: 352294384}
-    - {fileID: 0}
-    - {fileID: 352294388}
-    - {fileID: 352294387}
-    - {fileID: 0}
-    - {fileID: 352294386}
-    - {fileID: 352294385}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 248446659}
-    - {fileID: 248446658}
-    - {fileID: 248446657}
-    - {fileID: 248446660}
-    - {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-    - {fileID: 10100, guid: 0000000000000000e000000000000000, type: 0}
-    - {fileID: 10904, guid: 0000000000000000f000000000000000, type: 0}
-    - {fileID: 2800000, guid: 942fae65ff993894ab83401645e5aa2e, type: 3}
-    - {fileID: 2800000, guid: b9649b83896049c4fbb6c403ee431b36, type: 3}
-    - {fileID: 496879788}
-    - {fileID: 9100000, guid: e22d48819c5fa904f91243a72788e415, type: 2}
-    - {fileID: 7400000, guid: 5f49b786fcdb30e4aa73097b989601f1, type: 2}
-    - {fileID: 2094370784}
-    - {fileID: 496879785}
-    - {fileID: 496879787}
-    - {fileID: 496879786}
-    - {fileID: 2094370783}
-    - {fileID: 912525797}
-    - {fileID: 912525800}
-    - {fileID: 912525799}
-    - {fileID: 912525798}
-    - {fileID: 2094370780}
-    - {fileID: 2094370782}
-    - {fileID: 2094370781}
-    - {fileID: 109548635}
-    - {fileID: 109548639}
-    - {fileID: 109548638}
-    - {fileID: 109548637}
-    - {fileID: 109548636}
-    - {fileID: 778736429}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 778736428}
-    - {fileID: 778736432}
-    - {fileID: 778736431}
-    - {fileID: 778736430}
-    - {fileID: 1579559041}
-    - {fileID: 1579559042}
-    - {fileID: 1579559046}
-    - {fileID: 1579559045}
-    - {fileID: 1579559044}
-    - {fileID: 1579559043}
-    - {fileID: 2085829667}
-    - {fileID: 2085829666}
-    - {fileID: 2085829669}
-    - {fileID: 2085829668}
-    - {fileID: 2800000, guid: 9f2168c1ba056984dad18f2c17b88779, type: 3}
-    - {fileID: 12800000, guid: e43a9d0c5f17f4ca0a0496df70c569e4, type: 3}
-    - {fileID: 2800000, guid: e43a9d0c5f17f4ca0a0496df70c569e4, type: 3}
-    - {fileID: 2100000, guid: e43a9d0c5f17f4ca0a0496df70c569e4, type: 3}
-    - {fileID: 2800000, guid: 7f1ed0e4235e40847b960a6337ae2739, type: 3}
-    - {fileID: 21300000, guid: 7f1ed0e4235e40847b960a6337ae2739, type: 3}
-    - {fileID: 2800000, guid: 2aef6fee2dd35ab4daa2601adcdc7d22, type: 3}
-    - {fileID: 21300000, guid: 2aef6fee2dd35ab4daa2601adcdc7d22, type: 3}
-    - {fileID: 21300000, guid: b9649b83896049c4fbb6c403ee431b36, type: 3}
-    - {fileID: 21300000, guid: 942fae65ff993894ab83401645e5aa2e, type: 3}
-    - {fileID: 21300000, guid: 9f2168c1ba056984dad18f2c17b88779, type: 3}
-    - {fileID: 1738115148}
-    - {fileID: 1738115147}
-    - {fileID: 1738115146}
-    - {fileID: 1738115145}
-    - {fileID: 6, guid: 0000000000000000f000000000000000, type: 0}
-    - {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
-    - {fileID: 21300000, guid: d4a30b67138e068469d1b3710d247cd4, type: 3}
-    - {fileID: 2800000, guid: d4a30b67138e068469d1b3710d247cd4, type: 3}
-    - {fileID: 0}
-    - {fileID: 1001186817}
-    - {fileID: 1001186816}
-    - {fileID: 1001186815}
-    - {fileID: 1001186814}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 1741029390}
-    - {fileID: 1001186813}
-    - {fileID: 1741029393}
-    - {fileID: 1741029392}
-    - {fileID: 1741029391}
-    - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
-    - {fileID: 926518445}
-    - {fileID: 926518444}
-    - {fileID: 926518443}
-    - {fileID: 778736433}
-    - {fileID: 11500000, guid: ff64194bcc81aab42a691c11fa1816c6, type: 3}
-    - {fileID: 1896132300}
-    - {fileID: 1896132297}
-    - {fileID: 1896132299}
-    - {fileID: 8300000, guid: f1bb7f130aca54db7a1b409a8f88b841, type: 3}
-    - {fileID: 8300000, guid: 8bbdd39c16ad2de43adde5e39b5d6df7, type: 3}
-    - {fileID: 8300000, guid: 1552692ea72704a318dd896eedb1b81a, type: 3}
-    - {fileID: 8300000, guid: 8e5f5a200c7656a4e8cb4819c3553324, type: 3}
-    - {fileID: 11500000, guid: 023945ace4855254cb3d325cf505b032, type: 3}
-    - {fileID: 1896132298}
-    - {fileID: 21300000, guid: 9088e6e5614966f4e854861618ddf66c, type: 3}
-    - {fileID: 2800000, guid: 9088e6e5614966f4e854861618ddf66c, type: 3}
-    - {fileID: 822765226}
-    - {fileID: 822765229}
-    - {fileID: 822765228}
-    - {fileID: 822765227}
-    - {fileID: 12800000, guid: e0f76c3fde2e76a4fb38ffd685a686e2, type: 3}
-    - {fileID: 2800000, guid: e0f76c3fde2e76a4fb38ffd685a686e2, type: 3}
-    - {fileID: 2100000, guid: e0f76c3fde2e76a4fb38ffd685a686e2, type: 3}
-    - {fileID: 2062896770}
-    - {fileID: 2062896773}
-    - {fileID: 2062896772}
-    - {fileID: 2062896771}
-  prefabs: []
 --- !u!114 &1598448738
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1458,12 +1310,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8714d999c5ae749538494c1347e5a3ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  message: 'The Easy Save 3 Manager is required in any scenes which use Easy Save,
-    and is automatically added to your scene when you enter Play mode.
-
-
-    To stop this from automatically being added to your scene, go to ''Window > Easy
-    Save 3 > Settings'' and deselect the ''Auto Add Manager to Scene'' checkbox.'
 --- !u!4 &1598448739
 Transform:
   m_ObjectHideFlags: 0
@@ -1692,6 +1538,49 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1741029390}
   m_CullTransparentMesh: 0
+--- !u!1 &1860871139
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1860871141}
+  - component: {fileID: 1860871140}
+  m_Layer: 0
+  m_Name: TotalManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1860871140
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1860871139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80166cf26f90991478da9744e6858007, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1860871141
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1860871139}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.624117, y: -0.016469633, z: 0.9472656}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1865776790
 GameObject:
   m_ObjectHideFlags: 0
@@ -1704,6 +1593,7 @@ GameObject:
   - component: {fileID: 1865776793}
   - component: {fileID: 1865776792}
   - component: {fileID: 1865776791}
+  - component: {fileID: 1865776795}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1795,6 +1685,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!225 &1865776795
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1865776790}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1896132297
 GameObject:
   m_ObjectHideFlags: 0
@@ -2215,6 +2117,17 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2094370783}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1860871140}
+        m_MethodName: ShowLeaderBoard
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null

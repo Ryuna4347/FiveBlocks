@@ -97,6 +97,7 @@ public class BlockInfo : MonoBehaviour
 
     public void EnhancedBySupport(float mag)
     {
+        Debug.Log(gameObject.name);
         enhanceDmgBySupport = mag;
         blockAnim.SetInteger("enhanced", 1);
     }
@@ -122,9 +123,8 @@ public class BlockInfo : MonoBehaviour
             yield return new WaitForSeconds(shootCoolTime);
         }
     }
-
-    //enemy 유닛이 사망시 현재 사용중인 모든 block에게 요청하여 
-    //현재 사격중인 target이 사망한 enemy일 경우 하위 bullet을 전부 off로 돌림
+    
+    ///<summary>하위 bullet을 전부 off로 돌림(특정 enemy 사망시 실행)</summary>
     public void CheckTarget(GameObject enemy)
     {
         foreach (Transform bullet in bulletListObj)
