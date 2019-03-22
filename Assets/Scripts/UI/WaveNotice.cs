@@ -44,14 +44,13 @@ public class WaveNotice : MonoBehaviour
             imageColor.a += 0.02f;
             textColor.a += 0.02f;
             
-
             gameObject.GetComponent<Image>().color = imageColor;
             controlChildNow.GetComponent<Text>().color = textColor;
 
-            if (imageColor.a >= 1)
+            if (imageColor.a >= 1f)
             {
                 isFadingIn = false;
-                yield return new WaitForSeconds(1f);
+                yield return new WaitForSeconds(0.5f);
             }
             else
             {
@@ -64,7 +63,7 @@ public class WaveNotice : MonoBehaviour
             Color textColor = controlChildNow.GetComponent<Text>().color;
 
             imageColor.a -= 0.02f;
-            textColor.a -= 0.02f;
+            textColor.a -= 0.03f;
 
             gameObject.GetComponent<Image>().color = imageColor;
             controlChildNow.GetComponent<Text>().color = textColor;

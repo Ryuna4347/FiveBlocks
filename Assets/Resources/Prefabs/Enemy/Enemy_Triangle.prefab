@@ -266,7 +266,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pathName: 
   speed: 1.15
-  effects: []
+  effects:
+  - {fileID: 21300000, guid: 765e8112793aecc4abc3e559fc11f5b9, type: 3}
+  - {fileID: 21300000, guid: a8b3910846ca43f47ac64332bd46b4f4, type: 3}
   isWaveStart: 0
 --- !u!61 &3149652612422725122
 BoxCollider2D:

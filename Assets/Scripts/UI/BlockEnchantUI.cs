@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class BlockDescJSON{
     public string blockName;
-    public string Description;
+    public string[] Description;
     public string SpecialEffectName;
 }
 
@@ -42,22 +42,22 @@ public class BlockEnchantUI : MonoBehaviour
         enchantManager = GameObject.Find("EnchantManager").GetComponent<EnchantManager>();
         blockDescList = new List<BlockDescJSON>();
         LoadBlockDescription();
-        transform.parent.gameObject.SetActive(false); //UI위에 외곽 터치 방지 오브젝트까지 꺼줘야한다.
+        gameObject.SetActive(false); 
     }
 
     private void LoadBlockDescription()
     {
-        string[] blockDescText = Resources.Load<TextAsset>("GameData/BlockDescription").text.Split('\n');
+        BlockJSON blockJSON=enchantManager.GetBlockJSON();
 
-        int fileLen = blockDescText.Length;
+        int len = blockJSON.blockEnchant.Length;
 
-        if (fileLen < 1)
+        if (len < 1)
         {  //저장된 정보가 있어야 불러옴
             return;
         }
-        for (int i = 0; i < fileLen; i++)
+        for (int i = 0; i < len; i++)
         {
-            BlockDescJSON blockDesc = JsonUtility.FromJson<BlockDescJSON>(blockDescText[i]);
+            BlockDescJSON blockDesc = JsonUtility.FromJson<BlockDescJSON>(blockJSON.blockDesc[i].Replace("'","\""));
             blockDescList.Add(blockDesc);
         }
     }
@@ -66,8 +66,15 @@ public class BlockEnchantUI : MonoBehaviour
         BlockDescJSON blockDesc = blockDescList.Find(x => blockName.Contains(x.blockName));
         blockImage.sprite = blockImageList.Find(x => x.name.Contains(blockName));
         blockNameText.text = blockDesc.blockName;
-
-        blockDescriptionText.text=blockDesc.Description;
+        
+        foreach(string desc in blockDesc.Description)
+        {
+            blockDescriptionText.text += desc;
+            if (desc != blockDesc.Description[blockDesc.Description.Length - 1])
+            {//마지막 문장이 아니라면
+                blockDescriptionText.text += "\n";//엔터 추가
+            }
+        }
 
 
         //공격력 관련부분

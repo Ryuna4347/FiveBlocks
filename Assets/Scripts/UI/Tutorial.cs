@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class Tutorial : MonoBehaviour
 {
-    public Animator tutorialAnim;
+    [SerializeField] private Animator tutorialAnim;
+    [SerializeField] private CanvasGroup backgroundCanvas;
 
     private void OnEnable()
     {
         StartAnim();
+        backgroundCanvas.blocksRaycasts = false;
     }
 
     public void StartAnim()
@@ -19,5 +21,6 @@ public class Tutorial : MonoBehaviour
     private void OnDisable()
     {
         tutorialAnim.SetInteger("startAnim", 0);
+        backgroundCanvas.blocksRaycasts = true;
     }
 }

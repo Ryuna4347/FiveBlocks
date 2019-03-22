@@ -12,11 +12,11 @@ public class AppManager : MonoBehaviour
     private bool yellowAlreadyInstalled; //지원블럭(노란 블럭)은 전체 블럭 중 1개만 사용가능하므로 현재 설치여부를 나타내는 변수
 
     public GameObject blocksParent; //블럭유닛을 모아둘 상위 빈 오브젝트
+    private TotalManager totalManager;
     private SoundManager audio; //게임진행 시 나올 소리를 위한 오디오매니저
     public WaveManager waveManager;
     public EnchantManager enchantManager;
-    public GameObject gameOverUI; //게임 종료시 뜨는 UI
-    public GameObject pauseUI;
+    public TouchBlockUI touchBlockUI; //NoticeCanvas내의 이미지를 켜는 도중 다른 장소의 터치를 막는 이미지(일시정지, 블럭 정보, 게임 종료)
     public GameObject waveStartBtn; //웨이브 시작 버튼
     public GameObject clearWaveNotice; //웨이브 클리어 성공에 따른 안내문
     public Text moneyText; //현재 소지금을 표시
@@ -35,6 +35,7 @@ public class AppManager : MonoBehaviour
     private void Awake()
     {
         Screen.SetResolution(1080, 1920, true);
+        totalManager = GameObject.Find("TotalManager").GetComponent<TotalManager>();
         audio = GameObject.Find("SoundManager").GetComponent<SoundManager>(); //사운드매니저가 타이틀 씬에서 넘어오기 때문에 동적으로 추가해줘야 한다.
         audio.gameObject.transform.parent = transform.parent; //사운드매니저가 타이틀 씬에서 넘어오기 때문에 부모가 정해지지 않았기 때문에 매니저 그룹오브젝트를 부모로 설정한다.
     }
@@ -241,6 +242,8 @@ public class AppManager : MonoBehaviour
                 properBlockObj.GetComponent<BlockInfo>().SetBlockLevel(blockLev + 1);
                 audio.PlayAudio("Synthesize");
 
+                usedBlocks.Add(properBlockObj); //새로 레벨업 한 블럭 추가
+
                 if (isWaveProcessing) //이미 웨이브 진행중일 때 블럭을 생성시 바로 상태를 바꿔주어서 공격할 수 있게
                 {
                     properBlockObj.GetComponent<BlockInfo>().SwitchWaveStatus(true);
@@ -366,6 +369,8 @@ public class AppManager : MonoBehaviour
         waveStartBtn.SetActive(true);
         speedControlBtn.SetActive(false);
 
+        totalManager.CheckAchievement(n); //n스테이지에 대한 업적 체크
+
         waveManager.ReadyForWave(n + 1);
     }
 
@@ -382,7 +387,14 @@ public class AppManager : MonoBehaviour
         }
 
         //게임 종료를 보여주는 ui를 켜고, 다시하기 버튼 등을 자리시킴
-        gameOverUI.SetActive(true);
+        touchBlockUI.gameObject.SetActive(true);
+        touchBlockUI.ActiveUI("GameOver");
+
+        int score = waveManager.GetWaveNow()-1;
+        if (score > PlayerPrefs.GetInt("Score")) //최고점수가 갱신되야 한다면
+        {
+            PlayerPrefs.SetInt("Score", (waveManager.GetWaveNow() - 1));
+        }
 
         speedControlBtn.SetActive(false); //게임이 종료되었으므로 처음 상태로 웨이브 시작버튼을 돌려놓는다.
         waveStartBtn.SetActive(true);
@@ -392,7 +404,15 @@ public class AppManager : MonoBehaviour
     public void GamePause(bool val)
     {
         Time.timeScale = (val == true) ? 0 : 1;
-        pauseUI.SetActive(val);
+        if (!val)
+        {
+            touchBlockUI.UnactiveUI("Pause");
+        }
+        touchBlockUI.gameObject.SetActive(val);
+        if (val)
+        {
+            touchBlockUI.ActiveUI("Pause");
+        }
     }
 
     public void GameSpeedChange()
@@ -447,8 +467,8 @@ public class AppManager : MonoBehaviour
         moneyText.text = money.ToString();
         requiredMoneyText.text = createBlockCost.ToString();
 
-
-        gameOverUI.SetActive(false);
+        touchBlockUI.UnactiveUI("GameOver"); //게임종료 UI 끄기
+        touchBlockUI.gameObject.SetActive(false);
     }
 
     /*

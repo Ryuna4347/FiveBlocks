@@ -51,7 +51,7 @@ public class BulletInfo : MonoBehaviour
             case "splash": //splash의 경우 먼저 적을 타격 후 해당 적 포함 일정 범위 내의 모든 적에게 약한 데미지를 가한다.
                 enemyObj.GetComponent<EnemyInfo>().GetDamaged(damage);
 
-                List<GameObject> damagedBySplash = waveManager.GetEnemyInRange(enemyObj,0.3f);
+                List<GameObject> damagedBySplash = waveManager.GetEnemyInRange(enemyObj,0.4f);
                 if (damagedBySplash == null) //맞출 대상이 없는경우 취소
                 {
                     break;
@@ -69,7 +69,7 @@ public class BulletInfo : MonoBehaviour
                 enemyObj.GetComponent<EnemyInfo>().GetDamaged(damage);
 
                 percent = Random.Range(0, 1000)/10.0f; //소수 첫째자리까지 계산
-                if (percent < specialEffect) //일정 확률로 일시정지
+                if (percent < specialEffect&&enemyObj.activeSelf==true) //일정 확률로 일시정지
                 {
                     enemyObj.GetComponent<EnemyInfo>().SetAbnormalStatus("pause",0.5f);
                 }
@@ -77,7 +77,9 @@ public class BulletInfo : MonoBehaviour
             case "slow":
                 enemyObj.GetComponent<EnemyInfo>().GetDamaged(damage);
                 
-                enemyObj.GetComponent<EnemyInfo>().SetAbnormalStatus("slow", 2.0f, specialEffect);
+                if (enemyObj.activeSelf == true) {//맞은 적이 살아있는 상태여야만 적용
+                    enemyObj.GetComponent<EnemyInfo>().SetAbnormalStatus("slow", 2.0f, specialEffect);
+                }
                 break;
         }
     }
@@ -98,7 +100,7 @@ public class BulletInfo : MonoBehaviour
             if (collision.gameObject.name == target.name)
             { //목표한 피격체여야 타격 성립
                 isShot = false;
-                DamageToEnemy(collision.gameObject);
+                DamageToEnemy(collision.gameObject); 
                 gameObject.SetActive(false);
             }
         }
