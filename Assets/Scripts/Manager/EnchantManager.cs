@@ -140,6 +140,9 @@ public class EnchantManager : MonoBehaviour
         SetDefault();
     }
 
+    /// <summary>
+    /// 재시작/초기 시작을 위한 초기화 과정
+    /// </summary>
     public void SetDefault()
     {
         foreach(EnchantInfo enchant in allEnchant)
@@ -175,6 +178,10 @@ public class EnchantManager : MonoBehaviour
         return blockJSON;
     }
 
+    /// <summary>
+    /// 저장되어있는 블럭 강화에 대한 JSON파일을 읽어와
+    /// 저장해둔다.
+    /// </summary>
     private void LoadEnchantData()
     {
         if (blockJSON != null)
@@ -240,11 +247,14 @@ public class EnchantManager : MonoBehaviour
         EnchantInfo blockEnchant = allEnchant.Find(x => x.enchantBlockName == blockName);
         return blockEnchant.GetRequiredMoney(); //해당 블록의 특수능력 강화 수치 반환
     }
+    
 
-    /*
-     * 유닛 강화를 통해 강화를 할 경우 사용되는 함수
-     * 유닛 강화 정보를 갱신하고 현재 사용중인 블럭유닛에도 갱신을 해준다.
-     */
+     /// <summary>
+     /// 유닛 강화를 통해 강화를 할 경우 사용되는 함수
+     /// 유닛 강화 정보를 갱신하고 현재 사용중인 블럭유닛에도 갱신을 해준다.
+     /// </summary>
+     /// <param name="blockName">강화하고자 하는 블럭의 이름</param>
+     /// <returns></returns>
     public bool EnchantLevelUp(string blockName)
     {
         EnchantInfo blockEnchant = allEnchant.Find(x => x.enchantBlockName == blockName);
@@ -281,11 +291,12 @@ public class EnchantManager : MonoBehaviour
         }
         return false;
     }
-
-    /*
-     *블럭으로부터 강화 정보 요청시 사용되는 함수
-     * 보통 블럭이 강화된 이후 생성될 시 사용된다.
-     */
+    
+     /// <summary>
+     /// 블럭으로부터 강화 정보 요청시 사용되는 함수
+     /// 보통 블럭이 강화된 이후 생성될 시 기존 강화 값을 얻기 위해서 사용된다.
+     /// </summary>
+     /// <param name="block">블럭 정보</param>
     public void RequestEnchantInfo(BlockInfo block)
     { 
         EnchantInfo blockEnchant = allEnchant.Find(x => x.enchantBlockName == block.blockName);

@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+ * 두개의 캔버스가 동시에 클릭되지 않도록 방지하기 위한 스크립트
+ */
 public class TouchBlockUI : MonoBehaviour
 {
     [SerializeField]private GameObject gameOverUI;

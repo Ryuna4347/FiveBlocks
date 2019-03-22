@@ -2,13 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+ * 블럭에서 발사한 탄환에 대한 처리를 위한 스크립트
+ */
 public class BulletInfo : MonoBehaviour
 {
     private GameObject target; //총알이 발사될 목표
-    private float damage;
+    private float damage; //총알의 피해량
     private float specialEffect; //특수효과 관련 확률 또는 데미지
     private bool isShot; //총알이 발사되었는가를 판단하는 bool변수
-    public string bulletType;
+    public string bulletType; //총알의 타입(특수능력 유무)
     private WaveManager waveManager;
 
     private void Awake()
@@ -18,7 +21,7 @@ public class BulletInfo : MonoBehaviour
 
     private void OnEnable()
     {
-        transform.position = transform.parent.transform.position;
+        transform.position = transform.parent.transform.position; //초기 발사위치 설정
     }
 
     private void Update()
@@ -29,7 +32,10 @@ public class BulletInfo : MonoBehaviour
         }
     }
 
-    public void Shoot(GameObject obj, float dmg)
+    ///<summary>탄환 발사 함수</summary>
+    ///<param name="obj">목표로 하는 적 오브젝트</param>
+    ///<param name="dmg">탄환의 피해량(블럭에서 정해진다)</param>
+    public void Shoot(GameObject obj, float dmg)  
     {
         target = obj;
         damage = dmg;
@@ -39,10 +45,13 @@ public class BulletInfo : MonoBehaviour
     private void MoveBullet()
     {
         Vector3 nextPos  = Vector3.MoveTowards(transform.position,target.transform.position, 3.0f*Time.deltaTime);
-        nextPos.z = -2f;
+        nextPos.z = -2f; //블럭과 타겟 위로 탄환이 지나가게 하기 위해서(없앨시 탄환이 겹쳐서 보이지 않게 된다.)
         gameObject.transform.position = nextPos;
     }
 
+
+    ///<summary>타겟에 적중 시 데미지를 가하고 탄환의 종류에 따라 추가 효과를 발생시킨다.</summary>
+    ///<param name="enemyObj">충돌한 적 오브젝트</param>
     private void DamageToEnemy(GameObject enemyObj)
     {
         float percent;
@@ -84,6 +93,10 @@ public class BulletInfo : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 타겟이 다른 탄환에 의해 파괴되었을 경우 타겟이 같은 탄환들을 없애기 위한 함수
+    /// </summary>
+    /// <param name="enemy">파괴된 적 오브젝트</param>
     public void DeadTarget(GameObject enemy)
     {
         if (target.name == enemy.name)
@@ -99,14 +112,14 @@ public class BulletInfo : MonoBehaviour
         if (collision.gameObject.tag == "Enemy"&&target!=null){
             if (collision.gameObject.name == target.name)
             { //목표한 피격체여야 타격 성립
-                isShot = false;
+                isShot = false; //이동 방지
                 DamageToEnemy(collision.gameObject); 
                 gameObject.SetActive(false);
             }
         }
     }
 
-    //각 블럭의 고유 특수효과에 대한 확률/데미지를 설정
+    ///<summary>각 블럭의 고유 특수효과에 대한 확률/데미지를 설정</summary>
     public void SetSpecialEffect(float value) {
         specialEffect = value;
     }

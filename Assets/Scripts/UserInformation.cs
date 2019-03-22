@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+ * 중간 저장을 위한 데이터 처리 스크립트
+ * (현재 작성이 끝나지 않아 미사용.)
+ */
 public class UserInfoJson
 {
     public string userId;
