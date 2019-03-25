@@ -1,30 +1,19 @@
+#Five blocks
+-위 게임은 유니티로 제작한 2D 형식의 디펜스 게임입니다.
 
-# Five Blocks
+# 이 저장소의 목적
+- 기획서를 어떻게 만들어야 하는지 가이드를 작성합니다.
+- 다양한 기획서를 만들고 기록합니다.
 
-Thanks for checking out our project!
+# 목차
+1. AquaStory-SundayToz
+  - SundayToz사의 아쿠아스토리 역 기획서입니다.
+2. Idea-Book
+  - 다양한 아이디어를 정리합니다.
+3. audiobook
+  - 오디오북 제작 오픈 플랫폼 제안서 및 와이어프레임
+  - 웹 프로토타입 
 
-This is a fully functional, first person multiplayer shooter game made in
-Unity and with full source and assets. It is in active development by a small
-team from Unity Technologies. Our goals are to test and showcase new
-features in Unity and to be of use for teams who can bootstrap on top of
-this, extract useful bits and tools or simply learn from and get inspired by
-what is in the project.
-
-Visit our [landing page](https://unity.com/fps-sample) for more high
-level information about the project. Or reach out [in the forum](https://forum.unity.com/forums/fps-sample-game.184).
-
-The project is using a number of new technologies: We use the new [HD Render
-Pipeline](https://github.com/Unity-Technologies/ScriptableRenderPipeline), meaning 
-all content has been authored for HDRP. We are also using the new
-[network transport layer](https://github.com/Unity-Technologies/multiplayer) as well as the [Entity-Component System](https://unity3d.com/unity/features/job-system-ECS). 
-In the case of ECS, we have primarily adopted the "ECS-pattern" and use it in
-hybrid mode with a lot of regular components. As more and more features of
-Unity become available in ECS-aware versions, we will migrate to them.
-
-## Status and prerequisites
-
-Current status at a glance:
-```
-Unity version: 2018.3.8f1
-Platforms    : Windows (client and server) and Linux (server only)
-```
+# Contact
+장호진 jhj377@gmail.com
+010-7142-3834
