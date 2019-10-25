@@ -2,9 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-/*
- *블럭 오브젝트의 전반적인 기능을 작성
- */
 public class BlockInfo : MonoBehaviour
 {
     private WaveManager waveManager;
@@ -56,29 +53,21 @@ public class BlockInfo : MonoBehaviour
     {
         Refresh();
     }
-
-    /// <summary>
-    /// 블럭 오브젝트를 마우스(또는 터치)로 클릭한 위치에 맞게 설치
-    /// </summary>
-    /// <param name="pos">설치 위치</param>
     public void InstallAtPos(Vector3 pos)
     {
         transform.position = pos;
         levImage.gameObject.SetActive(true);
-        if (blockAttType == "support") //설치하려는 블럭이 지원형이라면 버프를 주기 위해 주변 블럭을 탐색해야한다.
+        if (blockAttType == "support")
         {
             gameObject.GetComponent<SupportBlockInfo>().EnhanceNearBlocks();
         }
-        GameObject.Find("EnchantManager").GetComponent<EnchantManager>().RequestEnchantInfo(this); //강화된 수치를 가져온다.
+        GameObject.Find("EnchantManager").GetComponent<EnchantManager>().RequestEnchantInfo(this); 
     }    
 
-    /// <summary>
-    /// 블럭 오브젝트의 초기화
-    /// </summary>
     public void Refresh()
-    { 
+    { //유닛 초기화
         blockLevel = 1;
-        enchantDamage = 0; //지원형 오브젝트의 버프 초기화
+        enchantDamage = 0;
         isWaveStart = false;
         foreach(Transform bullet in transform)
         {
@@ -86,22 +75,14 @@ public class BlockInfo : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// 블럭 오브젝트의 레벨 설정(레벨업 시 바로 해당 레벨로 가야하기 때문에)
-    /// </summary>
-    /// <param name="lev">설정할 레벨</param>
     public void SetBlockLevel(int lev)
-    {
+    { //레벨업 시 바로 해당 레벨로 가야하므로 레벨을 설정하는 함수(AppManager에서 합성시 사용됨)
         blockLevel = lev;
         levImage.sprite = blockLevImage[lev-1];
     }
     
-    /// <summary>
-    /// 웨이브의 시작여부를 설정(블럭 오브젝트의 공격여부 결정)
-    /// </summary>
-    /// <param name="val">on/off</param>
     public void SwitchWaveStatus(bool val)
-    { 
+    { //isWaveStart의 값을 바꾸는 함수
         isWaveStart = val;
         if (val == true)
         {
@@ -114,29 +95,18 @@ public class BlockInfo : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// 지원형 오브젝트에 의해서 데미지 강화버프 설정
-    /// </summary>
-    /// <param name="mag"></param>
     public void EnhancedBySupport(float mag)
     {
         enhanceDmgBySupport = mag;
-        blockAnim.SetInteger("enhanced", 1); //강화 버프에 대한 애니메이션 실행
+        blockAnim.SetInteger("enhanced", 1);
     }
-    /// <summary>
-    /// 데미지 강화버프 해제
-    /// </summary>
     public void ResetEnhance()
-    {
+    { //노란 블럭이 근방에서 사라짐에 따라 데미지 상승효과 제거
         enhanceDmgBySupport = 1;
         blockAnim.SetInteger("enhanced", 0);
     }
 
-    /// <summary>
-    /// shootCoolTime 간격으로 적을 향해 사격
-    /// </summary>
-    /// <returns></returns>
-    IEnumerator Shoot() {
+    IEnumerator Shoot() { //shootCoolTime 간격으로 적을 향해 사격
         while (isWaveStart)
         {
             GameObject bullet = bulletList.Find(x => x.activeSelf == false);
@@ -152,8 +122,9 @@ public class BlockInfo : MonoBehaviour
             yield return new WaitForSeconds(shootCoolTime);
         }
     }
-    
-    ///<summary>하위 bullet을 전부 off로 돌림(특정 enemy 사망시 실행)</summary>
+
+    //enemy 유닛이 사망시 현재 사용중인 모든 block에게 요청하여 
+    //현재 사격중인 target이 사망한 enemy일 경우 하위 bullet을 전부 off로 돌림
     public void CheckTarget(GameObject enemy)
     {
         foreach (Transform bullet in bulletListObj)

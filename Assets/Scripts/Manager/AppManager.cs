@@ -3,9 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-/*
- *전체적인 게임 진행에 관한 매니저
- */
 public class AppManager : MonoBehaviour
 {
     public List<GameObject> emptyArea; //현재 비어있는 공간
@@ -15,11 +12,11 @@ public class AppManager : MonoBehaviour
     private bool yellowAlreadyInstalled; //지원블럭(노란 블럭)은 전체 블럭 중 1개만 사용가능하므로 현재 설치여부를 나타내는 변수
 
     public GameObject blocksParent; //블럭유닛을 모아둘 상위 빈 오브젝트
-    private TotalManager totalManager;
     private SoundManager audio; //게임진행 시 나올 소리를 위한 오디오매니저
     public WaveManager waveManager;
     public EnchantManager enchantManager;
-    public TouchBlockUI touchBlockUI; //NoticeCanvas내의 이미지를 켜는 도중 다른 장소의 터치를 막는 이미지(일시정지, 블럭 정보, 게임 종료)
+    public GameObject gameOverUI; //게임 종료시 뜨는 UI
+    public GameObject pauseUI;
     public GameObject waveStartBtn; //웨이브 시작 버튼
     public GameObject clearWaveNotice; //웨이브 클리어 성공에 따른 안내문
     public Text moneyText; //현재 소지금을 표시
@@ -38,7 +35,6 @@ public class AppManager : MonoBehaviour
     private void Awake()
     {
         Screen.SetResolution(1080, 1920, true);
-        totalManager = GameObject.Find("TotalManager").GetComponent<TotalManager>();
         audio = GameObject.Find("SoundManager").GetComponent<SoundManager>(); //사운드매니저가 타이틀 씬에서 넘어오기 때문에 동적으로 추가해줘야 한다.
         audio.gameObject.transform.parent = transform.parent; //사운드매니저가 타이틀 씬에서 넘어오기 때문에 부모가 정해지지 않았기 때문에 매니저 그룹오브젝트를 부모로 설정한다.
     }
@@ -64,9 +60,9 @@ public class AppManager : MonoBehaviour
         }
     }
     
-    /// <summary>
-    /// 블럭생성 버튼을 클릭할 경우 빈 공간에 공격을 위한 블럭 오브젝트를 생성하는 함수
-    /// </summary>
+    /*
+     * 블럭생성 버튼을 클릭할 경우 빈 공간에 공격을 위한 블럭 오브젝트를 생성하는 함수
+     */
     public void MakeBlock()
     {
         if (!isGameOver) //게임 진행중에만 사용가능
@@ -142,10 +138,6 @@ public class AppManager : MonoBehaviour
             requiredMoneyText.text = createBlockCost.ToString();
         }
     }
-
-    /// <summary>
-    /// 블럭 프리팹을 로드하여 생성
-    /// </summary>
     private void LoadBlockData()
     {
         GameObject[] blocks = Resources.LoadAll<GameObject>("Prefabs/Blocks");
@@ -170,14 +162,10 @@ public class AppManager : MonoBehaviour
     }
 
     /*
-
+     *블럭 레벨업 함수에서 옮겨지는 블럭(빈 장소가 될 위치)의 처리를 위한 함수
+     * 블럭과 블럭이 위치한 곳의 emptyArea처리
      */
-     /// <summary>
-     /// 블럭 레벨업 함수에서 옮겨지는 블럭(빈 장소가 될 위치)의 처리를 위한 함수
-     /// 블럭과 블럭이 위치한 곳의 emptyArea처리
-    /// </summary>
-    /// <param name="movingBlock">현재 드래그한 블럭</param>
-    public void MoveUsedToEmpty(GameObject movingBlock)
+    public void MoveUsedToEmpty(GameObject movingBlock) //옮길 블럭의 원래 위치에 있는 EmptyArea를 반환해준다.()
     {
         GameObject willBeEmpty = usedArea.Find(x => (x.transform.position.x == movingBlock.transform.position.x) && (x.transform.position.y == movingBlock.transform.position.y));
         //z는 Block과 EmptyArea가 다르므로 z를 빼고 비교를 해야 된다.
@@ -189,14 +177,12 @@ public class AppManager : MonoBehaviour
         usedBlocks.Remove(movingBlock);
         waitBlocks.Add(movingBlock);
     }
-    
-     /// <summary>
-     /// 블럭 레벨업 함수조건 : 동일 레벨&동일 종류
-     /// (단, 노란 블럭은 동일 레벨만 충족하면 어느 블록과도 레벨업 가능)
-     /// 레벨업 시 합치는 두 개의 블럭은 제거, 랜덤하게 다음 레벨의 블럭이 생성
-    /// </summary>
-    /// <param name="obj_1"></param>
-    /// <param name="obj_2"></param>
+
+    /*
+     * 블럭 레벨업 함수
+     * 조건 : 동일 레벨&동일 종류(단, 노란 블럭은 동일 레벨만 충족하면 어느 블록과도 레벨업 가능)
+     * 레벨업 시 합치는 두 개의 블럭은 제거, 랜덤하게 다음 레벨의 블럭이 생성
+     */
     public void BlockLevelUp(GameObject obj_1, GameObject obj_2) //obj_2 위치에 다음 레벨을 생성
     { 
         string obj2_type = obj_2.GetComponent<BlockInfo>().blockName; //종류 비교를 위해 블럭정보 스크립트에서 이름을 획득
@@ -255,8 +241,6 @@ public class AppManager : MonoBehaviour
                 properBlockObj.GetComponent<BlockInfo>().SetBlockLevel(blockLev + 1);
                 audio.PlayAudio("Synthesize");
 
-                usedBlocks.Add(properBlockObj); //새로 레벨업 한 블럭 추가
-
                 if (isWaveProcessing) //이미 웨이브 진행중일 때 블럭을 생성시 바로 상태를 바꿔주어서 공격할 수 있게
                 {
                     properBlockObj.GetComponent<BlockInfo>().SwitchWaveStatus(true);
@@ -274,10 +258,10 @@ public class AppManager : MonoBehaviour
         }
 
     }
-    
-    /// <summary>
-    /// 게임 처음 시작시 EmptyArea 오브젝트를 리스트에 넣기 위한 함수
-    /// </summary>
+
+    /*
+     *게임 처음 시작시 EmptyArea를 하나씩 리스트에 넣기 위한 함수
+     */
     private void RegisterEmptyArea()
     {
         foreach (Transform childMapData in GameObject.Find("MapGroup").transform)
@@ -292,12 +276,11 @@ public class AppManager : MonoBehaviour
             }
         }
     }
-    
-    /// <summary>
-    /// 게임 진행 중 맵의 변경으로 emptyArea에 해당하는 블럭들을 새로운 맵의 emptyArea로 옮기기 위해 사용하는 함수
-    /// (게임 시작 직후에 사용하는 함수 아님)
-    /// </summary>
-    /// <param name="newMap"></param>
+
+    /*
+     *게임 시작 직후에 사용하는 함수 아님
+     *게임 진행 중 맵의 변경으로 emptyArea에 해당하는 블럭들을 새로운 맵의 emptyArea로 옮기기 위해 사용하는 함수(WaveManager에서 요청)
+     */
     public void RegisterEmptyArea(GameObject newMap)
     {
         List<GameObject> newEmptyArea = new List<GameObject>();
@@ -333,10 +316,6 @@ public class AppManager : MonoBehaviour
 
     }
 
-    /// <summary>
-    /// 적 오브젝트 파괴 시 해당 적 오브젝트를 타겟으로 두고있는 탄환들을 전부 무효화
-    /// </summary>
-    /// <param name="deadEnemy">파괴된 적 오브젝트</param>
     public void CheckBlockTarget(GameObject deadEnemy)
     {
         foreach(GameObject block in usedBlocks)
@@ -344,33 +323,22 @@ public class AppManager : MonoBehaviour
             block.GetComponent<BlockInfo>().CheckTarget(deadEnemy);
         }
     }
-    
-    /// <summary>
-    /// 전달받은 지원형 유닛의 위치 근방(대각선 제외 상하좌우만)에 위치한 유닛을 불러온다.
-    /// </summary>
-    /// <param name="yellowPos"></param>
-    /// <returns></returns>
+
+    //전달받은 노란 유닛의 위치 근방(대각선 제외 상하좌우만)에 위치한 유닛을 불러온다.
     public List<GameObject> GetNearBlocks(Transform yellowPos)
     {
 
         List<GameObject> nearBlocks = usedBlocks.FindAll(x=>Vector3.Distance(yellowPos.position,x.transform.position)<=0.6f); //블럭 1개정도 차이(빈칸을 생각해서 0.05 정도 오차를 둠)가 나는 주위의 블럭들을 가져옴
         return nearBlocks;
     }
-    
-    /// <summary>
-    /// 현재 사용중인 블럭 중에 blockType의 블럭을 반환
-    /// (이름에 블럭 종류가 포함되어있으니 그것으로 구분)
-    /// </summary>
-    /// <param name="blockType"></param>
-    /// <returns></returns>
+
+    //현재 사용중인 블럭 중에 blockType의 블럭을 반환(이름에 블럭 종류가 포함되어있으니 그것으로 구분)
     public List<GameObject> GetBlocksByType(string blockType)
     {
         return usedBlocks.FindAll(x => x.name.Contains(blockType));
     }
-    
-    /// <summary>
-    /// 웨이브의 시작 알림
-    /// </summary>
+
+    //모든 block유닛에게 웨이브가 시작했음을 알린다.
     public void WaveStart()
     {
         isWaveProcessing = true;
@@ -382,11 +350,8 @@ public class AppManager : MonoBehaviour
         waveStartBtn.SetActive(false);
         speedControlBtn.SetActive(true);
     }
-    
-    /// <summary>
-    /// 웨이브 클리어로 더 이상 블럭들의 공격을 방지
-    /// </summary>
-    /// <param name="n">클리어한 웨이브 번호</param>
+
+    //block유닛의 이동 방지
     public void WaveEnd(int n)
     {
         isWaveProcessing = false;
@@ -401,14 +366,10 @@ public class AppManager : MonoBehaviour
         waveStartBtn.SetActive(true);
         speedControlBtn.SetActive(false);
 
-        totalManager.CheckAchievement(n); //n스테이지에 대한 업적 체크
-
         waveManager.ReadyForWave(n + 1);
     }
-    
-    /// <summary>
-    /// 게임 종료
-    /// </summary>
+
+    //게임 종료
     public void GameOver()
     {
         isGameOver = true;
@@ -421,53 +382,29 @@ public class AppManager : MonoBehaviour
         }
 
         //게임 종료를 보여주는 ui를 켜고, 다시하기 버튼 등을 자리시킴
-        touchBlockUI.gameObject.SetActive(true);
-        touchBlockUI.ActiveUI("GameOver");
-
-        int score = waveManager.GetWaveNow()-1;
-        if (score > PlayerPrefs.GetInt("Score")) //최고점수가 갱신되야 한다면
-        {
-            PlayerPrefs.SetInt("Score", (waveManager.GetWaveNow() - 1));
-        }
+        gameOverUI.SetActive(true);
 
         speedControlBtn.SetActive(false); //게임이 종료되었으므로 처음 상태로 웨이브 시작버튼을 돌려놓는다.
         waveStartBtn.SetActive(true);
     }
-    
-    /// <summary>
-    /// 게임 진행 중 일시정지
-    /// </summary>
-    /// <param name="val"></param>
+
+    //게임의 일시정지/재개에 관여하는 함수
     public void GamePause(bool val)
     {
         Time.timeScale = (val == true) ? 0 : 1;
-        if (!val)
-        {
-            touchBlockUI.UnactiveUI("Pause");
-        }
-        touchBlockUI.gameObject.SetActive(val);
-        if (val)
-        {
-            touchBlockUI.ActiveUI("Pause");
-        }
+        pauseUI.SetActive(val);
     }
 
-    /// <summary>
-    /// 웨이브의 진행속도 변경(1,3,9배속 토글 변경)
-    /// </summary>
     public void GameSpeedChange()
     {
         Time.timeScale *= 3;
-        if (Time.timeScale > 9) //9배율을 넘을경우 1배로 귀환
+        if (Time.timeScale > 9) //8배율을 넘을경우 1배로 귀환
         {
             Time.timeScale = 1.0f;
         }
         gameSpeedText.text = Time.timeScale.ToString();
     }
 
-    /// <summary>
-    /// 게임 재시작
-    /// </summary>
     public void GameRestart()
     {
         waveManager.SetDefault();
@@ -481,9 +418,6 @@ public class AppManager : MonoBehaviour
         waveManager.ReadyForWave(1);
     }
 
-    /// <summary>
-    /// 초기시작/재시작 시 모든 변수 초기화
-    /// </summary>
     private void SetDefault()
     {
         isGameOver = false;
@@ -513,15 +447,13 @@ public class AppManager : MonoBehaviour
         moneyText.text = money.ToString();
         requiredMoneyText.text = createBlockCost.ToString();
 
-        touchBlockUI.UnactiveUI("GameOver"); //게임종료 UI 끄기
-        touchBlockUI.gameObject.SetActive(false);
+
+        gameOverUI.SetActive(false);
     }
-    
-     /// <summary>
-     /// 소지금이 충분한가?
-     /// </summary>
-     /// <param name="cost">비용</param>
-     /// <returns></returns>
+
+    /*
+     *돈과 관련된 함수
+     */
     public bool CheckMoney(int cost)
     {
         if (money >= cost)
@@ -533,7 +465,8 @@ public class AppManager : MonoBehaviour
             return false;
         }
     }
-    
+
+    // 건설 또는 강화로 돈을 사용
     public void UseMoney(int cost)
     {
         if (cost > 0)
@@ -542,10 +475,7 @@ public class AppManager : MonoBehaviour
             moneyText.text = money.ToString();
         }
     }
-    
-    /// <summary>
-    /// 적 유닛의 제거로 돈 획득
-    /// </summary>
+    //적 유닛 제거로 돈을 얻음
     public void IncreaseMoney()
     {
         money += 5;

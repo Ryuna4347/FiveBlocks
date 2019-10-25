@@ -4,23 +4,20 @@ using UnityEngine;
 using System.IO; //json을 읽기 위함
 using UnityEngine.UI;
 
-/*
- * 블럭에 대한 정보를 담은 JSON으로서
- * BlockEnchantUI.cs와 EnchantManager.cs에서 사용될 블럭의 내용(설명 및 데미지/강화비용)을 담고있다.
- */
-public class BlockJSON
+[System.Serializable]
+public class EnchantJson
 {
-    public string[] blockDesc;
-    public string[] blockEnchant;
+    public Enchant[] enchantData;
 }
-
-public class EnchantJSON
+[System.Serializable]
+public class Enchant
 {
     public string blockName;
     public int[] blockAttEnchant;
     public float[] blockSpecialEffect;
     public int[] blockRequiredMoney;
 }
+
 
 
 /*
@@ -126,13 +123,13 @@ public class EnchantManager : MonoBehaviour
     List<EnchantInfo> allEnchant;
     private AppManager appManager;
     public List<GameObject> enchantBtnList;
-    private BlockJSON blockJSON; //BlockEnchantUI에서 블럭 관련 설명을 위해서 별도의 변수로 가지고 있는다.
 
     private void Awake()
     {
         allEnchant = new List<EnchantInfo>();
         appManager = GameObject.Find("gameManager").GetComponent<AppManager>();
         LoadEnchantData();
+
     }
 
     private void Start()
@@ -140,9 +137,6 @@ public class EnchantManager : MonoBehaviour
         SetDefault();
     }
 
-    /// <summary>
-    /// 재시작/초기 시작을 위한 초기화 과정
-    /// </summary>
     public void SetDefault()
     {
         foreach(EnchantInfo enchant in allEnchant)
@@ -169,56 +163,31 @@ public class EnchantManager : MonoBehaviour
         }
     }
 
-    public BlockJSON GetBlockJSON()
-    {
-        if (blockJSON == null)
-        { //혹시 EnchantManager보다 이게 더 먼저 실행된다면 null일 수도 있으므로
-            LoadEnchantData();
-        }
-        return blockJSON;
-    }
-
-    /// <summary>
-    /// 저장되어있는 블럭 강화에 대한 JSON파일을 읽어와
-    /// 저장해둔다.
-    /// </summary>
     private void LoadEnchantData()
     {
-        if (blockJSON != null)
-        { //혹시 blockEnchantUI와 겹치는 경우를 대비해서 이중 호출이 되지 않도록
-            return;
-        }
-
         string EnchantDataTxt = Resources.Load<TextAsset>("GameData/Enchant").text;
 
-        blockJSON = JsonUtility.FromJson<BlockJSON>(EnchantDataTxt);
+        EnchantJson enchantDataJSON = JsonUtility.FromJson<EnchantJson>(EnchantDataTxt);
 
-        int len = blockJSON.blockEnchant.Length;
+        foreach(Enchant enchantInfo in enchantDataJSON.enchantData) { 
 
-        if (len < 1)
-        {  //저장된 정보가 있어야 불러올 수 있다.
-            return;
-        }
-        for (int i = 0; i < len; i++)
-        {
             EnchantInfo enchant = new EnchantInfo();
 
-            EnchantJSON tempEnchantInfo=JsonUtility.FromJson<EnchantJSON>(blockJSON.blockEnchant[i].Replace("'","\""));
-
-            enchant.enchantBlockName = tempEnchantInfo.blockName;
-            foreach (int value in tempEnchantInfo.blockAttEnchant) //강화로 인한 공격력 정보 추가
+            enchant.enchantBlockName = enchantInfo.blockName;
+            foreach (int value in enchantInfo.blockAttEnchant) //강화로 인한 공격력 정보 추가
             {
                 enchant.AddAttInfo(value);
             }
-            foreach (float value in tempEnchantInfo.blockSpecialEffect) //강화로 인한 특수능력 정보 추가
+            foreach (float value in enchantInfo.blockSpecialEffect) //강화로 인한 특수능력 정보 추가
             {
                 enchant.AddSpecialInfo(value);
             }
-            foreach (int value in tempEnchantInfo.blockRequiredMoney)
+            foreach (int value in enchantInfo.blockRequiredMoney) 
             {
                 enchant.AddRequiredMoney(value);
             }
-            
+
+
             allEnchant.Add(enchant);
         }
     }
@@ -247,14 +216,11 @@ public class EnchantManager : MonoBehaviour
         EnchantInfo blockEnchant = allEnchant.Find(x => x.enchantBlockName == blockName);
         return blockEnchant.GetRequiredMoney(); //해당 블록의 특수능력 강화 수치 반환
     }
-    
 
-     /// <summary>
-     /// 유닛 강화를 통해 강화를 할 경우 사용되는 함수
-     /// 유닛 강화 정보를 갱신하고 현재 사용중인 블럭유닛에도 갱신을 해준다.
-     /// </summary>
-     /// <param name="blockName">강화하고자 하는 블럭의 이름</param>
-     /// <returns></returns>
+    /*
+     * 유닛 강화를 통해 강화를 할 경우 사용되는 함수
+     * 유닛 강화 정보를 갱신하고 현재 사용중인 블럭유닛에도 갱신을 해준다.
+     */
     public bool EnchantLevelUp(string blockName)
     {
         EnchantInfo blockEnchant = allEnchant.Find(x => x.enchantBlockName == blockName);
@@ -291,12 +257,11 @@ public class EnchantManager : MonoBehaviour
         }
         return false;
     }
-    
-     /// <summary>
-     /// 블럭으로부터 강화 정보 요청시 사용되는 함수
-     /// 보통 블럭이 강화된 이후 생성될 시 기존 강화 값을 얻기 위해서 사용된다.
-     /// </summary>
-     /// <param name="block">블럭 정보</param>
+
+    /*
+     *블럭으로부터 강화 정보 요청시 사용되는 함수
+     * 보통 블럭이 강화된 이후 생성될 시 사용된다.
+     */
     public void RequestEnchantInfo(BlockInfo block)
     { 
         EnchantInfo blockEnchant = allEnchant.Find(x => x.enchantBlockName == block.blockName);

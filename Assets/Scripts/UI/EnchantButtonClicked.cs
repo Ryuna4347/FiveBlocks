@@ -8,13 +8,12 @@ using UnityEngine;
  */
 public class EnchantButtonClicked : MonoBehaviour
 {
-    [SerializeField]private TouchBlockUI touchBlockUI; //blockEnchantUI 오브젝트 상위의 터치방지 이미지
+    public GameObject targetObj; //blockEnchantUI 오브젝트 상위의 터치방지 이미지
     public BlockEnchantUI blockEnchantUI;
 
     public void ActiveBlockEnchantInfo(string blockName)
     {
-        touchBlockUI.gameObject.SetActive(true);
-        touchBlockUI.ActiveUI("BlockEnchant");
+        targetObj.SetActive(true);
         blockEnchantUI.SetBlockInfo(blockName); //BlockEnchantInformation 내에 blockName에 해당하는 내용을 보여주도록 설정
     }
 
@@ -22,7 +21,6 @@ public class EnchantButtonClicked : MonoBehaviour
     public void InactiveBlockEnchantInfo()
     {
         blockEnchantUI.ResetBlockInfo(); //BlockEnchantInformation 내에 blockName에 해당하는 내용을 보여주도록 설정
-        touchBlockUI.UnactiveUI("BlockEnchant");
-        touchBlockUI.gameObject.SetActive(false);
+        targetObj.SetActive(false);
     }
 }

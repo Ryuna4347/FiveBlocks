@@ -4,9 +4,16 @@ using UnityEngine;
 using System.IO; //json을 읽기 위함
 using UnityEngine.UI;
 
+[System.Serializable]
 public class BlockDescJSON{
+    public BlockDesc[] blockDescInfo;
+}
+
+[System.Serializable]
+public class BlockDesc
+{
     public string blockName;
-    public string[] Description;
+    public string Description;
     public string SpecialEffectName;
 }
 
@@ -21,7 +28,7 @@ public class BlockEnchantUI : MonoBehaviour
     private EnchantManager enchantManager;
 
     //블럭유닛들의 정보를 미리 담아두는 변수들
-    private List<BlockDescJSON> blockDescList;
+    private List<BlockDesc> blockDescList;
     public List<Sprite> blockImageList;
 
     //블럭유닛의 정보를 작성할 위치
@@ -40,41 +47,28 @@ public class BlockEnchantUI : MonoBehaviour
     private void Awake()
     {
         enchantManager = GameObject.Find("EnchantManager").GetComponent<EnchantManager>();
-        blockDescList = new List<BlockDescJSON>();
+        blockDescList = new List<BlockDesc>();
         LoadBlockDescription();
-        gameObject.SetActive(false); 
+        transform.parent.gameObject.SetActive(false); //UI위에 외곽 터치 방지 오브젝트까지 꺼줘야한다.
     }
 
     private void LoadBlockDescription()
     {
-        BlockJSON blockJSON=enchantManager.GetBlockJSON();
+        string blockDescText = Resources.Load<TextAsset>("GameData/BlockDescription").text;
+        BlockDescJSON blockDesc = JsonUtility.FromJson<BlockDescJSON>(blockDescText);
 
-        int len = blockJSON.blockEnchant.Length;
-
-        if (len < 1)
-        {  //저장된 정보가 있어야 불러옴
-            return;
-        }
-        for (int i = 0; i < len; i++)
+        foreach (BlockDesc blockInfo in blockDesc.blockDescInfo)
         {
-            BlockDescJSON blockDesc = JsonUtility.FromJson<BlockDescJSON>(blockJSON.blockDesc[i].Replace("'","\""));
-            blockDescList.Add(blockDesc);
+            blockDescList.Add(blockInfo);
         }
     }
 
     public void SetBlockInfo(string blockName) {
-        BlockDescJSON blockDesc = blockDescList.Find(x => blockName.Contains(x.blockName));
+        BlockDesc blockDesc = blockDescList.Find(x => blockName.Contains(x.blockName));
         blockImage.sprite = blockImageList.Find(x => x.name.Contains(blockName));
         blockNameText.text = blockDesc.blockName;
-        
-        foreach(string desc in blockDesc.Description)
-        {
-            blockDescriptionText.text += desc;
-            if (desc != blockDesc.Description[blockDesc.Description.Length - 1])
-            {//마지막 문장이 아니라면
-                blockDescriptionText.text += "\n";//엔터 추가
-            }
-        }
+
+        blockDescriptionText.text=blockDesc.Description;
 
 
         //공격력 관련부분

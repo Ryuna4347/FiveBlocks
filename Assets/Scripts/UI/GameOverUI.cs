@@ -34,7 +34,6 @@ public class GameOverUI : MonoBehaviour
     {
         //highScore갱신
         nowScore.text = (waveManager.GetWaveNow()-1).ToString(); //현재 웨이브는 실패했으므로 1을 빼야 한다.
-        bestScore.text = PlayerPrefs.GetInt("Score").ToString();
     }
 
     //게임 재시작

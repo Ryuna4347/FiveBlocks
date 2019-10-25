@@ -1,16 +1,34 @@
 ﻿{
-  "blockDesc": [
-    "{'blockName':'Red', 'Description' : ['적이 탄환에 맞을 시','주변 적들에게','확산피해를 입힙니다.'], 'SpecialEffectName' : '확산피해'}",
-    "{'blockName':'Blue', 'Description' : ['적이 탄환에 맞을 시','2초간 이동속도가 느려집니다.','(중복되지 않습니다.)'], 'SpecialEffectName' : '빙결효과'}",
-    "{'blockName':'Purple', 'Description' : ['특별한 효과는 없지만','다른 블럭보다','피해를 더 입힐 수 있습니다.'], 'SpecialEffectName' : ''}",
-    "{'blockName':'Grey', 'Description' : ['적이 탄환에 맞을 시','일정 확률로 0.5초간','움직이지 못하게 합니다.'], 'SpecialEffectName' : '포박효과'}",
-    "{'blockName':'Yellow', 'Description' : ['자신의 상하좌우에 위치한','블럭들의 공격력을','향상시킵니다.'], 'SpecialEffectName' : '공격강화'}"
-  ],
-  "blockEnchant": [
-    "{'blockName':'RedBlock', 'blockAttEnchant':[0,1,2,3,5,7,9,12,15], 'blockSpecialEffect':[1,1,2,3,5,7,9,12,15], 'blockRequiredMoney':[5,10,20,30,45,70,100,150]}",
-    "{'blockName':'BlueBlock', 'blockAttEnchant':[0,1,2,3,5,7,9,12,15], 'blockSpecialEffect':[0.02,0.03,0.04,0.05,0.07,0.09,0.10,0.13,0.15],'blockRequiredMoney':[5,10,20,30,45,70,100,150]}",
-    "{'blockName':'GreyBlock', 'blockAttEnchant':[0,1,2,3,5,7,9,12,15], 'blockSpecialEffect':[1,1,2,3,4,5,6,7.5,9],'blockRequiredMoney':[5,10,20,30,45,70,100,150]}",
-    "{'blockName':'PurpleBlock', 'blockAttEnchant':[0,1,2,4,6,8,11,14,18], 'blockSpecialEffect':[0,0,0,0,0,0,0,0,0],'blockRequiredMoney':[5,10,20,30,45,70,100,150]}",
-    "{'blockName':'YellowBlock', 'blockAttEnchant':[0,1,1,2,3,5,7,9,10], 'blockSpecialEffect':[1.1,1.15,1.2,1.4,1.6,1.8,2.0,2.2,2.5],'blockRequiredMoney':[5,10,20,30,45,70,100,150]}"
+  "enchantData": [
+    {
+      "blockName": "RedBlock",
+      "blockAttEnchant": [ 0, 1, 2, 3, 5, 7, 9, 12, 15 ],
+      "blockSpecialEffect": [ 1, 1, 2, 3, 5, 7, 9, 12, 15 ],
+      "blockRequiredMoney": [ 5, 10, 20, 30, 45, 70, 100, 150 ]
+    },
+    {
+      "blockName": "BlueBlock",
+      "blockAttEnchant": [ 0, 1, 2, 3, 5, 7, 9, 12, 15 ],
+      "blockSpecialEffect": [ 0.01, 0.02, 0.03, 0.04, 0.06, 0.08, 0.11, 0.13, 0.15 ],
+      "blockRequiredMoney": [ 5, 10, 20, 30, 45, 70, 100, 150 ]
+    },
+    {
+      "blockName": "GreyBlock",
+      "blockAttEnchant": [ 0, 1, 2, 3, 5, 7, 9, 12, 15 ],
+      "blockSpecialEffect": [ 1, 1, 2, 3, 4, 5, 6, 7.5, 9 ],
+      "blockRequiredMoney": [ 5, 10, 20, 30, 45, 70, 100, 150 ]
+    },
+    {
+      "blockName": "PurpleBlock",
+      "blockAttEnchant": [ 0, 1, 2, 4, 6, 8, 11, 14, 18 ],
+      "blockSpecialEffect": [ 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+      "blockRequiredMoney": [ 5, 10, 20, 30, 45, 70, 100, 150 ]
+    },
+    {
+      "blockName": "YellowBlock",
+      "blockAttEnchant": [ 0, 1, 1, 2, 3, 5, 7, 9, 10 ],
+      "blockSpecialEffect": [ 1.1, 1.15, 1.2, 1.4, 1.6, 1.8, 2.0, 2.2, 2.5 ],
+      "blockRequiredMoney": [ 5, 10, 20, 30, 45, 70, 100, 150 ]
+    }
   ]
 }
