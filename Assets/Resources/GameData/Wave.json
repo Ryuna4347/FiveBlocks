@@ -3,276 +3,4468 @@
     {
       "waveNow": 1,
       "waveMapName": "Map_0",
-      "pathInfo": "0",
-      "unitName": [ "Enemy_Rect" ],
-      "numOfUnit": [ 1 ]
+      "pathInfo": 1,
+      "unitName": [
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        1
+      ]
     },
     {
       "waveNow": 2,
       "waveMapName": "Map_0",
-      "pathInfo": "0",
-      "unitName": [ "Enemy_Rect" ],
-      "numOfUnit": [ 2 ]
+      "pathInfo": 1,
+      "unitName": [
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        2
+      ]
     },
     {
       "waveNow": 3,
       "waveMapName": "Map_0",
-      "pathInfo": "0",
-      "unitName": [ "Enemy_Rect" ],
-      "numOfUnit": [ 3 ]
+      "pathInfo": 1,
+      "unitName": [
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        3
+      ]
     },
     {
       "waveNow": 4,
       "waveMapName": "Map_0",
-      "pathInfo": "0",
-      "unitName": [ "Enemy_Rect" ],
-      "numOfUnit": [ 4 ]
+      "pathInfo": 1,
+      "unitName": [
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        4
+      ]
     },
     {
       "waveNow": 5,
       "waveMapName": "Map_0",
-      "pathInfo": "0",
-      "unitName": [ "Enemy_Rect" ],
-      "numOfUnit": [ 5 ]
+      "pathInfo": 1,
+      "unitName": [
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        5
+      ]
     },
     {
       "waveNow": 6,
       "waveMapName": "Map_0",
-      "pathInfo": "0",
-      "unitName": [ "Enemy_Rect" ],
-      "numOfUnit": [ 6 ]
+      "pathInfo": 1,
+      "unitName": [
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        6
+      ]
     },
     {
       "waveNow": 7,
       "waveMapName": "Map_0",
-      "pathInfo": "0",
-      "unitName": [ "Enemy_Rect" ],
-      "numOfUnit": [ 7 ]
+      "pathInfo": 1,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        1,
+        6
+      ]
     },
     {
       "waveNow": 8,
       "waveMapName": "Map_0",
-      "pathInfo": "0",
-      "unitName": [ "Enemy_Rect" ],
-      "numOfUnit": [ 8 ]
+      "pathInfo": 1,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        1,
+        7
+      ]
     },
     {
       "waveNow": 9,
       "waveMapName": "Map_0",
-      "pathInfo": "0",
-      "unitName": [ "Enemy_Rect" ],
-      "numOfUnit": [ 9 ]
+      "pathInfo": 1,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        1,
+        8
+      ]
     },
     {
       "waveNow": 10,
       "waveMapName": "Map_0",
-      "pathInfo": "0",
-      "unitName": [ "Enemy_Rect" ],
-      "numOfUnit": [ 10 ]
+      "pathInfo": 1,
+      "unitName": [
+        "Enemy_Rect",
+        "Boss_Rect"
+      ],
+      "numOfUnit": [
+        5,
+        1
+      ]
     },
     {
       "waveNow": 11,
       "waveMapName": "Map_0",
-      "pathInfo": "0",
-      "unitName": [ "Enemy_Rect" ],
-      "numOfUnit": [ 11 ]
+      "pathInfo": 1,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        1,
+        10
+      ]
     },
     {
       "waveNow": 12,
       "waveMapName": "Map_0",
-      "pathInfo": "0",
-      "unitName": [ "Enemy_Rect" ],
-      "numOfUnit": [ 12 ]
+      "pathInfo": 1,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        1,
+        11
+      ]
     },
     {
       "waveNow": 13,
       "waveMapName": "Map_0",
-      "pathInfo": "0",
-      "unitName": [ "Enemy_Rect" ],
-      "numOfUnit": [ 13 ]
+      "pathInfo": 1,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        1,
+        12
+      ]
     },
     {
       "waveNow": 14,
       "waveMapName": "Map_0",
-      "pathInfo": "0",
-      "unitName": [ "Enemy_Rect" ],
-      "numOfUnit": [ 14 ]
+      "pathInfo": 1,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        2,
+        12
+      ]
     },
     {
       "waveNow": 15,
       "waveMapName": "Map_0",
-      "pathInfo": "0",
-      "unitName": [ "Boss_Rect" ],
-      "numOfUnit": [ 1 ]
+      "pathInfo": 1,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        2,
+        13
+      ]
     },
     {
       "waveNow": 16,
       "waveMapName": "Map_0",
-      "pathInfo": "0",
-      "unitName": [ "Enemy_Rect", "Enemy_Triangle" ],
-      "numOfUnit": [ 14, 2 ]
+      "pathInfo": 1,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        2,
+        14
+      ]
     },
     {
       "waveNow": 17,
       "waveMapName": "Map_0",
-      "pathInfo": "0",
-      "unitName": [ "Enemy_Rect", "Enemy_Triangle" ],
-      "numOfUnit": [ 15, 2 ]
+      "pathInfo": 1,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        2,
+        15
+      ]
     },
     {
       "waveNow": 18,
       "waveMapName": "Map_0",
-      "pathInfo": "0",
-      "unitName": [ "Enemy_Rect", "Enemy_Triangle" ],
-      "numOfUnit": [ 16, 2 ]
+      "pathInfo": 1,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        2,
+        16
+      ]
     },
     {
       "waveNow": 19,
       "waveMapName": "Map_0",
-      "pathInfo": "0",
-      "unitName": [ "Enemy_Rect", "Enemy_Triangle" ],
-      "numOfUnit": [ 16, 3 ]
+      "pathInfo": 1,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        2,
+        17
+      ]
     },
     {
       "waveNow": 20,
       "waveMapName": "Map_0",
-      "pathInfo": "0",
-      "unitName": [ "Enemy_Rect", "Enemy_Triangle" ],
-      "numOfUnit": [ 17, 3 ]
+      "pathInfo": 1,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Rect",
+        "Boss_Rect"
+      ],
+      "numOfUnit": [
+        1,
+        9,
+        1
+      ]
     },
     {
       "waveNow": 21,
       "waveMapName": "Map_0",
-      "pathInfo": "0",
-      "unitName": [ "Enemy_Rect", "Enemy_Triangle" ],
-      "numOfUnit": [ 18, 3 ]
+      "pathInfo": 2,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        3,
+        18
+      ]
     },
     {
       "waveNow": 22,
       "waveMapName": "Map_0",
-      "pathInfo": "0",
-      "unitName": [ "Enemy_Rect", "Enemy_Triangle" ],
-      "numOfUnit": [ 18, 4 ]
+      "pathInfo": 2,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        3,
+        19
+      ]
     },
     {
       "waveNow": 23,
       "waveMapName": "Map_0",
-      "pathInfo": "0",
-      "unitName": [ "Enemy_Rect", "Enemy_Triangle" ],
-      "numOfUnit": [ 19, 4 ]
+      "pathInfo": 2,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        3,
+        20
+      ]
     },
     {
       "waveNow": 24,
       "waveMapName": "Map_0",
-      "pathInfo": "0",
-      "unitName": [ "Enemy_Rect", "Enemy_Triangle" ],
-      "numOfUnit": [ 20, 4 ]
+      "pathInfo": 2,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        3,
+        21
+      ]
     },
     {
       "waveNow": 25,
       "waveMapName": "Map_0",
-      "pathInfo": "0",
-      "unitName": [ "Enemy_Rect", "Enemy_Triangle" ],
-      "numOfUnit": [ 21, 4 ]
+      "pathInfo": 2,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        3,
+        22
+      ]
     },
     {
       "waveNow": 26,
       "waveMapName": "Map_0",
-      "pathInfo": "0",
-      "unitName": [ "Enemy_Rect", "Enemy_Triangle" ],
-      "numOfUnit": [ 21, 5 ]
+      "pathInfo": 2,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        3,
+        23
+      ]
     },
     {
       "waveNow": 27,
       "waveMapName": "Map_0",
-      "pathInfo": "0",
-      "unitName": [ "Enemy_Rect", "Enemy_Triangle" ],
-      "numOfUnit": [ 22, 5 ]
+      "pathInfo": 2,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        4,
+        23
+      ]
     },
     {
       "waveNow": 28,
       "waveMapName": "Map_0",
-      "pathInfo": "0",
-      "unitName": [ "Enemy_Rect", "Enemy_Triangle" ],
-      "numOfUnit": [ 23, 5 ]
+      "pathInfo": 2,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        4,
+        24
+      ]
     },
     {
       "waveNow": 29,
       "waveMapName": "Map_0",
-      "pathInfo": "0",
-      "unitName": [ "Enemy_Rect", "Enemy_Triangle" ],
-      "numOfUnit": [ 24, 5 ]
+      "pathInfo": 2,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        4,
+        25
+      ]
     },
     {
       "waveNow": 30,
       "waveMapName": "Map_0",
-      "pathInfo": "0",
-      "unitName": [ "Boss_Rect" ],
-      "numOfUnit": [ 1 ]
+      "pathInfo": 2,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Rect",
+        "Boss_Rect"
+      ],
+      "numOfUnit": [
+        2,
+        13,
+        1
+      ]
     },
     {
       "waveNow": 31,
       "waveMapName": "Map_0",
-      "pathInfo": "1",
-      "unitName": [ "Enemy_Rect", "Enemy_Round" ],
-      "numOfUnit": [ 14, 2 ]
+      "pathInfo": 2,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        4,
+        27
+      ]
     },
     {
       "waveNow": 32,
       "waveMapName": "Map_0",
-      "pathInfo": "1",
-      "unitName": [ "Enemy_Rect", "Enemy_Round" ],
-      "numOfUnit": [ 15, 2 ]
+      "pathInfo": 2,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        4,
+        28
+      ]
     },
     {
       "waveNow": 33,
       "waveMapName": "Map_0",
-      "pathInfo": "1",
-      "unitName": [ "Enemy_Rect", "Enemy_Round" ],
-      "numOfUnit": [ 16, 2 ]
+      "pathInfo": 2,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        4,
+        29
+      ]
     },
     {
       "waveNow": 34,
       "waveMapName": "Map_0",
-      "pathInfo": "1",
-      "unitName": [ "Enemy_Rect", "Enemy_Round" ],
-      "numOfUnit": [ 16, 3 ]
+      "pathInfo": 2,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        5,
+        29
+      ]
     },
     {
       "waveNow": 35,
       "waveMapName": "Map_0",
-      "pathInfo": "1",
-      "unitName": [ "Enemy_Rect", "Enemy_Round" ],
-      "numOfUnit": [ 17, 3 ]
+      "pathInfo": 2,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        5,
+        30
+      ]
     },
     {
       "waveNow": 36,
       "waveMapName": "Map_0",
-      "pathInfo": "1",
-      "unitName": [ "Enemy_Rect", "Enemy_Round" ],
-      "numOfUnit": [ 18, 3 ]
+      "pathInfo": 2,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        5,
+        31
+      ]
     },
     {
       "waveNow": 37,
       "waveMapName": "Map_0",
-      "pathInfo": "1",
-      "unitName": [ "Enemy_Rect", "Enemy_Round" ],
-      "numOfUnit": [ 18, 4 ]
+      "pathInfo": 2,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        5,
+        32
+      ]
     },
     {
       "waveNow": 38,
       "waveMapName": "Map_0",
-      "pathInfo": "1",
-      "unitName": [ "Enemy_Rect", "Enemy_Round" ],
-      "numOfUnit": [ 19, 4 ]
+      "pathInfo": 2,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        5,
+        33
+      ]
     },
     {
       "waveNow": 39,
       "waveMapName": "Map_0",
-      "pathInfo": "1",
-      "unitName": [ "Enemy_Rect", "Enemy_Round" ],
-      "numOfUnit": [ 20, 4 ]
+      "pathInfo": 2,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        5,
+        34
+      ]
+    },
+    {
+      "waveNow": 40,
+      "waveMapName": "Map_0",
+      "pathInfo": 2,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Rect",
+        "Boss_Rect"
+      ],
+      "numOfUnit": [
+        3,
+        17,
+        1
+      ]
+    },
+    {
+      "waveNow": 41,
+      "waveMapName": "Map_0",
+      "pathInfo": 3,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        8,
+        2,
+        31
+      ]
+    },
+    {
+      "waveNow": 42,
+      "waveMapName": "Map_0",
+      "pathInfo": 3,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        8,
+        2,
+        32
+      ]
+    },
+    {
+      "waveNow": 43,
+      "waveMapName": "Map_0",
+      "pathInfo": 3,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        8,
+        2,
+        33
+      ]
+    },
+    {
+      "waveNow": 44,
+      "waveMapName": "Map_0",
+      "pathInfo": 3,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        8,
+        2,
+        34
+      ]
+    },
+    {
+      "waveNow": 45,
+      "waveMapName": "Map_0",
+      "pathInfo": 3,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        9,
+        2,
+        34
+      ]
+    },
+    {
+      "waveNow": 46,
+      "waveMapName": "Map_0",
+      "pathInfo": 3,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        9,
+        4,
+        33
+      ]
+    },
+    {
+      "waveNow": 47,
+      "waveMapName": "Map_0",
+      "pathInfo": 3,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        9,
+        4,
+        34
+      ]
+    },
+    {
+      "waveNow": 48,
+      "waveMapName": "Map_0",
+      "pathInfo": 3,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        9,
+        4,
+        35
+      ]
+    },
+    {
+      "waveNow": 49,
+      "waveMapName": "Map_0",
+      "pathInfo": 3,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        9,
+        4,
+        36
+      ]
+    },
+    {
+      "waveNow": 50,
+      "waveMapName": "Map_0",
+      "pathInfo": 3,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect",
+        "Boss_Rect"
+      ],
+      "numOfUnit": [
+        5,
+        2,
+        18,
+        1
+      ]
+    },
+    {
+      "waveNow": 51,
+      "waveMapName": "Map_0",
+      "pathInfo": 3,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        10,
+        5,
+        36
+      ]
+    },
+    {
+      "waveNow": 52,
+      "waveMapName": "Map_0",
+      "pathInfo": 3,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        10,
+        5,
+        37
+      ]
+    },
+    {
+      "waveNow": 53,
+      "waveMapName": "Map_0",
+      "pathInfo": 3,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        10,
+        5,
+        38
+      ]
+    },
+    {
+      "waveNow": 54,
+      "waveMapName": "Map_0",
+      "pathInfo": 3,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        10,
+        5,
+        39
+      ]
+    },
+    {
+      "waveNow": 55,
+      "waveMapName": "Map_0",
+      "pathInfo": 3,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        11,
+        5,
+        39
+      ]
+    },
+    {
+      "waveNow": 56,
+      "waveMapName": "Map_0",
+      "pathInfo": 3,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        11,
+        5,
+        40
+      ]
+    },
+    {
+      "waveNow": 57,
+      "waveMapName": "Map_0",
+      "pathInfo": 3,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        11,
+        5,
+        41
+      ]
+    },
+    {
+      "waveNow": 58,
+      "waveMapName": "Map_0",
+      "pathInfo": 3,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        11,
+        5,
+        42
+      ]
+    },
+    {
+      "waveNow": 59,
+      "waveMapName": "Map_0",
+      "pathInfo": 3,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        11,
+        5,
+        43
+      ]
+    },
+    {
+      "waveNow": 60,
+      "waveMapName": "Map_0",
+      "pathInfo": 3,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect",
+        "Boss_Rect"
+      ],
+      "numOfUnit": [
+        6,
+        3,
+        21,
+        1
+      ]
+    },
+    {
+      "waveNow": 61,
+      "waveMapName": "Map_1",
+      "pathInfo": 4,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        12,
+        6,
+        43
+      ]
+    },
+    {
+      "waveNow": 62,
+      "waveMapName": "Map_1",
+      "pathInfo": 4,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        12,
+        6,
+        44
+      ]
+    },
+    {
+      "waveNow": 63,
+      "waveMapName": "Map_1",
+      "pathInfo": 4,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        12,
+        6,
+        45
+      ]
+    },
+    {
+      "waveNow": 64,
+      "waveMapName": "Map_1",
+      "pathInfo": 4,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        12,
+        6,
+        46
+      ]
+    },
+    {
+      "waveNow": 65,
+      "waveMapName": "Map_1",
+      "pathInfo": 4,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        13,
+        6,
+        46
+      ]
+    },
+    {
+      "waveNow": 66,
+      "waveMapName": "Map_1",
+      "pathInfo": 4,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        13,
+        6,
+        47
+      ]
+    },
+    {
+      "waveNow": 67,
+      "waveMapName": "Map_1",
+      "pathInfo": 4,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        13,
+        6,
+        48
+      ]
+    },
+    {
+      "waveNow": 68,
+      "waveMapName": "Map_1",
+      "pathInfo": 4,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        13,
+        6,
+        49
+      ]
+    },
+    {
+      "waveNow": 69,
+      "waveMapName": "Map_1",
+      "pathInfo": 4,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        13,
+        6,
+        50
+      ]
+    },
+    {
+      "waveNow": 70,
+      "waveMapName": "Map_1",
+      "pathInfo": 4,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect",
+        "Boss_Rect"
+      ],
+      "numOfUnit": [
+        7,
+        3,
+        25,
+        1
+      ]
+    },
+    {
+      "waveNow": 71,
+      "waveMapName": "Map_1",
+      "pathInfo": 4,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        17,
+        7,
+        47
+      ]
+    },
+    {
+      "waveNow": 72,
+      "waveMapName": "Map_1",
+      "pathInfo": 4,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        18,
+        7,
+        47
+      ]
+    },
+    {
+      "waveNow": 73,
+      "waveMapName": "Map_1",
+      "pathInfo": 4,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        18,
+        7,
+        48
+      ]
+    },
+    {
+      "waveNow": 74,
+      "waveMapName": "Map_1",
+      "pathInfo": 4,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        18,
+        7,
+        49
+      ]
+    },
+    {
+      "waveNow": 75,
+      "waveMapName": "Map_1",
+      "pathInfo": 4,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        18,
+        7,
+        50
+      ]
+    },
+    {
+      "waveNow": 76,
+      "waveMapName": "Map_1",
+      "pathInfo": 4,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        19,
+        7,
+        50
+      ]
+    },
+    {
+      "waveNow": 77,
+      "waveMapName": "Map_1",
+      "pathInfo": 4,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        19,
+        7,
+        51
+      ]
+    },
+    {
+      "waveNow": 78,
+      "waveMapName": "Map_1",
+      "pathInfo": 4,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        19,
+        7,
+        52
+      ]
+    },
+    {
+      "waveNow": 79,
+      "waveMapName": "Map_1",
+      "pathInfo": 4,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        19,
+        7,
+        53
+      ]
+    },
+    {
+      "waveNow": 80,
+      "waveMapName": "Map_1",
+      "pathInfo": 4,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect",
+        "Boss_Rect"
+      ],
+      "numOfUnit": [
+        10,
+        4,
+        26,
+        1
+      ]
+    },
+    {
+      "waveNow": 81,
+      "waveMapName": "Map_0",
+      "pathInfo": 5,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        20,
+        8,
+        53
+      ]
+    },
+    {
+      "waveNow": 82,
+      "waveMapName": "Map_0",
+      "pathInfo": 5,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        20,
+        8,
+        54
+      ]
+    },
+    {
+      "waveNow": 83,
+      "waveMapName": "Map_0",
+      "pathInfo": 5,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        20,
+        8,
+        55
+      ]
+    },
+    {
+      "waveNow": 84,
+      "waveMapName": "Map_0",
+      "pathInfo": 5,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        21,
+        8,
+        55
+      ]
+    },
+    {
+      "waveNow": 85,
+      "waveMapName": "Map_0",
+      "pathInfo": 5,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        21,
+        8,
+        56
+      ]
+    },
+    {
+      "waveNow": 86,
+      "waveMapName": "Map_0",
+      "pathInfo": 5,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        21,
+        8,
+        57
+      ]
+    },
+    {
+      "waveNow": 87,
+      "waveMapName": "Map_0",
+      "pathInfo": 5,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        21,
+        8,
+        58
+      ]
+    },
+    {
+      "waveNow": 88,
+      "waveMapName": "Map_0",
+      "pathInfo": 5,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        22,
+        8,
+        58
+      ]
+    },
+    {
+      "waveNow": 89,
+      "waveMapName": "Map_0",
+      "pathInfo": 5,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        22,
+        8,
+        59
+      ]
+    },
+    {
+      "waveNow": 90,
+      "waveMapName": "Map_0",
+      "pathInfo": 5,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect",
+        "Boss_Rect"
+      ],
+      "numOfUnit": [
+        11,
+        4,
+        30,
+        1
+      ]
+    },
+    {
+      "waveNow": 91,
+      "waveMapName": "Map_0",
+      "pathInfo": 5,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        22,
+        13,
+        56
+      ]
+    },
+    {
+      "waveNow": 92,
+      "waveMapName": "Map_0",
+      "pathInfo": 5,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        23,
+        13,
+        56
+      ]
+    },
+    {
+      "waveNow": 93,
+      "waveMapName": "Map_0",
+      "pathInfo": 5,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        23,
+        13,
+        57
+      ]
+    },
+    {
+      "waveNow": 94,
+      "waveMapName": "Map_0",
+      "pathInfo": 5,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        23,
+        14,
+        57
+      ]
+    },
+    {
+      "waveNow": 95,
+      "waveMapName": "Map_0",
+      "pathInfo": 5,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        23,
+        14,
+        58
+      ]
+    },
+    {
+      "waveNow": 96,
+      "waveMapName": "Map_0",
+      "pathInfo": 5,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        24,
+        14,
+        58
+      ]
+    },
+    {
+      "waveNow": 97,
+      "waveMapName": "Map_0",
+      "pathInfo": 5,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        24,
+        14,
+        59
+      ]
+    },
+    {
+      "waveNow": 98,
+      "waveMapName": "Map_0",
+      "pathInfo": 5,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        24,
+        14,
+        60
+      ]
+    },
+    {
+      "waveNow": 99,
+      "waveMapName": "Map_0",
+      "pathInfo": 5,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        24,
+        14,
+        61
+      ]
+    },
+    {
+      "waveNow": 100,
+      "waveMapName": "Map_0",
+      "pathInfo": 5,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect",
+        "Boss_Rect"
+      ],
+      "numOfUnit": [
+        12,
+        7,
+        31,
+        1
+      ]
+    },
+    {
+      "waveNow": 101,
+      "waveMapName": "Map_0",
+      "pathInfo": 6,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        25,
+        15,
+        61
+      ]
+    },
+    {
+      "waveNow": 102,
+      "waveMapName": "Map_0",
+      "pathInfo": 6,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        25,
+        15,
+        62
+      ]
+    },
+    {
+      "waveNow": 103,
+      "waveMapName": "Map_0",
+      "pathInfo": 6,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        25,
+        15,
+        63
+      ]
+    },
+    {
+      "waveNow": 104,
+      "waveMapName": "Map_0",
+      "pathInfo": 6,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        26,
+        15,
+        63
+      ]
+    },
+    {
+      "waveNow": 105,
+      "waveMapName": "Map_0",
+      "pathInfo": 6,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        26,
+        15,
+        64
+      ]
+    },
+    {
+      "waveNow": 106,
+      "waveMapName": "Map_0",
+      "pathInfo": 6,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        26,
+        15,
+        65
+      ]
+    },
+    {
+      "waveNow": 107,
+      "waveMapName": "Map_0",
+      "pathInfo": 6,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        26,
+        16,
+        65
+      ]
+    },
+    {
+      "waveNow": 108,
+      "waveMapName": "Map_0",
+      "pathInfo": 6,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        27,
+        16,
+        65
+      ]
+    },
+    {
+      "waveNow": 109,
+      "waveMapName": "Map_0",
+      "pathInfo": 6,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        27,
+        16,
+        66
+      ]
+    },
+    {
+      "waveNow": 110,
+      "waveMapName": "Map_0",
+      "pathInfo": 6,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect",
+        "Boss_Rect"
+      ],
+      "numOfUnit": [
+        13,
+        8,
+        34,
+        1
+      ]
+    },
+    {
+      "waveNow": 111,
+      "waveMapName": "Map_0",
+      "pathInfo": 6,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        33,
+        16,
+        62
+      ]
+    },
+    {
+      "waveNow": 112,
+      "waveMapName": "Map_0",
+      "pathInfo": 6,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        33,
+        16,
+        63
+      ]
+    },
+    {
+      "waveNow": 113,
+      "waveMapName": "Map_0",
+      "pathInfo": 6,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        33,
+        16,
+        64
+      ]
+    },
+    {
+      "waveNow": 114,
+      "waveMapName": "Map_0",
+      "pathInfo": 6,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        34,
+        17,
+        63
+      ]
+    },
+    {
+      "waveNow": 115,
+      "waveMapName": "Map_0",
+      "pathInfo": 6,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        34,
+        17,
+        64
+      ]
+    },
+    {
+      "waveNow": 116,
+      "waveMapName": "Map_0",
+      "pathInfo": 6,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        34,
+        17,
+        65
+      ]
+    },
+    {
+      "waveNow": 117,
+      "waveMapName": "Map_0",
+      "pathInfo": 6,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        35,
+        17,
+        65
+      ]
+    },
+    {
+      "waveNow": 118,
+      "waveMapName": "Map_0",
+      "pathInfo": 6,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        35,
+        17,
+        66
+      ]
+    },
+    {
+      "waveNow": 119,
+      "waveMapName": "Map_0",
+      "pathInfo": 6,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        35,
+        17,
+        67
+      ]
+    },
+    {
+      "waveNow": 120,
+      "waveMapName": "Map_0",
+      "pathInfo": 6,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect",
+        "Boss_Rect"
+      ],
+      "numOfUnit": [
+        18,
+        9,
+        33,
+        1
+      ]
+    },
+    {
+      "waveNow": 121,
+      "waveMapName": "Map_0",
+      "pathInfo": 1,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        36,
+        18,
+        67
+      ]
+    },
+    {
+      "waveNow": 122,
+      "waveMapName": "Map_0",
+      "pathInfo": 1,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        36,
+        18,
+        68
+      ]
+    },
+    {
+      "waveNow": 123,
+      "waveMapName": "Map_0",
+      "pathInfo": 1,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        36,
+        18,
+        69
+      ]
+    },
+    {
+      "waveNow": 124,
+      "waveMapName": "Map_0",
+      "pathInfo": 1,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        37,
+        18,
+        69
+      ]
+    },
+    {
+      "waveNow": 125,
+      "waveMapName": "Map_0",
+      "pathInfo": 1,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        37,
+        18,
+        70
+      ]
+    },
+    {
+      "waveNow": 126,
+      "waveMapName": "Map_0",
+      "pathInfo": 1,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        37,
+        18,
+        71
+      ]
+    },
+    {
+      "waveNow": 127,
+      "waveMapName": "Map_0",
+      "pathInfo": 1,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        38,
+        19,
+        70
+      ]
+    },
+    {
+      "waveNow": 128,
+      "waveMapName": "Map_0",
+      "pathInfo": 1,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        38,
+        19,
+        71
+      ]
+    },
+    {
+      "waveNow": 129,
+      "waveMapName": "Map_0",
+      "pathInfo": 2,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        38,
+        19,
+        72
+      ]
+    },
+    {
+      "waveNow": 130,
+      "waveMapName": "Map_0",
+      "pathInfo": 2,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect",
+        "Boss_Rect"
+      ],
+      "numOfUnit": [
+        19,
+        9,
+        37,
+        1
+      ]
+    },
+    {
+      "waveNow": 131,
+      "waveMapName": "Map_0",
+      "pathInfo": 2,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        39,
+        26,
+        66
+      ]
+    },
+    {
+      "waveNow": 132,
+      "waveMapName": "Map_0",
+      "pathInfo": 2,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        39,
+        26,
+        67
+      ]
+    },
+    {
+      "waveNow": 133,
+      "waveMapName": "Map_0",
+      "pathInfo": 2,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        39,
+        26,
+        68
+      ]
+    },
+    {
+      "waveNow": 134,
+      "waveMapName": "Map_0",
+      "pathInfo": 2,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        40,
+        26,
+        68
+      ]
+    },
+    {
+      "waveNow": 135,
+      "waveMapName": "Map_0",
+      "pathInfo": 2,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        40,
+        27,
+        68
+      ]
+    },
+    {
+      "waveNow": 136,
+      "waveMapName": "Map_0",
+      "pathInfo": 2,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        40,
+        27,
+        69
+      ]
+    },
+    {
+      "waveNow": 137,
+      "waveMapName": "Map_0",
+      "pathInfo": 3,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        41,
+        27,
+        69
+      ]
+    },
+    {
+      "waveNow": 138,
+      "waveMapName": "Map_0",
+      "pathInfo": 3,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        41,
+        27,
+        70
+      ]
+    },
+    {
+      "waveNow": 139,
+      "waveMapName": "Map_0",
+      "pathInfo": 3,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        41,
+        27,
+        71
+      ]
+    },
+    {
+      "waveNow": 140,
+      "waveMapName": "Map_0",
+      "pathInfo": 3,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect",
+        "Boss_Rect"
+      ],
+      "numOfUnit": [
+        21,
+        14,
+        35,
+        1
+      ]
+    },
+    {
+      "waveNow": 141,
+      "waveMapName": "Map_0",
+      "pathInfo": 3,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        42,
+        28,
+        71
+      ]
+    },
+    {
+      "waveNow": 142,
+      "waveMapName": "Map_0",
+      "pathInfo": 3,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        42,
+        28,
+        72
+      ]
+    },
+    {
+      "waveNow": 143,
+      "waveMapName": "Map_0",
+      "pathInfo": 3,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        42,
+        28,
+        73
+      ]
+    },
+    {
+      "waveNow": 144,
+      "waveMapName": "Map_0",
+      "pathInfo": 3,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        43,
+        28,
+        73
+      ]
+    },
+    {
+      "waveNow": 145,
+      "waveMapName": "Map_1",
+      "pathInfo": 4,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        43,
+        29,
+        73
+      ]
+    },
+    {
+      "waveNow": 146,
+      "waveMapName": "Map_1",
+      "pathInfo": 4,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        43,
+        29,
+        74
+      ]
+    },
+    {
+      "waveNow": 147,
+      "waveMapName": "Map_1",
+      "pathInfo": 4,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        44,
+        29,
+        74
+      ]
+    },
+    {
+      "waveNow": 148,
+      "waveMapName": "Map_1",
+      "pathInfo": 4,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        44,
+        29,
+        75
+      ]
+    },
+    {
+      "waveNow": 149,
+      "waveMapName": "Map_1",
+      "pathInfo": 4,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        44,
+        29,
+        76
+      ]
+    },
+    {
+      "waveNow": 150,
+      "waveMapName": "Map_1",
+      "pathInfo": 4,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect",
+        "Boss_Rect"
+      ],
+      "numOfUnit": [
+        22,
+        15,
+        38,
+        1
+      ]
+    },
+    {
+      "waveNow": 151,
+      "waveMapName": "Map_1",
+      "pathInfo": 4,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        45,
+        37,
+        69
+      ]
+    },
+    {
+      "waveNow": 152,
+      "waveMapName": "Map_1",
+      "pathInfo": 4,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        45,
+        38,
+        69
+      ]
+    },
+    {
+      "waveNow": 153,
+      "waveMapName": "Map_0",
+      "pathInfo": 5,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        45,
+        38,
+        70
+      ]
+    },
+    {
+      "waveNow": 154,
+      "waveMapName": "Map_0",
+      "pathInfo": 5,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        46,
+        38,
+        70
+      ]
+    },
+    {
+      "waveNow": 155,
+      "waveMapName": "Map_0",
+      "pathInfo": 5,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        46,
+        38,
+        71
+      ]
+    },
+    {
+      "waveNow": 156,
+      "waveMapName": "Map_0",
+      "pathInfo": 5,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        46,
+        39,
+        71
+      ]
+    },
+    {
+      "waveNow": 157,
+      "waveMapName": "Map_0",
+      "pathInfo": 5,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        47,
+        39,
+        71
+      ]
+    },
+    {
+      "waveNow": 158,
+      "waveMapName": "Map_0",
+      "pathInfo": 5,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        47,
+        39,
+        72
+      ]
+    },
+    {
+      "waveNow": 159,
+      "waveMapName": "Map_0",
+      "pathInfo": 5,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        47,
+        39,
+        73
+      ]
+    },
+    {
+      "waveNow": 160,
+      "waveMapName": "Map_0",
+      "pathInfo": 5,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect",
+        "Boss_Rect"
+      ],
+      "numOfUnit": [
+        24,
+        20,
+        36,
+        1
+      ]
+    },
+    {
+      "waveNow": 161,
+      "waveMapName": "Map_0",
+      "pathInfo": 6,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        48,
+        40,
+        73
+      ]
+    },
+    {
+      "waveNow": 162,
+      "waveMapName": "Map_0",
+      "pathInfo": 6,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        48,
+        40,
+        74
+      ]
+    },
+    {
+      "waveNow": 163,
+      "waveMapName": "Map_0",
+      "pathInfo": 6,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        48,
+        40,
+        75
+      ]
+    },
+    {
+      "waveNow": 164,
+      "waveMapName": "Map_0",
+      "pathInfo": 6,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        49,
+        41,
+        74
+      ]
+    },
+    {
+      "waveNow": 165,
+      "waveMapName": "Map_0",
+      "pathInfo": 6,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        49,
+        41,
+        75
+      ]
+    },
+    {
+      "waveNow": 166,
+      "waveMapName": "Map_0",
+      "pathInfo": 6,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        49,
+        41,
+        76
+      ]
+    },
+    {
+      "waveNow": 167,
+      "waveMapName": "Map_0",
+      "pathInfo": 6,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        50,
+        41,
+        76
+      ]
+    },
+    {
+      "waveNow": 168,
+      "waveMapName": "Map_0",
+      "pathInfo": 6,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        50,
+        42,
+        76
+      ]
+    },
+    {
+      "waveNow": 169,
+      "waveMapName": "Map_0",
+      "pathInfo": 1,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        50,
+        42,
+        77
+      ]
+    },
+    {
+      "waveNow": 170,
+      "waveMapName": "Map_0",
+      "pathInfo": 1,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect",
+        "Boss_Rect"
+      ],
+      "numOfUnit": [
+        25,
+        21,
+        39,
+        1
+      ]
+    },
+    {
+      "waveNow": 171,
+      "waveMapName": "Map_0",
+      "pathInfo": 1,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        56,
+        51,
+        64
+      ]
+    },
+    {
+      "waveNow": 172,
+      "waveMapName": "Map_0",
+      "pathInfo": 1,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        56,
+        51,
+        65
+      ]
+    },
+    {
+      "waveNow": 173,
+      "waveMapName": "Map_0",
+      "pathInfo": 1,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        57,
+        51,
+        65
+      ]
+    },
+    {
+      "waveNow": 174,
+      "waveMapName": "Map_0",
+      "pathInfo": 1,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        57,
+        52,
+        65
+      ]
+    },
+    {
+      "waveNow": 175,
+      "waveMapName": "Map_0",
+      "pathInfo": 1,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        57,
+        52,
+        66
+      ]
+    },
+    {
+      "waveNow": 176,
+      "waveMapName": "Map_0",
+      "pathInfo": 1,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        58,
+        52,
+        66
+      ]
+    },
+    {
+      "waveNow": 177,
+      "waveMapName": "Map_0",
+      "pathInfo": 2,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        58,
+        53,
+        66
+      ]
+    },
+    {
+      "waveNow": 178,
+      "waveMapName": "Map_0",
+      "pathInfo": 2,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        58,
+        53,
+        67
+      ]
+    },
+    {
+      "waveNow": 179,
+      "waveMapName": "Map_0",
+      "pathInfo": 2,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        59,
+        53,
+        67
+      ]
+    },
+    {
+      "waveNow": 180,
+      "waveMapName": "Map_0",
+      "pathInfo": 2,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect",
+        "Boss_Rect"
+      ],
+      "numOfUnit": [
+        29,
+        27,
+        34,
+        1
+      ]
+    },
+    {
+      "waveNow": 181,
+      "waveMapName": "Map_0",
+      "pathInfo": 2,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        59,
+        54,
+        68
+      ]
+    },
+    {
+      "waveNow": 182,
+      "waveMapName": "Map_0",
+      "pathInfo": 2,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        60,
+        54,
+        68
+      ]
+    },
+    {
+      "waveNow": 183,
+      "waveMapName": "Map_0",
+      "pathInfo": 2,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        60,
+        54,
+        69
+      ]
+    },
+    {
+      "waveNow": 184,
+      "waveMapName": "Map_0",
+      "pathInfo": 2,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        60,
+        55,
+        69
+      ]
+    },
+    {
+      "waveNow": 185,
+      "waveMapName": "Map_0",
+      "pathInfo": 3,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        61,
+        55,
+        69
+      ]
+    },
+    {
+      "waveNow": 186,
+      "waveMapName": "Map_0",
+      "pathInfo": 3,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        61,
+        55,
+        70
+      ]
+    },
+    {
+      "waveNow": 187,
+      "waveMapName": "Map_0",
+      "pathInfo": 3,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        61,
+        56,
+        70
+      ]
+    },
+    {
+      "waveNow": 188,
+      "waveMapName": "Map_0",
+      "pathInfo": 3,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        62,
+        56,
+        70
+      ]
+    },
+    {
+      "waveNow": 189,
+      "waveMapName": "Map_0",
+      "pathInfo": 3,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        62,
+        56,
+        71
+      ]
+    },
+    {
+      "waveNow": 190,
+      "waveMapName": "Map_0",
+      "pathInfo": 3,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect",
+        "Boss_Rect"
+      ],
+      "numOfUnit": [
+        31,
+        28,
+        36,
+        1
+      ]
+    },
+    {
+      "waveNow": 191,
+      "waveMapName": "Map_0",
+      "pathInfo": 3,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        63,
+        63,
+        65
+      ]
+    },
+    {
+      "waveNow": 192,
+      "waveMapName": "Map_0",
+      "pathInfo": 3,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        63,
+        63,
+        66
+      ]
+    },
+    {
+      "waveNow": 193,
+      "waveMapName": "Map_1",
+      "pathInfo": 4,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        63,
+        63,
+        67
+      ]
+    },
+    {
+      "waveNow": 194,
+      "waveMapName": "Map_1",
+      "pathInfo": 4,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        64,
+        64,
+        66
+      ]
+    },
+    {
+      "waveNow": 195,
+      "waveMapName": "Map_1",
+      "pathInfo": 4,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        64,
+        64,
+        67
+      ]
+    },
+    {
+      "waveNow": 196,
+      "waveMapName": "Map_1",
+      "pathInfo": 4,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        64,
+        64,
+        68
+      ]
+    },
+    {
+      "waveNow": 197,
+      "waveMapName": "Map_1",
+      "pathInfo": 4,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        65,
+        65,
+        67
+      ]
+    },
+    {
+      "waveNow": 198,
+      "waveMapName": "Map_1",
+      "pathInfo": 4,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        65,
+        65,
+        68
+      ]
+    },
+    {
+      "waveNow": 199,
+      "waveMapName": "Map_1",
+      "pathInfo": 4,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        65,
+        65,
+        69
+      ]
+    },
+    {
+      "waveNow": 200,
+      "waveMapName": "Map_1",
+      "pathInfo": 4,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect",
+        "Boss_Rect"
+      ],
+      "numOfUnit": [
+        33,
+        33,
+        34,
+        1
+      ]
+    },
+    {
+      "waveNow": 201,
+      "waveMapName": "Map_0",
+      "pathInfo": 5,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        66,
+        66,
+        69
+      ]
+    },
+    {
+      "waveNow": 202,
+      "waveMapName": "Map_0",
+      "pathInfo": 5,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        66,
+        66,
+        70
+      ]
+    },
+    {
+      "waveNow": 203,
+      "waveMapName": "Map_0",
+      "pathInfo": 5,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        66,
+        66,
+        71
+      ]
+    },
+    {
+      "waveNow": 204,
+      "waveMapName": "Map_0",
+      "pathInfo": 5,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        67,
+        67,
+        70
+      ]
+    },
+    {
+      "waveNow": 205,
+      "waveMapName": "Map_0",
+      "pathInfo": 5,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        67,
+        67,
+        71
+      ]
+    },
+    {
+      "waveNow": 206,
+      "waveMapName": "Map_0",
+      "pathInfo": 5,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        67,
+        67,
+        72
+      ]
+    },
+    {
+      "waveNow": 207,
+      "waveMapName": "Map_0",
+      "pathInfo": 5,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        68,
+        68,
+        71
+      ]
+    },
+    {
+      "waveNow": 208,
+      "waveMapName": "Map_0",
+      "pathInfo": 5,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        68,
+        68,
+        72
+      ]
+    },
+    {
+      "waveNow": 209,
+      "waveMapName": "Map_0",
+      "pathInfo": 6,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        68,
+        68,
+        73
+      ]
+    },
+    {
+      "waveNow": 210,
+      "waveMapName": "Map_0",
+      "pathInfo": 6,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect",
+        "Boss_Rect"
+      ],
+      "numOfUnit": [
+        34,
+        34,
+        37,
+        1
+      ]
+    },
+    {
+      "waveNow": 211,
+      "waveMapName": "Map_0",
+      "pathInfo": 6,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        69,
+        69,
+        73
+      ]
+    },
+    {
+      "waveNow": 212,
+      "waveMapName": "Map_0",
+      "pathInfo": 6,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        69,
+        69,
+        74
+      ]
+    },
+    {
+      "waveNow": 213,
+      "waveMapName": "Map_0",
+      "pathInfo": 6,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        70,
+        70,
+        73
+      ]
+    },
+    {
+      "waveNow": 214,
+      "waveMapName": "Map_0",
+      "pathInfo": 6,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        70,
+        70,
+        74
+      ]
+    },
+    {
+      "waveNow": 215,
+      "waveMapName": "Map_0",
+      "pathInfo": 6,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        70,
+        70,
+        75
+      ]
+    },
+    {
+      "waveNow": 216,
+      "waveMapName": "Map_0",
+      "pathInfo": 6,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        71,
+        71,
+        74
+      ]
+    },
+    {
+      "waveNow": 217,
+      "waveMapName": "Map_0",
+      "pathInfo": 1,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        71,
+        71,
+        75
+      ]
+    },
+    {
+      "waveNow": 218,
+      "waveMapName": "Map_0",
+      "pathInfo": 1,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        71,
+        71,
+        76
+      ]
+    },
+    {
+      "waveNow": 219,
+      "waveMapName": "Map_0",
+      "pathInfo": 1,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        72,
+        72,
+        75
+      ]
+    },
+    {
+      "waveNow": 220,
+      "waveMapName": "Map_0",
+      "pathInfo": 1,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect",
+        "Boss_Rect"
+      ],
+      "numOfUnit": [
+        36,
+        36,
+        38,
+        1
+      ]
+    },
+    {
+      "waveNow": 221,
+      "waveMapName": "Map_0",
+      "pathInfo": 1,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        72,
+        72,
+        77
+      ]
+    },
+    {
+      "waveNow": 222,
+      "waveMapName": "Map_0",
+      "pathInfo": 1,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        73,
+        73,
+        76
+      ]
+    },
+    {
+      "waveNow": 223,
+      "waveMapName": "Map_0",
+      "pathInfo": 1,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        73,
+        73,
+        77
+      ]
+    },
+    {
+      "waveNow": 224,
+      "waveMapName": "Map_0",
+      "pathInfo": 1,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        73,
+        73,
+        78
+      ]
+    },
+    {
+      "waveNow": 225,
+      "waveMapName": "Map_0",
+      "pathInfo": 2,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        74,
+        74,
+        77
+      ]
+    },
+    {
+      "waveNow": 226,
+      "waveMapName": "Map_0",
+      "pathInfo": 2,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        74,
+        74,
+        78
+      ]
+    },
+    {
+      "waveNow": 227,
+      "waveMapName": "Map_0",
+      "pathInfo": 2,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        74,
+        74,
+        79
+      ]
+    },
+    {
+      "waveNow": 228,
+      "waveMapName": "Map_0",
+      "pathInfo": 2,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        75,
+        75,
+        78
+      ]
+    },
+    {
+      "waveNow": 229,
+      "waveMapName": "Map_0",
+      "pathInfo": 2,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        75,
+        75,
+        79
+      ]
+    },
+    {
+      "waveNow": 230,
+      "waveMapName": "Map_0",
+      "pathInfo": 2,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect",
+        "Boss_Rect"
+      ],
+      "numOfUnit": [
+        37,
+        37,
+        41,
+        1
+      ]
+    },
+    {
+      "waveNow": 231,
+      "waveMapName": "Map_0",
+      "pathInfo": 2,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        76,
+        76,
+        79
+      ]
+    },
+    {
+      "waveNow": 232,
+      "waveMapName": "Map_0",
+      "pathInfo": 2,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        76,
+        76,
+        80
+      ]
+    },
+    {
+      "waveNow": 233,
+      "waveMapName": "Map_0",
+      "pathInfo": 3,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        76,
+        76,
+        81
+      ]
+    },
+    {
+      "waveNow": 234,
+      "waveMapName": "Map_0",
+      "pathInfo": 3,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        77,
+        77,
+        80
+      ]
+    },
+    {
+      "waveNow": 235,
+      "waveMapName": "Map_0",
+      "pathInfo": 3,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        77,
+        77,
+        81
+      ]
+    },
+    {
+      "waveNow": 236,
+      "waveMapName": "Map_0",
+      "pathInfo": 3,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        77,
+        77,
+        82
+      ]
+    },
+    {
+      "waveNow": 237,
+      "waveMapName": "Map_0",
+      "pathInfo": 3,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        78,
+        78,
+        81
+      ]
+    },
+    {
+      "waveNow": 238,
+      "waveMapName": "Map_0",
+      "pathInfo": 3,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        78,
+        78,
+        82
+      ]
+    },
+    {
+      "waveNow": 239,
+      "waveMapName": "Map_0",
+      "pathInfo": 3,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        78,
+        78,
+        83
+      ]
+    },
+    {
+      "waveNow": 240,
+      "waveMapName": "Map_0",
+      "pathInfo": 3,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect",
+        "Boss_Rect"
+      ],
+      "numOfUnit": [
+        39,
+        39,
+        42,
+        1
+      ]
+    },
+    {
+      "waveNow": 241,
+      "waveMapName": "Map_1",
+      "pathInfo": 4,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        79,
+        79,
+        83
+      ]
+    },
+    {
+      "waveNow": 242,
+      "waveMapName": "Map_1",
+      "pathInfo": 4,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        79,
+        79,
+        84
+      ]
+    },
+    {
+      "waveNow": 243,
+      "waveMapName": "Map_1",
+      "pathInfo": 4,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        80,
+        80,
+        83
+      ]
+    },
+    {
+      "waveNow": 244,
+      "waveMapName": "Map_1",
+      "pathInfo": 4,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        80,
+        80,
+        84
+      ]
+    },
+    {
+      "waveNow": 245,
+      "waveMapName": "Map_1",
+      "pathInfo": 4,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        80,
+        80,
+        85
+      ]
+    },
+    {
+      "waveNow": 246,
+      "waveMapName": "Map_1",
+      "pathInfo": 4,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        81,
+        81,
+        84
+      ]
+    },
+    {
+      "waveNow": 247,
+      "waveMapName": "Map_1",
+      "pathInfo": 4,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        81,
+        81,
+        85
+      ]
+    },
+    {
+      "waveNow": 248,
+      "waveMapName": "Map_1",
+      "pathInfo": 4,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        81,
+        81,
+        86
+      ]
+    },
+    {
+      "waveNow": 249,
+      "waveMapName": "Map_0",
+      "pathInfo": 5,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        82,
+        82,
+        85
+      ]
+    },
+    {
+      "waveNow": 250,
+      "waveMapName": "Map_0",
+      "pathInfo": 5,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect",
+        "Boss_Rect"
+      ],
+      "numOfUnit": [
+        41,
+        41,
+        43,
+        1
+      ]
+    },
+    {
+      "waveNow": 251,
+      "waveMapName": "Map_0",
+      "pathInfo": 5,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        82,
+        82,
+        87
+      ]
+    },
+    {
+      "waveNow": 252,
+      "waveMapName": "Map_0",
+      "pathInfo": 5,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        83,
+        83,
+        86
+      ]
+    },
+    {
+      "waveNow": 253,
+      "waveMapName": "Map_0",
+      "pathInfo": 5,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        83,
+        83,
+        87
+      ]
+    },
+    {
+      "waveNow": 254,
+      "waveMapName": "Map_0",
+      "pathInfo": 5,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        83,
+        83,
+        88
+      ]
+    },
+    {
+      "waveNow": 255,
+      "waveMapName": "Map_0",
+      "pathInfo": 5,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        84,
+        84,
+        87
+      ]
+    },
+    {
+      "waveNow": 256,
+      "waveMapName": "Map_0",
+      "pathInfo": 5,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        84,
+        84,
+        88
+      ]
+    },
+    {
+      "waveNow": 257,
+      "waveMapName": "Map_0",
+      "pathInfo": 6,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        84,
+        84,
+        89
+      ]
+    },
+    {
+      "waveNow": 258,
+      "waveMapName": "Map_0",
+      "pathInfo": 6,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        85,
+        85,
+        88
+      ]
+    },
+    {
+      "waveNow": 259,
+      "waveMapName": "Map_0",
+      "pathInfo": 6,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        85,
+        85,
+        89
+      ]
+    },
+    {
+      "waveNow": 260,
+      "waveMapName": "Map_0",
+      "pathInfo": 6,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect",
+        "Boss_Rect"
+      ],
+      "numOfUnit": [
+        42,
+        42,
+        46,
+        1
+      ]
+    },
+    {
+      "waveNow": 261,
+      "waveMapName": "Map_0",
+      "pathInfo": 6,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        86,
+        86,
+        89
+      ]
+    },
+    {
+      "waveNow": 262,
+      "waveMapName": "Map_0",
+      "pathInfo": 6,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        86,
+        86,
+        90
+      ]
+    },
+    {
+      "waveNow": 263,
+      "waveMapName": "Map_0",
+      "pathInfo": 6,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        86,
+        86,
+        91
+      ]
+    },
+    {
+      "waveNow": 264,
+      "waveMapName": "Map_0",
+      "pathInfo": 6,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        87,
+        87,
+        90
+      ]
+    },
+    {
+      "waveNow": 265,
+      "waveMapName": "Map_0",
+      "pathInfo": 1,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        87,
+        87,
+        91
+      ]
+    },
+    {
+      "waveNow": 266,
+      "waveMapName": "Map_0",
+      "pathInfo": 1,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        87,
+        87,
+        92
+      ]
+    },
+    {
+      "waveNow": 267,
+      "waveMapName": "Map_0",
+      "pathInfo": 1,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        88,
+        88,
+        91
+      ]
+    },
+    {
+      "waveNow": 268,
+      "waveMapName": "Map_0",
+      "pathInfo": 1,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        88,
+        88,
+        92
+      ]
+    },
+    {
+      "waveNow": 269,
+      "waveMapName": "Map_0",
+      "pathInfo": 1,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        88,
+        88,
+        93
+      ]
+    },
+    {
+      "waveNow": 270,
+      "waveMapName": "Map_0",
+      "pathInfo": 1,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect",
+        "Boss_Rect"
+      ],
+      "numOfUnit": [
+        44,
+        44,
+        47,
+        1
+      ]
+    },
+    {
+      "waveNow": 271,
+      "waveMapName": "Map_0",
+      "pathInfo": 2,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        89,
+        89,
+        93
+      ]
+    },
+    {
+      "waveNow": 272,
+      "waveMapName": "Map_0",
+      "pathInfo": 2,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        89,
+        89,
+        94
+      ]
+    },
+    {
+      "waveNow": 273,
+      "waveMapName": "Map_0",
+      "pathInfo": 2,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        90,
+        90,
+        93
+      ]
+    },
+    {
+      "waveNow": 274,
+      "waveMapName": "Map_0",
+      "pathInfo": 2,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        90,
+        90,
+        94
+      ]
+    },
+    {
+      "waveNow": 275,
+      "waveMapName": "Map_0",
+      "pathInfo": 2,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        90,
+        90,
+        95
+      ]
+    },
+    {
+      "waveNow": 276,
+      "waveMapName": "Map_0",
+      "pathInfo": 2,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        91,
+        91,
+        94
+      ]
+    },
+    {
+      "waveNow": 277,
+      "waveMapName": "Map_0",
+      "pathInfo": 3,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        91,
+        91,
+        95
+      ]
+    },
+    {
+      "waveNow": 278,
+      "waveMapName": "Map_0",
+      "pathInfo": 3,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        91,
+        91,
+        96
+      ]
+    },
+    {
+      "waveNow": 279,
+      "waveMapName": "Map_0",
+      "pathInfo": 3,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        92,
+        92,
+        95
+      ]
+    },
+    {
+      "waveNow": 280,
+      "waveMapName": "Map_0",
+      "pathInfo": 3,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect",
+        "Boss_Rect"
+      ],
+      "numOfUnit": [
+        46,
+        46,
+        48,
+        1
+      ]
+    },
+    {
+      "waveNow": 281,
+      "waveMapName": "Map_0",
+      "pathInfo": 3,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        92,
+        92,
+        97
+      ]
+    },
+    {
+      "waveNow": 282,
+      "waveMapName": "Map_0",
+      "pathInfo": 3,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        93,
+        93,
+        96
+      ]
+    },
+    {
+      "waveNow": 283,
+      "waveMapName": "Map_1",
+      "pathInfo": 4,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        93,
+        93,
+        97
+      ]
+    },
+    {
+      "waveNow": 284,
+      "waveMapName": "Map_1",
+      "pathInfo": 4,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        93,
+        93,
+        98
+      ]
+    },
+    {
+      "waveNow": 285,
+      "waveMapName": "Map_1",
+      "pathInfo": 4,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        94,
+        94,
+        97
+      ]
+    },
+    {
+      "waveNow": 286,
+      "waveMapName": "Map_1",
+      "pathInfo": 4,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        94,
+        94,
+        98
+      ]
+    },
+    {
+      "waveNow": 287,
+      "waveMapName": "Map_1",
+      "pathInfo": 4,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        94,
+        94,
+        99
+      ]
+    },
+    {
+      "waveNow": 288,
+      "waveMapName": "Map_1",
+      "pathInfo": 4,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        95,
+        95,
+        98
+      ]
+    },
+    {
+      "waveNow": 289,
+      "waveMapName": "Map_0",
+      "pathInfo": 5,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        95,
+        95,
+        99
+      ]
+    },
+    {
+      "waveNow": 290,
+      "waveMapName": "Map_0",
+      "pathInfo": 5,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect",
+        "Boss_Rect"
+      ],
+      "numOfUnit": [
+        47,
+        47,
+        51,
+        1
+      ]
+    },
+    {
+      "waveNow": 291,
+      "waveMapName": "Map_0",
+      "pathInfo": 5,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        96,
+        96,
+        99
+      ]
+    },
+    {
+      "waveNow": 292,
+      "waveMapName": "Map_0",
+      "pathInfo": 5,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        96,
+        96,
+        100
+      ]
+    },
+    {
+      "waveNow": 293,
+      "waveMapName": "Map_0",
+      "pathInfo": 5,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        96,
+        96,
+        101
+      ]
+    },
+    {
+      "waveNow": 294,
+      "waveMapName": "Map_0",
+      "pathInfo": 5,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        97,
+        97,
+        100
+      ]
+    },
+    {
+      "waveNow": 295,
+      "waveMapName": "Map_0",
+      "pathInfo": 6,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        97,
+        97,
+        101
+      ]
+    },
+    {
+      "waveNow": 296,
+      "waveMapName": "Map_0",
+      "pathInfo": 6,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        97,
+        97,
+        102
+      ]
+    },
+    {
+      "waveNow": 297,
+      "waveMapName": "Map_0",
+      "pathInfo": 6,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        98,
+        98,
+        101
+      ]
+    },
+    {
+      "waveNow": 298,
+      "waveMapName": "Map_0",
+      "pathInfo": 6,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        98,
+        98,
+        102
+      ]
+    },
+    {
+      "waveNow": 299,
+      "waveMapName": "Map_0",
+      "pathInfo": 6,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect"
+      ],
+      "numOfUnit": [
+        98,
+        98,
+        103
+      ]
+    },
+    {
+      "waveNow": 300,
+      "waveMapName": "Map_0",
+      "pathInfo": 6,
+      "unitName": [
+        "Enemy_Round",
+        "Enemy_Triangle",
+        "Enemy_Rect",
+        "Boss_Rect"
+      ],
+      "numOfUnit": [
+        49,
+        49,
+        52,
+        1
+      ]
     }
   ]
 }
- 

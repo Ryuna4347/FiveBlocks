@@ -16,7 +16,7 @@ public class WaveInfo
 {
     public int waveNow; //현재 웨이브
     public string waveMapName; //웨이브가 진행 될 맵이름(맵이름이 다를 경우 gameManager에 신 이동 요구)
-    public string pathInfo; //적 오브젝트들이 이동할 길의 이름
+    public int pathInfo; //적 오브젝트들이 이동할 길의 이름
 
     public string[] unitName;
     public int[] numOfUnit;
@@ -63,7 +63,6 @@ class Wave //각 웨이브의 정보를 소유하는 클래스
 
         foreach (string enemyName in EnemyList)
         { //웨이브 내에 유닛 정보(유닛이름, 숫자) 저장
-            Debug.Log(enemyName);
 
             string splitEnemyName = enemyName.Split('-')[0]; //enemyName의 구성 적군이름(Enemy_OOO)-적유닛 갯수
             int splitEnemyNum = int.Parse(enemyName.Split('-')[1]);
@@ -223,7 +222,7 @@ public class WaveManager : MonoBehaviour
             }
 
             Wave newWave = new Wave();
-            GameObject wavePath = pathGroup.Find(x => x.name.Contains(wave.pathInfo)); //길의 이름(뒤의 숫자로 분별)을 포함한 길 좌표 오브젝트
+            GameObject wavePath = pathGroup.Find(x => x.name.Contains(wave.pathInfo.ToString())); //길의 이름(뒤의 숫자로 분별)을 포함한 길 좌표 오브젝트
             newWave.SetWave(wave.waveNow, wave.waveMapName, wavePath, waveEnemyList); //읽은 적의 정보/길의 정보를 Wave클래스에 추가한다.
 
             waveInfo.Add(newWave); //새로운 wave정보를 추가
@@ -257,6 +256,7 @@ public class WaveManager : MonoBehaviour
          */
     public void ReadyForWave(int n) //n번째 웨이브 준비
     {
+
         waveNow = n;
 
         Wave unitInfo = FindWave(n);
