@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &3756058428309177214
+--- !u!1 &5057231671162753264
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,36 +8,36 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3756058428309177213}
-  - component: {fileID: 3756058428309177212}
+  - component: {fileID: 5012714074720660041}
+  - component: {fileID: 4716425644347441102}
   m_Layer: 0
-  m_Name: PathInfomation_0
+  m_Name: PathInfomation_5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3756058428309177213
+--- !u!4 &5012714074720660041
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3756058428309177214}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_GameObject: {fileID: 5057231671162753264}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
+  m_LocalScale: {x: 0.11111112, y: 0.06410256, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!120 &3756058428309177212
+--- !u!120 &4716425644347441102
 LineRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3756058428309177214}
+  m_GameObject: {fileID: 5057231671162753264}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -69,19 +69,21 @@ LineRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Positions:
-  - {x: -2.3, y: 2.8, z: 0}
-  - {x: -2.3, y: -1.8, z: 0}
-  - {x: 2.3, y: -1.8, z: 0}
-  - {x: 2.3, y: 2.8, z: 0}
+  - {x: -0.9, y: 2.7, z: 0}
+  - {x: -2.2, y: 2.7, z: 0}
+  - {x: -2.2, y: 0.5, z: 0}
+  - {x: 2.2, y: 0.5, z: 0}
+  - {x: 2.2, y: -1.7, z: 0}
+  - {x: 0.9, y: -1.7, z: 0}
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 0.5
+    widthMultiplier: 0.05
     widthCurve:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.08333588
+        value: 1
         inSlope: 0
         outSlope: 0
         tangentMode: 0

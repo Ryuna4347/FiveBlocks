@@ -169,7 +169,7 @@ public class EnchantManager : MonoBehaviour
 
         EnchantJson enchantDataJSON = JsonUtility.FromJson<EnchantJson>(EnchantDataTxt);
 
-        foreach(Enchant enchantInfo in enchantDataJSON.enchantData) { 
+        foreach(Enchant enchantInfo in enchantDataJSON.enchantData) {
 
             EnchantInfo enchant = new EnchantInfo();
 

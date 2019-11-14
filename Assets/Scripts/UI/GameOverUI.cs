@@ -17,6 +17,7 @@ public class GameOverUI : MonoBehaviour
         waveManager = GameObject.Find("WaveManager").GetComponent<WaveManager>();
         appManager = GameObject.Find("gameManager").GetComponent<AppManager>();
         gameOverObjs = gameObject.transform.Find("GameOverObjs").gameObject;
+        gameObject.SetActive(false);
     }
 
     private void OnDisable()

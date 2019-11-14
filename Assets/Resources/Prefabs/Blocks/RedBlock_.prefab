@@ -148,7 +148,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: dda438f80a901d84b9d6ec7a0d0fb426, type: 3}
   levImage: {fileID: 6004431428390616374}
   blockLevel: 0
-  damage: 0100000002000000
+  damage: 0100000002000000030000000400000005000000060000000700000008000000
+  isWaveStart: 0
   blockAttType: normal
   shootCoolTime: 1
 --- !u!95 &2726923023922835133
@@ -184,6 +185,7 @@ GameObject:
   - component: {fileID: 302271883791749809}
   - component: {fileID: 3825582760488578634}
   - component: {fileID: 8243855976834736371}
+  - component: {fileID: 2024361454638504501}
   m_Layer: 0
   m_Name: Bullet_splash_4
   m_TagString: Untagged
@@ -222,7 +224,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10302, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: b05f8e910f7d4fd4889c52a0e455e46a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -310,6 +312,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletType: splash
+--- !u!111 &2024361454638504501
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1229154397304387878}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 0}
+  m_Animations:
+  - {fileID: 7400000, guid: 1aae5df0d9bdfe74ebc09690e1d84230, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &2697204094724843165
 GameObject:
   m_ObjectHideFlags: 0
@@ -358,6 +376,7 @@ GameObject:
   - component: {fileID: 8568648015881779421}
   - component: {fileID: 422403058643104469}
   - component: {fileID: 4556156077308074810}
+  - component: {fileID: 8119311916831039627}
   m_Layer: 0
   m_Name: Bullet_splash_2
   m_TagString: Untagged
@@ -396,7 +415,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10302, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: b05f8e910f7d4fd4889c52a0e455e46a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -484,6 +503,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletType: splash
+--- !u!111 &8119311916831039627
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3136137199578636199}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 0}
+  m_Animations:
+  - {fileID: 7400000, guid: 1aae5df0d9bdfe74ebc09690e1d84230, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &4167190648762585198
 GameObject:
   m_ObjectHideFlags: 0
@@ -577,6 +612,7 @@ GameObject:
   - component: {fileID: 3363559865528088853}
   - component: {fileID: 1520932813792319048}
   - component: {fileID: 4405075419287316769}
+  - component: {fileID: 8587736225884873203}
   m_Layer: 0
   m_Name: Bullet_splash_3
   m_TagString: Untagged
@@ -615,7 +651,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10302, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: b05f8e910f7d4fd4889c52a0e455e46a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -703,6 +739,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletType: splash
+--- !u!111 &8587736225884873203
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8323017517698840802}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 0}
+  m_Animations:
+  - {fileID: 7400000, guid: 1aae5df0d9bdfe74ebc09690e1d84230, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &8907804733460893697
 GameObject:
   m_ObjectHideFlags: 0
@@ -717,6 +769,7 @@ GameObject:
   - component: {fileID: 8993597431615061140}
   - component: {fileID: 8504198172254435238}
   - component: {fileID: 3884295396494615393}
+  - component: {fileID: 7809397087106512433}
   m_Layer: 0
   m_Name: Bullet_splash_1
   m_TagString: Untagged
@@ -755,7 +808,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10302, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: b05f8e910f7d4fd4889c52a0e455e46a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -843,3 +896,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletType: splash
+--- !u!111 &7809397087106512433
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8907804733460893697}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 0}
+  m_Animations:
+  - {fileID: 7400000, guid: 1aae5df0d9bdfe74ebc09690e1d84230, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0

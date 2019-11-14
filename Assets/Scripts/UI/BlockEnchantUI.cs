@@ -49,7 +49,7 @@ public class BlockEnchantUI : MonoBehaviour
         enchantManager = GameObject.Find("EnchantManager").GetComponent<EnchantManager>();
         blockDescList = new List<BlockDesc>();
         LoadBlockDescription();
-        transform.parent.gameObject.SetActive(false); //UI위에 외곽 터치 방지 오브젝트까지 꺼줘야한다.
+        gameObject.SetActive(false);
     }
 
     private void LoadBlockDescription()

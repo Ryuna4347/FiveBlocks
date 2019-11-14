@@ -19,7 +19,7 @@ public class BlockInfo : MonoBehaviour
     //데미지 공식 : (유닛 레벨별 기본 데미지+유닛 강화 데미지)*노란 블럭 데미지 상승배수
     private float damageNow; //여러가지 효과를 더한 상태에서의 데미지(실제 사용하는 값)
 
-    private bool isWaveStart;
+    [SerializeField]private bool isWaveStart;
 
     public string blockAttType; //블럭의 타입(일반/버프 2종류. 현재는 노란 블럭을 제외하면 모두 일반이다.)
     public float shootCoolTime;

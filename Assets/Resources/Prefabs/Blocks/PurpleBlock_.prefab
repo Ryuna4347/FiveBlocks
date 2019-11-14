@@ -541,7 +541,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: dda438f80a901d84b9d6ec7a0d0fb426, type: 3}
   levImage: {fileID: 2141360684160151603}
   blockLevel: 0
-  damage: 0100000002000000
+  damage: 0100000002000000030000000400000005000000060000000700000008000000
+  isWaveStart: 0
   blockAttType: normal
   shootCoolTime: 1
 --- !u!95 &3962771574501128023

@@ -256,7 +256,6 @@ public class WaveManager : MonoBehaviour
          */
     public void ReadyForWave(int n) //n번째 웨이브 준비
     {
-
         waveNow = n;
 
         Wave unitInfo = FindWave(n);

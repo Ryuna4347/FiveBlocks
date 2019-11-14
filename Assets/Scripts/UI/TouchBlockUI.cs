@@ -7,11 +7,13 @@ using UnityEngine;
  */
 public class TouchBlockUI : MonoBehaviour
 {
-    [SerializeField]private GameObject gameOverUI;
+    [SerializeField] private GameObject gameOverUI;
     [SerializeField] private GameObject blockEnchantUI;
     [SerializeField] private GameObject pauseUI;
     [SerializeField] private CanvasGroup backgroundCanvas; //NoticeCanvas 내의 오브젝트가 켜질 시 BackGroundCanvas와 클릭이 겹치게 되어서 해당 캔버스의 클릭을 방지하기 위해서 선언함
-    
+
+
+
     ///<summary>NoticeCanvas 내의 특정 UI의 active를 true로 변경</summary>
     public void ActiveUI(string UIName)
     {
