@@ -185,7 +185,7 @@ GameObject:
   - component: {fileID: 302271883791749809}
   - component: {fileID: 3825582760488578634}
   - component: {fileID: 8243855976834736371}
-  - component: {fileID: 2024361454638504501}
+  - component: {fileID: 2171947631676763025}
   m_Layer: 0
   m_Name: Bullet_splash_4
   m_TagString: Untagged
@@ -312,22 +312,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletType: splash
---- !u!111 &2024361454638504501
-Animation:
+--- !u!95 &2171947631676763025
+Animator:
+  serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1229154397304387878}
   m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 0}
-  m_Animations:
-  - {fileID: 7400000, guid: 1aae5df0d9bdfe74ebc09690e1d84230, type: 2}
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2662528ed8db05442b0d3b68fd669764, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &2697204094724843165
 GameObject:
   m_ObjectHideFlags: 0
@@ -376,7 +379,7 @@ GameObject:
   - component: {fileID: 8568648015881779421}
   - component: {fileID: 422403058643104469}
   - component: {fileID: 4556156077308074810}
-  - component: {fileID: 8119311916831039627}
+  - component: {fileID: 116309137038926988}
   m_Layer: 0
   m_Name: Bullet_splash_2
   m_TagString: Untagged
@@ -503,22 +506,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletType: splash
---- !u!111 &8119311916831039627
-Animation:
+--- !u!95 &116309137038926988
+Animator:
+  serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3136137199578636199}
   m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 0}
-  m_Animations:
-  - {fileID: 7400000, guid: 1aae5df0d9bdfe74ebc09690e1d84230, type: 2}
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2662528ed8db05442b0d3b68fd669764, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &4167190648762585198
 GameObject:
   m_ObjectHideFlags: 0
@@ -612,7 +618,7 @@ GameObject:
   - component: {fileID: 3363559865528088853}
   - component: {fileID: 1520932813792319048}
   - component: {fileID: 4405075419287316769}
-  - component: {fileID: 8587736225884873203}
+  - component: {fileID: 2446004563768317940}
   m_Layer: 0
   m_Name: Bullet_splash_3
   m_TagString: Untagged
@@ -739,22 +745,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletType: splash
---- !u!111 &8587736225884873203
-Animation:
+--- !u!95 &2446004563768317940
+Animator:
+  serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8323017517698840802}
   m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 0}
-  m_Animations:
-  - {fileID: 7400000, guid: 1aae5df0d9bdfe74ebc09690e1d84230, type: 2}
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2662528ed8db05442b0d3b68fd669764, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &8907804733460893697
 GameObject:
   m_ObjectHideFlags: 0
@@ -769,7 +778,7 @@ GameObject:
   - component: {fileID: 8993597431615061140}
   - component: {fileID: 8504198172254435238}
   - component: {fileID: 3884295396494615393}
-  - component: {fileID: 7809397087106512433}
+  - component: {fileID: 8061017523457705166}
   m_Layer: 0
   m_Name: Bullet_splash_1
   m_TagString: Untagged
@@ -896,19 +905,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletType: splash
---- !u!111 &7809397087106512433
-Animation:
+--- !u!95 &8061017523457705166
+Animator:
+  serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8907804733460893697}
   m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 0}
-  m_Animations:
-  - {fileID: 7400000, guid: 1aae5df0d9bdfe74ebc09690e1d84230, type: 2}
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2662528ed8db05442b0d3b68fd669764, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

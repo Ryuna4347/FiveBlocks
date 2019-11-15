@@ -10,6 +10,7 @@ public class BulletInfo : MonoBehaviour
     private bool isShot; //총알이 발사되었는가를 판단하는 bool변수
     public string bulletType;
     private WaveManager waveManager;
+    private Animator anim;
 
     private void Awake()
     {
@@ -28,6 +29,7 @@ public class BulletInfo : MonoBehaviour
             MoveBullet();
         }
     }
+
 
     public void Shoot(GameObject obj, float dmg)
     {
@@ -51,12 +53,21 @@ public class BulletInfo : MonoBehaviour
             case "splash": //splash의 경우 먼저 적을 타격 후 해당 적 포함 일정 범위 내의 모든 적에게 약한 데미지를 가한다.
                 enemyObj.GetComponent<EnemyInfo>().GetDamaged(damage);
 
-                List<GameObject> damagedBySplash = waveManager.GetEnemyInRange(enemyObj,0.3f);
+                List<GameObject> damagedBySplash = waveManager.GetEnemyInRange(enemyObj,0.5f);
+
+                if (anim == null)
+                {
+                    anim = gameObject.GetComponent<Animator>();
+                }
+                gameObject.transform.position = enemyObj.transform.position; //적 위치에서 고정되서 애니메이션 재생
+                anim.SetInteger("Effect", 0); //애니메이션 재생(0->폭파)
+                isShot = false; //충돌하고 애니메이션 도중에는 이동 불가하도록 
+
                 if (damagedBySplash == null) //맞출 대상이 없는경우 취소
                 {
                     break;
                 }
-                foreach(GameObject enemy in damagedBySplash)
+                foreach (GameObject enemy in damagedBySplash)
                 {
                     //추가예정 : 붉은 색으로 적 유닛을 잠깐 표시
                     enemy.GetComponent<EnemyInfo>().GetDamaged((int)specialEffect); //붉은 블럭의 강화수치에 따른 특수효과 데미지를 따른다.
@@ -81,6 +92,14 @@ public class BulletInfo : MonoBehaviour
                 break;
         }
     }
+    /// <summary>
+    /// 폭파 애니메이션 이후 오브젝트를 꺼야해서 invoke 사용하기 위해서 따로 만든 함수
+    /// </summary>
+    private void Hide()
+    {
+        Debug.Log("숨기기");
+        gameObject.SetActive(false);
+    }
 
     public void DeadTarget(GameObject enemy)
     {
@@ -88,6 +107,10 @@ public class BulletInfo : MonoBehaviour
         {
             target = null;
             isShot = false;
+            if (anim != null)
+            { //애니메이션을 가진 탄환이라면 따로 setactive처리를 하도록 한다.
+                return;
+            }
             gameObject.SetActive(false);
         }
     }
@@ -99,7 +122,10 @@ public class BulletInfo : MonoBehaviour
             { //목표한 피격체여야 타격 성립
                 isShot = false;
                 DamageToEnemy(collision.gameObject);
-                gameObject.SetActive(false);
+                if (!bulletType.Equals("splash")) //폭파 애니메이션을 위해서 따로 애니메이션에 setactive를 애니메이션 뒤에 붙임
+                {
+                    gameObject.SetActive(false);
+                }
             }
         }
     }
