@@ -12,14 +12,23 @@ public class BulletInfo : MonoBehaviour
     private WaveManager waveManager;
     private Animator anim;
 
+    private bool willErased; //애니메이션 진행 중 active를 조절할 필요가 있는 경우 중복삭제 요구하지 않도록 막는 용도
+
+
     private void Awake()
     {
         waveManager = GameObject.Find("WaveManager").GetComponent<WaveManager>();
+        anim = gameObject.GetComponent<Animator>();
     }
 
     private void OnEnable()
     {
         transform.position = transform.parent.transform.position;
+    }
+
+    private void OnDisable()
+    {
+        transform.localScale = new Vector3(0.2f, 0.2f, 1f);
     }
 
     private void Update()
@@ -51,17 +60,14 @@ public class BulletInfo : MonoBehaviour
         switch (bulletType)
         {
             case "splash": //splash의 경우 먼저 적을 타격 후 해당 적 포함 일정 범위 내의 모든 적에게 약한 데미지를 가한다.
-                enemyObj.GetComponent<EnemyInfo>().GetDamaged(damage);
 
                 List<GameObject> damagedBySplash = waveManager.GetEnemyInRange(enemyObj,0.5f);
 
-                if (anim == null)
-                {
-                    anim = gameObject.GetComponent<Animator>();
-                }
                 gameObject.transform.position = enemyObj.transform.position; //적 위치에서 고정되서 애니메이션 재생
-                anim.SetInteger("Effect", 0); //애니메이션 재생(0->폭파)
+                anim.SetTrigger("Explosion"); //애니메이션 재생
                 isShot = false; //충돌하고 애니메이션 도중에는 이동 불가하도록 
+                
+                enemyObj.GetComponent<EnemyInfo>().GetDamaged(damage);
 
                 if (damagedBySplash == null) //맞출 대상이 없는경우 취소
                 {
@@ -95,20 +101,21 @@ public class BulletInfo : MonoBehaviour
     /// <summary>
     /// 폭파 애니메이션 이후 오브젝트를 꺼야해서 invoke 사용하기 위해서 따로 만든 함수
     /// </summary>
-    private void Hide()
+    public void Hide()
     {
-        Debug.Log("숨기기");
+        willErased = false; //이제 지울 것이므로 스위치를 원상태로
         gameObject.SetActive(false);
     }
 
     public void DeadTarget(GameObject enemy)
     {
-        if (target.name == enemy.name)
+        if (willErased == false&&target.name == enemy.name)
         {
             target = null;
             isShot = false;
             if (anim != null)
-            { //애니메이션을 가진 탄환이라면 따로 setactive처리를 하도록 한다.
+            { //애니메이션을 가진 탄환이라면 따로 setactive처리를 하도록 한다.  
+                willErased = true;
                 return;
             }
             gameObject.SetActive(false);

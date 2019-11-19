@@ -78,20 +78,24 @@ public class EnemyInfo : MonoBehaviour
 
     public void GetDamaged(float damage)
     {
-        health -= damage;
-        if ((health<=999)&&(health >= 0))
+        if (isWaveStart) //웨이브 종료 후에는 데미지를 입지 않는다.(폭파 효과에 데미지 입는 경우가 생김)
         {
-            transform.GetChild(0).GetComponent<TextMesh>().text = health.ToString();
-        }
-        else if(health>999){ //이 이상의 체력은 너무 커서 텍스트가 오브젝트를 넘어감
-            transform.GetChild(0).GetComponent<TextMesh>().text = "999+";
-        }
+            health -= damage;
+            if ((health <= 999) && (health >= 0))
+            {
+                transform.GetChild(0).GetComponent<TextMesh>().text = health.ToString();
+            }
+            else if (health > 999)
+            { //이 이상의 체력은 너무 커서 텍스트가 오브젝트를 넘어감
+                transform.GetChild(0).GetComponent<TextMesh>().text = "999+";
+            }
 
-        if (health <= 0)
-        {
-            health = 0;
-            Dead();
-            waveManager.EnemyDead(gameObject);
+            if (health <= 0)
+            {
+                health = 0;
+                Dead();
+                waveManager.EnemyDead(gameObject);
+            }
         }
     }
 

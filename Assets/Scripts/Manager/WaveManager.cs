@@ -128,10 +128,11 @@ public class WaveManager : MonoBehaviour
     {
         foreach(GameObject aliveEnemy in usingEnemy)
         {
+            aliveEnemy.GetComponent<EnemyInfo>().SwitchWaveStatus(false);
             aliveEnemy.SetActive(false);
         }
         usingEnemy = new List<GameObject>();
-
+        
         waveNow = 1;
         aliveEnemyNow = 0;
     }
@@ -378,6 +379,7 @@ public class WaveManager : MonoBehaviour
     {
         if (!appManager.isWaveProcessing) //중복클릭에 반응하지 않도록
         {
+            Debug.Log("ws "+aliveEnemyNow);
             appManager.WaveStart();
 
             StartCoroutine("StartEnemyMove");
@@ -433,6 +435,7 @@ public class WaveManager : MonoBehaviour
 
         appManager.CheckBlockTarget(deadEnemy);
 
+        Debug.Log(aliveEnemyNow);
         if (aliveEnemyNow < 1)
         {
             appManager.WaveEnd(waveNow);

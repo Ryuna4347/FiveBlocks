@@ -185,7 +185,7 @@ GameObject:
   - component: {fileID: 302271883791749809}
   - component: {fileID: 3825582760488578634}
   - component: {fileID: 8243855976834736371}
-  - component: {fileID: 2171947631676763025}
+  - component: {fileID: 8455605768519839117}
   m_Layer: 0
   m_Name: Bullet_splash_4
   m_TagString: Untagged
@@ -312,7 +312,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletType: splash
---- !u!95 &2171947631676763025
+--- !u!95 &8455605768519839117
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0
@@ -322,7 +322,7 @@ Animator:
   m_GameObject: {fileID: 1229154397304387878}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 2662528ed8db05442b0d3b68fd669764, type: 2}
+  m_Controller: {fileID: 9100000, guid: c431fcc550cb9b14795938a8de3115a1, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -379,7 +379,7 @@ GameObject:
   - component: {fileID: 8568648015881779421}
   - component: {fileID: 422403058643104469}
   - component: {fileID: 4556156077308074810}
-  - component: {fileID: 116309137038926988}
+  - component: {fileID: 5415367394219268554}
   m_Layer: 0
   m_Name: Bullet_splash_2
   m_TagString: Untagged
@@ -506,7 +506,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletType: splash
---- !u!95 &116309137038926988
+--- !u!95 &5415367394219268554
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0
@@ -516,7 +516,7 @@ Animator:
   m_GameObject: {fileID: 3136137199578636199}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 2662528ed8db05442b0d3b68fd669764, type: 2}
+  m_Controller: {fileID: 9100000, guid: c431fcc550cb9b14795938a8de3115a1, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -618,7 +618,7 @@ GameObject:
   - component: {fileID: 3363559865528088853}
   - component: {fileID: 1520932813792319048}
   - component: {fileID: 4405075419287316769}
-  - component: {fileID: 2446004563768317940}
+  - component: {fileID: 5806310160954695456}
   m_Layer: 0
   m_Name: Bullet_splash_3
   m_TagString: Untagged
@@ -745,7 +745,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletType: splash
---- !u!95 &2446004563768317940
+--- !u!95 &5806310160954695456
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0
@@ -755,7 +755,7 @@ Animator:
   m_GameObject: {fileID: 8323017517698840802}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 2662528ed8db05442b0d3b68fd669764, type: 2}
+  m_Controller: {fileID: 9100000, guid: c431fcc550cb9b14795938a8de3115a1, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -778,7 +778,7 @@ GameObject:
   - component: {fileID: 8993597431615061140}
   - component: {fileID: 8504198172254435238}
   - component: {fileID: 3884295396494615393}
-  - component: {fileID: 8061017523457705166}
+  - component: {fileID: 5152801690651643002}
   m_Layer: 0
   m_Name: Bullet_splash_1
   m_TagString: Untagged
@@ -905,7 +905,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletType: splash
---- !u!95 &8061017523457705166
+--- !u!95 &5152801690651643002
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0
@@ -915,7 +915,7 @@ Animator:
   m_GameObject: {fileID: 8907804733460893697}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 2662528ed8db05442b0d3b68fd669764, type: 2}
+  m_Controller: {fileID: 9100000, guid: c431fcc550cb9b14795938a8de3115a1, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

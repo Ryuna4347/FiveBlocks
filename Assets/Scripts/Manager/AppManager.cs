@@ -41,6 +41,7 @@ public class AppManager : MonoBehaviour
         totalManager = GameObject.Find("TotalManager").GetComponent<TotalManager>();
         audio = GameObject.Find("SoundManager").GetComponent<SoundManager>(); //사운드매니저가 타이틀 씬에서 넘어오기 때문에 동적으로 추가해줘야 한다.
         audio.gameObject.transform.parent = transform.parent; //사운드매니저가 타이틀 씬에서 넘어오기 때문에 부모가 정해지지 않았기 때문에 매니저 그룹오브젝트를 부모로 설정한다.
+
     }
 
     // Start is called before the first frame update
@@ -489,6 +490,7 @@ public class AppManager : MonoBehaviour
     private void SetDefault()
     {
         isGameOver = false;
+        isWaveProcessing = false;
 
         if (usedArea.Count > 0)
         {
