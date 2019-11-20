@@ -84,7 +84,6 @@ public class BlockInfo : MonoBehaviour
     public void SwitchWaveStatus(bool val)
     { //isWaveStart의 값을 바꾸는 함수
         isWaveStart = val;
-        Debug.Log(isWaveStart);
         if (val == true)
         {
             bulletListObj.gameObject.SetActive(true);

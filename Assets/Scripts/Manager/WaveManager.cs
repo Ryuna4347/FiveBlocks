@@ -379,7 +379,6 @@ public class WaveManager : MonoBehaviour
     {
         if (!appManager.isWaveProcessing) //중복클릭에 반응하지 않도록
         {
-            Debug.Log("ws "+aliveEnemyNow);
             appManager.WaveStart();
 
             StartCoroutine("StartEnemyMove");

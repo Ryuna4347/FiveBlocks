@@ -12,7 +12,7 @@ public class BulletInfo : MonoBehaviour
     private WaveManager waveManager;
     private Animator anim;
 
-    private bool willErased; //애니메이션 진행 중 active를 조절할 필요가 있는 경우 중복삭제 요구하지 않도록 막는 용도
+    private bool hasCollided; //애니메이션 진행 중 active를 조절할 필요가 있는 경우 중복삭제 요구하지 않도록 막는 용도(현재는 붉은 블럭 탄환 전용)
 
 
     private void Awake()
@@ -65,7 +65,8 @@ public class BulletInfo : MonoBehaviour
 
                 gameObject.transform.position = enemyObj.transform.position; //적 위치에서 고정되서 애니메이션 재생
                 anim.SetTrigger("Explosion"); //애니메이션 재생
-                isShot = false; //충돌하고 애니메이션 도중에는 이동 불가하도록 
+                isShot = false; //충돌하고 애니메이션 도중에는 이동 불가하도록
+                hasCollided = true;
                 
                 enemyObj.GetComponent<EnemyInfo>().GetDamaged(damage);
 
@@ -103,23 +104,31 @@ public class BulletInfo : MonoBehaviour
     /// </summary>
     public void Hide()
     {
-        willErased = false; //이제 지울 것이므로 스위치를 원상태로
-        gameObject.SetActive(false);
+        hasCollided = false; //이제 지울 것이므로 스위치를 원상태로
+        DeadTarget();
     }
 
+    /// <summary>
+    /// 목표로 한 적 유닛이 사라졌음을 알리는 함수(날아가던 탄환은 공중분해. 이때 충돌해서 애니메이션 재생 중인 탄환도 불리므로 이는 제외)
+    /// </summary>
+    /// <param name="enemy"></param>
     public void DeadTarget(GameObject enemy)
     {
-        if (willErased == false&&target.name == enemy.name)
+        if (!hasCollided&&target.name == enemy.name) //충돌하여 애니메이션 재생 중인 탄환은 애니메이션 종료 후 다시 부를 예정
         {
             target = null;
             isShot = false;
-            if (anim != null)
-            { //애니메이션을 가진 탄환이라면 따로 setactive처리를 하도록 한다.  
-                willErased = true;
-                return;
-            }
             gameObject.SetActive(false);
         }
+    }
+    /// <summary>
+    /// 적 유닛이 사라짐에 따른 탄환 삭제(애니메이션 종료한 탄환 한정해서 사용할 것. 애니메이션 진행한 탄환은 이미 target이 사라졌음을 알고 있으므로 적 유닛 확인이 필요 없다.)
+    /// </summary>
+    public void DeadTarget()
+    {
+        target = null;
+        isShot = false;
+        gameObject.SetActive(false);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
