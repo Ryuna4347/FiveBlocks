@@ -23,7 +23,7 @@ public class EnemyInfo : MonoBehaviour
     private SoundManager soundManager;
     private WaveManager waveManager; //사망처리 요구
     private TextMesh HP_UI; //체력 잔량 표시를 위한 자식 텍스트 메쉬
-    private Sprite EffectSprite; //특수효과 피해를 받았을 경우 나타나는 이미지들을 표시하기 위한 오브젝트
+    private SpriteRenderer effectSprite; //특수효과 피해를 받았을 경우 나타나는 이미지들을 표시하기 위한 오브젝트
 
     private GameObject unitHealthText; //체력 숫자 표시를 위해서 사용하는 텍스트 UI
 
@@ -43,12 +43,14 @@ public class EnemyInfo : MonoBehaviour
         abnormal_status = "";
         HP_UI = transform.Find("HP_UI").gameObject.GetComponent<TextMesh>();
         speedNow = speed;
+
+        effectSprite = transform.Find("EffectSprite").GetComponent<SpriteRenderer>();
     }
 
     private void ResetValue()
     {
         targetPathIdx = 0;
-        abnormal_status = "";
+
         pathList = new List<Vector3>();
         unitHealthText.SetActive(true);
         speedNow = speed;
@@ -101,12 +103,18 @@ public class EnemyInfo : MonoBehaviour
 
     public void SetAbnormalStatus(string abnormal_Type, float time, float slowPercent=0) //인자 : 상태이상 종류, 상태이상 유지시간, 이동속도 감소율(이건 필수가 아님)
     {
+        if (health < 0) { return; } //죽은 상태에서는 상태이상에 걸리지 않는다.(데미지 선계산 후 상태이상이기 때문에 죽은 상태 이후에 상태이상에 걸리지 않게 체크해줘야한다.)
+
+        abnormal_status = abnormal_Type;
+
         if (abnormal_Type == "slow")
         {
+            effectSprite.sprite = effects[0];
             speedNow *= (1 - slowPercent);
         }
         else if(abnormal_Type=="pause")
         {
+            effectSprite.sprite = effects[1];
             speedNow = 0f;
         }
         Invoke("ReturnNormalStatus", time);
@@ -114,6 +122,8 @@ public class EnemyInfo : MonoBehaviour
 
     private void ReturnNormalStatus()
     {
+        abnormal_status = "";
+        effectSprite.sprite = null;
         speedNow = speed;
     }
 
@@ -121,6 +131,11 @@ public class EnemyInfo : MonoBehaviour
     void Dead()
     {
         SwitchWaveStatus(false);
+        if (abnormal_status != "")
+        {
+            ReturnNormalStatus(); //상태이상 원래대로
+        }
+        
         soundManager.PlayAudio("EnemyDead");
         gameObject.SetActive(false); //EnemyDead()를 통해 active를 조절하면 시간이 걸려서 총알이 바로 사라지지 않음
     }
@@ -145,7 +160,14 @@ public class EnemyInfo : MonoBehaviour
     //unitOrder=>textMesh가 뚫고 나오지 않도록
     public void SetEnemyInformation(int heal, GameObject path)
     { //적 유닛의 정보를 웨이브에 맞게 전달받는다.
-        health = heal;
+        if (gameObject.name.Contains("Boss")) //보스 적 유닛의 체력은 공식이 다르다.
+        {
+            health = Mathf.Round(heal * heal / 1.85f);
+        }
+        else //일반 적 유닛
+        {
+            health = heal;
+        }
         SetPathInfomation(path);
     }
 

@@ -90,7 +90,7 @@ TextMesh:
   m_Font: {fileID: 0}
   m_Color:
     serializedVersion: 2
-    rgba: 4284703587
+    rgba: 4286102525
 --- !u!1 &5161461317963354917
 GameObject:
   m_ObjectHideFlags: 0
@@ -164,7 +164,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.26, y: 1.26}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
@@ -314,6 +314,6 @@ MonoBehaviour:
   pathName: 
   speed: 0.85
   effects:
-  - {fileID: 21300000, guid: 765e8112793aecc4abc3e559fc11f5b9, type: 3}
-  - {fileID: 21300000, guid: 8dd65102b786aff4da36a0dae52cfdc8, type: 3}
+  - {fileID: 21300000, guid: b6603e11c80e24445b5bb0879db9682d, type: 3}
+  - {fileID: 21300000, guid: 2e6029fcc5a769b4f9f4fd6784ecb62e, type: 3}
   isWaveStart: 0

@@ -49,7 +49,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10100, guid: 0000000000000000e000000000000000, type: 0}
+  - {fileID: 2100000, guid: 8193ab11108682944a1aa653e3e3f8cc, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -77,7 +77,7 @@ TextMesh:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1876117254478221477}
-  m_Text: 
+  m_Text: 1
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 1
@@ -87,10 +87,10 @@ TextMesh:
   m_FontSize: 0
   m_FontStyle: 0
   m_RichText: 1
-  m_Font: {fileID: 0}
+  m_Font: {fileID: 12800000, guid: 8193ab11108682944a1aa653e3e3f8cc, type: 3}
   m_Color:
     serializedVersion: 2
-    rgba: 4284703587
+    rgba: 4286102525
 --- !u!1 &6897935274108635732
 GameObject:
   m_ObjectHideFlags: 0
@@ -116,8 +116,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6897935274108635732}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -1}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0.23, z: -1}
+  m_LocalScale: {x: 0.99, y: 0.9, z: 1}
   m_Children: []
   m_Father: {fileID: 8457252255139284254}
   m_RootOrder: 1
@@ -164,7 +164,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.51428574, y: 0.51428574}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
@@ -190,7 +190,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8457252255139284254
 Transform:
   m_ObjectHideFlags: 0
@@ -266,7 +266,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pathName: 
   speed: 1.15
-  effects: []
+  effects:
+  - {fileID: 21300000, guid: 9a94f8112ece1c44e873e361c687ce5c, type: 3}
+  - {fileID: 21300000, guid: 5d5e514c4550dcf4b8ccbe883e51bc4c, type: 3}
   isWaveStart: 0
 --- !u!61 &3149652612422725122
 BoxCollider2D:

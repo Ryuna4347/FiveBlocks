@@ -15,7 +15,6 @@ public class TotalManager : MonoBehaviour
     List<IAchievement> achievementList; //업적내역 
     List<IAchievementDescription> achievementDescList; //업적내역설명에 대한 리스트(string의 title을 통해서 achievementList에서 사용할 id를 얻기 위한 용도) 
     private GameObject errorUI;
-    [SerializeField] private Text errorText;
 
 
     private void Awake()
@@ -55,11 +54,9 @@ public class TotalManager : MonoBehaviour
                     "\nUser ID: " + Social.localUser.id +
                     "\nIsUnderage: " + Social.localUser.underage;
 
-                errorText.text = userInfo;
             }
             else
             {
-                errorText.text = error.ToString();
                 Debug.Log(error.ToString());
             }
         });
@@ -70,7 +67,6 @@ public class TotalManager : MonoBehaviour
         {
             Login();
         }
-        errorText.text = Social.Active.localUser.authenticated.ToString();
         Social.Active.ShowAchievementsUI();
     }
 
@@ -80,7 +76,6 @@ public class TotalManager : MonoBehaviour
         {
             Login();
         }
-        errorText.text = Social.Active.localUser.authenticated.ToString();
         Social.Active.ReportScore(PlayerPrefs.GetInt("Score"), GPGSIds.leaderboard_top_score, success => { Debug.Log("Success"); });
         Social.Active.ShowLeaderboardUI();
     }

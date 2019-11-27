@@ -54,6 +54,11 @@ public class BulletInfo : MonoBehaviour
         gameObject.transform.position = nextPos;
     }
 
+    /// <summary>
+    /// 충돌한 적에게 데미지 및 특수능력 처리
+    /// (특수능력 중 상태이상은 데미지 처리보다 늦게 할 경우 데미지 중 사망 처리를 하기 때문에 데미지 처리 이전에 처리한다.)
+    /// </summary>
+    /// <param name="enemyObj"></param>
     private void DamageToEnemy(GameObject enemyObj)
     {
         float percent;
@@ -63,7 +68,7 @@ public class BulletInfo : MonoBehaviour
 
                 List<GameObject> damagedBySplash = waveManager.GetEnemyInRange(enemyObj,0.5f);
 
-                gameObject.transform.position = enemyObj.transform.position; //적 위치에서 고정되서 애니메이션 재생
+                gameObject.transform.position = enemyObj.transform.position-new Vector3(0,0,0.5f); //적 위치에서 고정되서 애니메이션 재생
                 anim.SetTrigger("Explosion"); //애니메이션 재생
                 isShot = false; //충돌하고 애니메이션 도중에는 이동 불가하도록
                 hasCollided = true;
@@ -84,18 +89,19 @@ public class BulletInfo : MonoBehaviour
                 enemyObj.GetComponent<EnemyInfo>().GetDamaged(damage);
                 break;
             case "pause":
-                enemyObj.GetComponent<EnemyInfo>().GetDamaged(damage);
-
-                percent = Random.Range(0, 1000)/10.0f; //소수 첫째자리까지 계산
+                percent = Random.Range(0, 1000) / 10.0f; //소수 첫째자리까지 계산
                 if (percent < specialEffect) //일정 확률로 일시정지
                 {
-                    enemyObj.GetComponent<EnemyInfo>().SetAbnormalStatus("pause",0.5f);
+                    enemyObj.GetComponent<EnemyInfo>().SetAbnormalStatus("pause", 0.5f);
                 }
+
+                enemyObj.GetComponent<EnemyInfo>().GetDamaged(damage);
+
                 break;
             case "slow":
-                enemyObj.GetComponent<EnemyInfo>().GetDamaged(damage);
-                
                 enemyObj.GetComponent<EnemyInfo>().SetAbnormalStatus("slow", 2.0f, specialEffect);
+
+                enemyObj.GetComponent<EnemyInfo>().GetDamaged(damage);                
                 break;
         }
     }

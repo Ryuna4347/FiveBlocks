@@ -434,7 +434,6 @@ public class WaveManager : MonoBehaviour
 
         appManager.CheckBlockTarget(deadEnemy);
 
-        Debug.Log(aliveEnemyNow);
         if (aliveEnemyNow < 1)
         {
             appManager.WaveEnd(waveNow);

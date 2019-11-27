@@ -90,7 +90,7 @@ TextMesh:
   m_Font: {fileID: 0}
   m_Color:
     serializedVersion: 2
-    rgba: 4284703587
+    rgba: 4286102525
 --- !u!1 &6164242398985953524
 GameObject:
   m_ObjectHideFlags: 0
@@ -266,7 +266,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pathName: 
   speed: 1
-  effects: []
+  effects:
+  - {fileID: 21300000, guid: 1b73b090c8fa0604285ce5043b51e110, type: 3}
+  - {fileID: 21300000, guid: f61b6c8bd8f409640a2b12836af53b81, type: 3}
   isWaveStart: 0
 --- !u!50 &64720332999376201
 Rigidbody2D:
