@@ -69,6 +69,7 @@ public class BulletInfo : MonoBehaviour
                 List<GameObject> damagedBySplash = waveManager.GetEnemyInRange(enemyObj,0.5f);
 
                 gameObject.transform.position = enemyObj.transform.position-new Vector3(0,0,0.5f); //적 위치에서 고정되서 애니메이션 재생
+                
                 anim.SetTrigger("Explosion"); //애니메이션 재생
                 isShot = false; //충돌하고 애니메이션 도중에는 이동 불가하도록
                 hasCollided = true;
@@ -111,7 +112,7 @@ public class BulletInfo : MonoBehaviour
     public void Hide()
     {
         hasCollided = false; //이제 지울 것이므로 스위치를 원상태로
-        DeadTarget();
+        HideBullet();
     }
 
     /// <summary>
@@ -130,8 +131,9 @@ public class BulletInfo : MonoBehaviour
     /// <summary>
     /// 적 유닛이 사라짐에 따른 탄환 삭제(애니메이션 종료한 탄환 한정해서 사용할 것. 애니메이션 진행한 탄환은 이미 target이 사라졌음을 알고 있으므로 적 유닛 확인이 필요 없다.)
     /// </summary>
-    public void DeadTarget()
+    public void HideBullet()
     {
+        gameObject.GetComponent<MeshRenderer>().enabled = true;
         target = null;
         isShot = false;
         gameObject.SetActive(false);
