@@ -1,6 +1,9 @@
 # Five Blocks
 - 이 게임은 유니티를 기반으로 제작한 2D형식의 디펜스 게임입니다.
 
+# 게임 플레이 영상
+https://www.youtube.com/watch?v=Tosvurpj4-s
+
 # 목차
 - 게임 설명
 - 게임 규칙
